@@ -1,10 +1,6 @@
 from typing import Union
 
-from fastapi import FastAPI, Request, File, Query
-
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
+from fastapi import FastAPI, File
 from starlette.responses import JSONResponse
 
 
@@ -37,14 +33,14 @@ inputText = [["구개음화가 이루어지는 단어 하나와 그걸 읽는 �
               "ㄹ첨가가 이루어지는 단어 하나와 그걸 읽는 적정 속도도 초로 말해줘 다른 말은 하지마 부연설명도 하지말고 단어와 적정속도만 딱 말해줘",
               "단모음화가 이루어지는 단어 하나와 그걸 읽는 적정 속도도 초로 말해줘 다른 말은 하지마 부연설명도 하지말고 단어와 적정속도만 딱 말해줘",
               "모음조화가 이루어지는 단어 하나와 그걸 읽는 적정 속도도 초로 말해줘 다른 말은 하지마 부연설명도 하지말고 단어와 적정속도만 딱 말해줘"],
-              ["구개음화가 이루어지는 문장 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을쉬어야하는 부분도 표시해줘 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 초만 말해줘",
-               "두음법칙이 이루어지는 문장 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을쉬어야하는 부분도 표시해줘 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 초만 말해줘",
-               "치조마찰음화가 이루어지는 문장 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을쉬어야하는 부분도 표시해줘 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 초만 말해줘",
-               "ㄴ첨가가 이루어지는 문장 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을쉬어야하는 부분도 표시해줘 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 초만 말해줘",
-               "ㄹ첨가가 이루어지는 문장 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을쉬어야하는 부분도 표시해줘 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 초만 말해줘",
-               "단모음화가 이루어지는 문장 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을쉬어야하는 부분도 표시해줘 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 초만 말해줘",
-               "모음조화가 이루어지는 문장 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을쉬어야하는 부분은 (숨)을 표시해서 알려줘 그리고 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 초만 말해줘"],
-               ["",
+              ["구개음화가 이루어지는 문장 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을쉬어야하는 부분은 (숨)을 표시해서 알려줘 그리고 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 초만 말해줘. 말해줄 때 다음과 같은 구조로 대답해줘 문장:\"\" \n 숨쉬는 위치: \"\"\n 적정 속도: \"\"\n",
+               "두음법칙이 이루어지는 문장 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을쉬어야하는 부분은 (숨)을 표시해서 알려줘 그리고 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 초만 말해줘. 말해줄 때 다음과 같은 구조로 대답해줘 문장:\"\" \n 숨쉬는 위치: \"\"\n 적정 속도: \"\"\n",
+               "치조마찰음화가 이루어지는 문장 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을쉬어야하는 부분은 (숨)을 표시해서 알려줘 그리고 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 초만 말해줘. 말해줄 때 다음과 같은 구조로 대답해줘 문장:\"\" \n 숨쉬는 위치: \"\"\n 적정 속도: \"\"\n",
+               "ㄴ첨가가 이루어지는 문장 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을쉬어야하는 부분은 (숨)을 표시해서 알려줘 그리고 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 초만 말해줘. 말해줄 때 다음과 같은 구조로 대답해줘 문장:\"\" \n 숨쉬는 위치: \"\"\n 적정 속도: \"\"\n",
+               "ㄹ첨가가 이루어지는 문장 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을쉬어야하는 부분은 (숨)을 표시해서 알려줘 그리고 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 초만 말해줘. 말해줄 때 다음과 같은 구조로 대답해줘 문장:\"\" \n 숨쉬는 위치: \"\"\n 적정 속도: \"\"\n",
+               "단모음화가 이루어지는 문장 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을쉬어야하는 부분은 (숨)을 표시해서 알려줘 그리고 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 초만 말해줘. 말해줄 때 다음과 같은 구조로 대답해줘 문장:\"\" \n 숨쉬는 위치: \"\"\n 적정 속도: \"\"\n",
+               "모음조화가 이루어지는 문장 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을쉬어야하는 부분은 (숨)을 표시해서 알려줘 그리고 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 초만 말해줘. 말해줄 때 다음과 같은 구조로 대답해줘 문장:\"\" \n 숨쉬는 위치: \"\"\n 적정 속도: \"\"\n"],
+               ["구개음화가 이루어지는 문장 7개가 포함된 문단 하나와 그걸 읽는 적정속도도 초로 말해줘 그리고 중간에 숨을 쉬어야하는 부분은 (숨)을 표시해서 알려줘 문장 내부에서도 숨을 쉬어야 하는 부분이 있다면 (숨)으로 표시해줘 그리고 다른 부연설명하지말고 문장과 중간에 숨을 쉬어야 하는 부분 그리고 읽는 적정속도도 문장별로 몇 초씩인지 초만 말해줘. 말해줄 때 다음과 같은 구조로 대답해줘 문단:\"\" \n 숨쉬는 위치: \"\"\n 적정 속도: \"\"\n",
                 "",
                 "",
                 "",
@@ -70,7 +66,9 @@ def chatGptWord(input):
     temperature = 1,
     )
     values = re.findall(r'"([^"]+)"',response.choices[0].message.content)
+    values = values[0]
     answerSpeed = re.findall(r'\d+', response.choices[0].message.content)
+    answerSpeed = float(answerSpeed[0])
     returnArray = [values,answerSpeed]
     return returnArray
 
@@ -99,9 +97,24 @@ def chatGptSentence(input):
     ],
     temperature = 1,
     )
+    print(response.choices[0].message.content)
     values = re.findall(r'"([^"]+)"',response.choices[0].message.content)
-    breath = response.choices[0].message.content
+    values = values[0].replace('(숨)', ' ')
+    values = ' '.join(values.split())
+    #숨 쉴 부분 반환
+    # breath = response.choices[0].message.content
+    breath = re.findall(r'"([^"]+)"',response.choices[0].message.content)
+    # print(breath)
+    if len(breath) == 1:
+        breath = breath[0].split('(숨)')
+    else:
+        breath = breath[1].split('(숨)')
+    
+    for i in range(len(breath)):
+            breath[i] = breath[i].strip()
+    
     answerSpeed = re.findall(r'\d+', response.choices[0].message.content)
+    answerSpeed = float(answerSpeed[0])
     returnArray = [values,breath,answerSpeed]
     return returnArray
 
@@ -126,15 +139,43 @@ def chatGptParagraph(input):
     ],
     temperature = 1,
     )
+    print(response.choices[0].message.content)
     values = re.findall(r'"([^"]+)"',response.choices[0].message.content)
-    breath = response.choices[0].message.content
+    values = values[0].replace('(숨)', ' ')
+    values = ' '.join(values.split())
+    values = values.split('.')
+    for i in range(len(values)):
+        values[i] = values[i].strip()
+        values[i] = values[i]+'.'
+    
+    del values[-1]
+    #숨 쉴 부분 반환
+    breath = re.findall(r'"([^"]+)"',response.choices[0].message.content)
+   
+    breath = breath[0].replace('(숨)', '*')
+    breath = breath.replace('.','.*')
+    breath = breath.replace('!','!*')
+    breath = breath.replace('?','?*')
+
+    breath = breath.replace('**', '*')
+
+    breath = re.split(r'[\*]', breath)
+    del breath[-1]
+    breath = list(filter(None, breath))
+    print(breath)
+    
+    for i in range(len(breath)):
+        breath[i] = breath[i].strip()
+    
     answerSpeed = re.findall(r'\d+', response.choices[0].message.content)
+    print(answerSpeed)
+    answerSpeed = float(answerSpeed[0])
     returnArray = [values,breath,answerSpeed]
     return returnArray
 
 @app.get("/get-paragraph")
 async def get_paragraph():
-    ResultText = chatGptSentence(inputText[1][0])
+    ResultText = chatGptParagraph(inputText[2][0])
     sentence = ResultText[0]
     breath = ResultText[1]
     answerSpeed = ResultText[2]
