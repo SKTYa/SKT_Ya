@@ -11,6 +11,22 @@
 		13AD7E192A9F1D5C00346B2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AD7E182A9F1D5C00346B2C /* ContentView.swift */; };
 		13AD7E1B2A9F1D5E00346B2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13AD7E1A2A9F1D5E00346B2C /* Assets.xcassets */; };
 		13AD7E1E2A9F1D5E00346B2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13AD7E1D2A9F1D5E00346B2C /* Preview Assets.xcassets */; };
+		D1232D722A9F5B3C00EFA01B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D712A9F5B3C00EFA01B /* HomeView.swift */; };
+		D1232D742A9F5C6600EFA01B /* HomeViewSpeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D732A9F5C6600EFA01B /* HomeViewSpeak.swift */; };
+		D1232D762A9F5CC700EFA01B /* HomeViewLearn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D752A9F5CC700EFA01B /* HomeViewLearn.swift */; };
+		D1232D782A9F5E0300EFA01B /* HomeViewRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D772A9F5E0300EFA01B /* HomeViewRecord.swift */; };
+		D1232D7C2A9F611600EFA01B /* SpeakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D7B2A9F611600EFA01B /* SpeakView.swift */; };
+		D1232D7E2A9F615300EFA01B /* HomeViewTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D7D2A9F615300EFA01B /* HomeViewTop.swift */; };
+		D1232D812A9F8CEF00EFA01B /* AnalyzeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D802A9F8CEF00EFA01B /* AnalyzeView.swift */; };
+		D1232D842A9F968500EFA01B /* PronounceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D832A9F968500EFA01B /* PronounceView.swift */; };
+		D1232D862A9F9AF700EFA01B /* PronouncePronView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D852A9F9AF700EFA01B /* PronouncePronView.swift */; };
+		D1232D882A9F9B0900EFA01B /* PronounceBreath.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D872A9F9B0900EFA01B /* PronounceBreath.swift */; };
+		D1232D8A2AA0683C00EFA01B /* PronounceTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D892AA0683C00EFA01B /* PronounceTab.swift */; };
+		D1232D8D2AA07D1000EFA01B /* ParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D8C2AA07D1000EFA01B /* ParagraphView.swift */; };
+		D1232D902AA0A69200EFA01B /* ParagraphSequneceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D8F2AA0A69200EFA01B /* ParagraphSequneceView.swift */; };
+		D1232D922AA0A72400EFA01B /* ParagraphProFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D912AA0A72400EFA01B /* ParagraphProFirst.swift */; };
+		D1232D942AA0B26D00EFA01B /* ParagraphTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D932AA0B26D00EFA01B /* ParagraphTab.swift */; };
+		D1232D962AA0BCAF00EFA01B /* ParagraphBreFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D952AA0BCAF00EFA01B /* ParagraphBreFirst.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +35,22 @@
 		13AD7E182A9F1D5C00346B2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		13AD7E1A2A9F1D5E00346B2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13AD7E1D2A9F1D5E00346B2C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D1232D712A9F5B3C00EFA01B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D1232D732A9F5C6600EFA01B /* HomeViewSpeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewSpeak.swift; sourceTree = "<group>"; };
+		D1232D752A9F5CC700EFA01B /* HomeViewLearn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewLearn.swift; sourceTree = "<group>"; };
+		D1232D772A9F5E0300EFA01B /* HomeViewRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewRecord.swift; sourceTree = "<group>"; };
+		D1232D7B2A9F611600EFA01B /* SpeakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakView.swift; sourceTree = "<group>"; };
+		D1232D7D2A9F615300EFA01B /* HomeViewTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTop.swift; sourceTree = "<group>"; };
+		D1232D802A9F8CEF00EFA01B /* AnalyzeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeView.swift; sourceTree = "<group>"; };
+		D1232D832A9F968500EFA01B /* PronounceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PronounceView.swift; sourceTree = "<group>"; };
+		D1232D852A9F9AF700EFA01B /* PronouncePronView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PronouncePronView.swift; sourceTree = "<group>"; };
+		D1232D872A9F9B0900EFA01B /* PronounceBreath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PronounceBreath.swift; sourceTree = "<group>"; };
+		D1232D892AA0683C00EFA01B /* PronounceTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PronounceTab.swift; sourceTree = "<group>"; };
+		D1232D8C2AA07D1000EFA01B /* ParagraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphView.swift; sourceTree = "<group>"; };
+		D1232D8F2AA0A69200EFA01B /* ParagraphSequneceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphSequneceView.swift; sourceTree = "<group>"; };
+		D1232D912AA0A72400EFA01B /* ParagraphProFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphProFirst.swift; sourceTree = "<group>"; };
+		D1232D932AA0B26D00EFA01B /* ParagraphTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphTab.swift; sourceTree = "<group>"; };
+		D1232D952AA0BCAF00EFA01B /* ParagraphBreFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphBreFirst.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +83,7 @@
 		13AD7E152A9F1D5C00346B2C /* Lingua */ = {
 			isa = PBXGroup;
 			children = (
+				D1232D702A9F579800EFA01B /* View */,
 				13AD7E162A9F1D5C00346B2C /* LinguaApp.swift */,
 				13AD7E182A9F1D5C00346B2C /* ContentView.swift */,
 				13AD7E1A2A9F1D5E00346B2C /* Assets.xcassets */,
@@ -65,6 +98,77 @@
 				13AD7E1D2A9F1D5E00346B2C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D1232D702A9F579800EFA01B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D1232D8E2AA0A66B00EFA01B /* ParagraphSequenceView */,
+				D1232D8B2AA07D0100EFA01B /* ParagraphView */,
+				D1232D822A9F966900EFA01B /* PronounceView */,
+				D1232D7F2A9F8CD700EFA01B /* Analyze */,
+				D1232D7A2A9F610700EFA01B /* Speak */,
+				D1232D792A9F609600EFA01B /* Home */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D1232D792A9F609600EFA01B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D1232D712A9F5B3C00EFA01B /* HomeView.swift */,
+				D1232D7D2A9F615300EFA01B /* HomeViewTop.swift */,
+				D1232D732A9F5C6600EFA01B /* HomeViewSpeak.swift */,
+				D1232D752A9F5CC700EFA01B /* HomeViewLearn.swift */,
+				D1232D772A9F5E0300EFA01B /* HomeViewRecord.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		D1232D7A2A9F610700EFA01B /* Speak */ = {
+			isa = PBXGroup;
+			children = (
+				D1232D7B2A9F611600EFA01B /* SpeakView.swift */,
+			);
+			path = Speak;
+			sourceTree = "<group>";
+		};
+		D1232D7F2A9F8CD700EFA01B /* Analyze */ = {
+			isa = PBXGroup;
+			children = (
+				D1232D802A9F8CEF00EFA01B /* AnalyzeView.swift */,
+			);
+			path = Analyze;
+			sourceTree = "<group>";
+		};
+		D1232D822A9F966900EFA01B /* PronounceView */ = {
+			isa = PBXGroup;
+			children = (
+				D1232D832A9F968500EFA01B /* PronounceView.swift */,
+				D1232D852A9F9AF700EFA01B /* PronouncePronView.swift */,
+				D1232D872A9F9B0900EFA01B /* PronounceBreath.swift */,
+				D1232D892AA0683C00EFA01B /* PronounceTab.swift */,
+			);
+			path = PronounceView;
+			sourceTree = "<group>";
+		};
+		D1232D8B2AA07D0100EFA01B /* ParagraphView */ = {
+			isa = PBXGroup;
+			children = (
+				D1232D8C2AA07D1000EFA01B /* ParagraphView.swift */,
+			);
+			path = ParagraphView;
+			sourceTree = "<group>";
+		};
+		D1232D8E2AA0A66B00EFA01B /* ParagraphSequenceView */ = {
+			isa = PBXGroup;
+			children = (
+				D1232D8F2AA0A69200EFA01B /* ParagraphSequneceView.swift */,
+				D1232D912AA0A72400EFA01B /* ParagraphProFirst.swift */,
+				D1232D952AA0BCAF00EFA01B /* ParagraphBreFirst.swift */,
+				D1232D932AA0B26D00EFA01B /* ParagraphTab.swift */,
+			);
+			path = ParagraphSequenceView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +241,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1232D8A2AA0683C00EFA01B /* PronounceTab.swift in Sources */,
+				D1232D7C2A9F611600EFA01B /* SpeakView.swift in Sources */,
+				D1232D782A9F5E0300EFA01B /* HomeViewRecord.swift in Sources */,
+				D1232D722A9F5B3C00EFA01B /* HomeView.swift in Sources */,
+				D1232D7E2A9F615300EFA01B /* HomeViewTop.swift in Sources */,
+				D1232D812A9F8CEF00EFA01B /* AnalyzeView.swift in Sources */,
+				D1232D862A9F9AF700EFA01B /* PronouncePronView.swift in Sources */,
 				13AD7E192A9F1D5C00346B2C /* ContentView.swift in Sources */,
+				D1232D842A9F968500EFA01B /* PronounceView.swift in Sources */,
+				D1232D962AA0BCAF00EFA01B /* ParagraphBreFirst.swift in Sources */,
+				D1232D762A9F5CC700EFA01B /* HomeViewLearn.swift in Sources */,
+				D1232D742A9F5C6600EFA01B /* HomeViewSpeak.swift in Sources */,
+				D1232D8D2AA07D1000EFA01B /* ParagraphView.swift in Sources */,
 				13AD7E172A9F1D5C00346B2C /* LinguaApp.swift in Sources */,
+				D1232D882A9F9B0900EFA01B /* PronounceBreath.swift in Sources */,
+				D1232D942AA0B26D00EFA01B /* ParagraphTab.swift in Sources */,
+				D1232D922AA0A72400EFA01B /* ParagraphProFirst.swift in Sources */,
+				D1232D902AA0A69200EFA01B /* ParagraphSequneceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

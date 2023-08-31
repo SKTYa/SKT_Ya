@@ -1,0 +1,138 @@
+//
+//  AnalyzeView.swift
+//  Lingua
+//
+//  Created by Jin Sang woo on 2023/08/30.
+//
+
+import SwiftUI
+
+struct AnalyzeView: View {
+    
+    @State private var rotation: Double = 0.0
+    
+    @State private var selectedOptionIndex = 0
+    private let options = ["1단계 단어 말하기", "2단계 단어 말하기", "3단계 단어 말하기"]
+    
+    
+    var body: some View {
+        
+        
+        ZStack {
+            Color("BG").edgesIgnoringSafeArea(.all)
+            
+            
+            VStack {
+                
+                HStack(spacing : 8){
+                    
+                    
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(Color("wht"))
+                        .font(.system(size: 22).weight(.bold))
+                        .bold()
+                    
+                    Spacer()
+                    
+                    Menu {
+                        ForEach(options.indices, id: \.self) { index in
+                            Button(action: {
+                                selectedOptionIndex = index
+                            }) {
+                                RoundedRectangle(cornerRadius: 24)
+                                    .frame(width: 223, height:48)
+                                    .overlay(){
+                                        Text(options[index])
+                                            .foregroundColor(Color("Primary"))
+                                            .font(.system(size: 20).weight(.bold))
+                                        
+                                    }
+                            }
+                            .foregroundColor(Color("list_fill"))
+                            .border(Color("stroke"), width: 1)
+                            
+                            
+                            
+                        }
+                        
+                    } label: {
+                        RoundedRectangle(cornerRadius: 24)
+                            .frame(width: 223, height:48)
+                            .overlay(){
+                                HStack(){
+                                    Text("2단계 문장 말하기")
+                                        .foregroundColor(Color("Primary"))
+                                        .font(.system(size: 20).weight(.bold))
+                                    Image(systemName: "chevron.down")
+                                        .foregroundColor(Color("wht"))
+                                        .font(.system(size: 20))
+                                    
+                                }
+                            }
+                            .foregroundColor(Color("list_fill"))
+                            .border(Color("stroke"), width: 1)
+                    }
+                        Spacer()
+                        
+                        
+                        Image(systemName: "person.crop.circle.fill")
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 22).weight(.bold))
+                            .bold()
+                        
+                        
+                    
+                }
+                
+                
+                Spacer().frame(height:140)
+                
+                Image("oneone")
+                    .resizable()
+                    .frame(width: 219, height: 192)
+                    .rotationEffect(.degrees(rotation))
+                    .animation(.linear(duration: 1))
+                    .onTapGesture {
+                        rotation += 360 
+                    }
+                
+                Spacer().frame(height:70)
+
+                
+                RoundedRectangle(cornerRadius: 24)
+                    .frame(width: 259, height:58)
+                    .overlay(){
+                        HStack(){
+                            
+                            Image("Component1")
+                                .resizable()
+                                .frame(width : 46, height:41.954)
+                            
+                            
+                            Text("AI가 분석중이에요.")
+                                .foregroundColor(Color("Primary"))
+                                .font(.system(size: 20).weight(.bold))
+                            
+                            
+                        }
+                        .padding()
+                        
+                    }
+                    .foregroundColor(Color("list_fill"))
+                    .border(Color("stroke"), width: 1)
+                
+                Spacer()
+                
+            }
+                
+            
+        }
+        
+    }
+}
+
+struct AnalyzeView_Previews: PreviewProvider {
+    static var previews: some View {
+        AnalyzeView()
+    }
+}
