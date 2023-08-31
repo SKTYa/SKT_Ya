@@ -8,7 +8,7 @@ import re
 app = FastAPI()
 
 
-OPENAI_YOUR_KEY = ""
+OPENAI_YOUR_KEY = "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"
 openai.api_key = OPENAI_YOUR_KEY
 index = 0
 breathSentences = []
@@ -60,6 +60,9 @@ def chatGptWord(input):
     returnArray = [values,answerSpeed]
     return returnArray
 
+@app.get("/")
+async def root():
+    return {"message": "Hello world"}
 # 단어
 @app.get("/get-word")
 async def get_word():
