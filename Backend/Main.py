@@ -8,7 +8,7 @@ import re
 app = FastAPI()
 
 
-OPENAI_YOUR_KEY = "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"
+OPENAI_YOUR_KEY = ""
 openai.api_key = OPENAI_YOUR_KEY
 index = 0
 breathSentences = []
