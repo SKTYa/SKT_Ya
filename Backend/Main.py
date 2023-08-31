@@ -74,6 +74,9 @@ def chatGptWord(input):
     returnArray = [values,answerSpeed]
     return returnArray
 
+@app.get("/")
+async def root():
+    return {"message": "Hello world"}
 # 단어
 @app.get("/get-word")
 async def get_word():
