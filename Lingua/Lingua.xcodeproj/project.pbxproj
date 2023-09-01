@@ -11,6 +11,11 @@
 		13AD7E192A9F1D5C00346B2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AD7E182A9F1D5C00346B2C /* ContentView.swift */; };
 		13AD7E1B2A9F1D5E00346B2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13AD7E1A2A9F1D5E00346B2C /* Assets.xcassets */; };
 		13AD7E1E2A9F1D5E00346B2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13AD7E1D2A9F1D5E00346B2C /* Preview Assets.xcassets */; };
+		7E8B163A2AA121F500B589CD /* SentenceM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B16392AA121F400B589CD /* SentenceM.swift */; };
+		7E8B163C2AA1221600B589CD /* WordM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B163B2AA1221600B589CD /* WordM.swift */; };
+		7E8B163E2AA1222A00B589CD /* ParagrphM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B163D2AA1222A00B589CD /* ParagrphM.swift */; };
+		7E8B16412AA124E700B589CD /* NetworkManagerWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B16402AA124E700B589CD /* NetworkManagerWord.swift */; };
+		7E8B16432AA185AA00B589CD /* NetworkManagerSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B16422AA185AA00B589CD /* NetworkManagerSentence.swift */; };
 		D1232D722A9F5B3C00EFA01B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D712A9F5B3C00EFA01B /* HomeView.swift */; };
 		D1232D742A9F5C6600EFA01B /* HomeViewSpeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D732A9F5C6600EFA01B /* HomeViewSpeak.swift */; };
 		D1232D762A9F5CC700EFA01B /* HomeViewLearn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D752A9F5CC700EFA01B /* HomeViewLearn.swift */; };
@@ -36,6 +41,11 @@
 		13AD7E182A9F1D5C00346B2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		13AD7E1A2A9F1D5E00346B2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13AD7E1D2A9F1D5E00346B2C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7E8B16392AA121F400B589CD /* SentenceM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceM.swift; sourceTree = "<group>"; };
+		7E8B163B2AA1221600B589CD /* WordM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordM.swift; sourceTree = "<group>"; };
+		7E8B163D2AA1222A00B589CD /* ParagrphM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagrphM.swift; sourceTree = "<group>"; };
+		7E8B16402AA124E700B589CD /* NetworkManagerWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerWord.swift; sourceTree = "<group>"; };
+		7E8B16422AA185AA00B589CD /* NetworkManagerSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerSentence.swift; sourceTree = "<group>"; };
 		D1232D712A9F5B3C00EFA01B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D1232D732A9F5C6600EFA01B /* HomeViewSpeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewSpeak.swift; sourceTree = "<group>"; };
 		D1232D752A9F5CC700EFA01B /* HomeViewLearn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewLearn.swift; sourceTree = "<group>"; };
@@ -85,7 +95,9 @@
 		13AD7E152A9F1D5C00346B2C /* Lingua */ = {
 			isa = PBXGroup;
 			children = (
+				7E8B163F2AA124C200B589CD /* Network */,
 				D1232D702A9F579800EFA01B /* View */,
+				7E8B16382AA1217700B589CD /* Model */,
 				13AD7E162A9F1D5C00346B2C /* LinguaApp.swift */,
 				13AD7E182A9F1D5C00346B2C /* ContentView.swift */,
 				13AD7E1A2A9F1D5E00346B2C /* Assets.xcassets */,
@@ -100,6 +112,25 @@
 				13AD7E1D2A9F1D5E00346B2C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7E8B16382AA1217700B589CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7E8B163B2AA1221600B589CD /* WordM.swift */,
+				7E8B16392AA121F400B589CD /* SentenceM.swift */,
+				7E8B163D2AA1222A00B589CD /* ParagrphM.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7E8B163F2AA124C200B589CD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7E8B16402AA124E700B589CD /* NetworkManagerWord.swift */,
+				7E8B16422AA185AA00B589CD /* NetworkManagerSentence.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		D1232D702A9F579800EFA01B /* View */ = {
@@ -257,11 +288,15 @@
 				D1232D782A9F5E0300EFA01B /* HomeViewRecord.swift in Sources */,
 				D1232D9D2AA11BB400EFA01B /* ResultView.swift in Sources */,
 				D1232D722A9F5B3C00EFA01B /* HomeView.swift in Sources */,
+				7E8B16432AA185AA00B589CD /* NetworkManagerSentence.swift in Sources */,
 				D1232D7E2A9F615300EFA01B /* HomeViewTop.swift in Sources */,
 				D1232D812A9F8CEF00EFA01B /* AnalyzeView.swift in Sources */,
+				7E8B16412AA124E700B589CD /* NetworkManagerWord.swift in Sources */,
 				D1232D862A9F9AF700EFA01B /* PronouncePronView.swift in Sources */,
+				7E8B163C2AA1221600B589CD /* WordM.swift in Sources */,
 				13AD7E192A9F1D5C00346B2C /* ContentView.swift in Sources */,
 				D1232D842A9F968500EFA01B /* PronounceView.swift in Sources */,
+				7E8B163A2AA121F500B589CD /* SentenceM.swift in Sources */,
 				D1232D962AA0BCAF00EFA01B /* ParagraphBreFirst.swift in Sources */,
 				D1232D762A9F5CC700EFA01B /* HomeViewLearn.swift in Sources */,
 				D1232D742A9F5C6600EFA01B /* HomeViewSpeak.swift in Sources */,
@@ -270,6 +305,7 @@
 				D1232D882A9F9B0900EFA01B /* PronounceBreath.swift in Sources */,
 				D1232D942AA0B26D00EFA01B /* ParagraphTab.swift in Sources */,
 				D1232D922AA0A72400EFA01B /* ParagraphProFirst.swift in Sources */,
+				7E8B163E2AA1222A00B589CD /* ParagrphM.swift in Sources */,
 				D1232D902AA0A69200EFA01B /* ParagraphSequneceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +435,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lingua/Preview Content\"";
+				DEVELOPMENT_TEAM = FLG797DV64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -427,6 +464,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lingua/Preview Content\"";
+				DEVELOPMENT_TEAM = FLG797DV64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
