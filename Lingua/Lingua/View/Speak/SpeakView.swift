@@ -15,7 +15,7 @@ struct SpeakView: View {
     @State private var isAnimate = true
     @State private var word = ""
     @State private var sentence = ""
-    @State private var selectedOptionIndex = 1
+    @State private var selectedOptionIndex = 0
     @State private var imageIndex = 0
     private let options = ["1단계 단어 말하기", "2단계 문장 말하기", "3단계 문단 말하기"]
     private let waveImages = ["wave1","wave2","wave3","wave4","wave5"]
@@ -268,6 +268,15 @@ struct SpeakView: View {
                     }
                     // TODO: 
                     Button {
+                        let group = DispatchGroup()
+                        
+                        if selectedOptionIndex == 0 {
+                            wordNetwork.checkWord(originStr: word, file: try! Data(contentsOf: audioRecorderManger.recordedFiles[0])){
+                                words in DispatchQueue.main.async(group: group) {
+                                    word = words.text ?? ""
+                                }
+                            }
+                        }
                         print("nextPage")
                     } label: {
                         Image("black_arrow")

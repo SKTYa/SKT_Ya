@@ -20,7 +20,7 @@ class AudioRecorderManger: NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published var isPaused = false
     
     // 음성메모된 데이터
-    var recordedFiles = [URL]()
+    @Published var recordedFiles = [URL]()
     
 }
 
@@ -62,21 +62,9 @@ extension AudioRecorderManger {
             print("Save recorded file error: \(error.localizedDescription)")
         }
     }
-
     
-    func stopRecording2() {
-        audioRecorder?.stop()
-        self.recordedFiles.append(self.audioRecorder!.url)
-        self.isRecording = false
-        
-        do {
-            try FileManager.default.moveItem(at: getDocumentsDirectory().appendingPathComponent("inputAudio.m4a"), to: getDocumentsDirectory().appendingPathComponent("inputAudio.m4a"))
-            print("저장 파일 위치: \(getDocumentsDirectory().appendingPathComponent("inputAudio.m4a"))")
-            self.recordedFiles.append(getDocumentsDirectory().appendingPathComponent("inputAudio.m4a"))
-        } catch {
-            print("Save recorded file error: \(error.localizedDescription)")
-        }
-        
+    func loadFileFromLocalPath(_ localFilePath: String) ->Data? {
+       return try? Data(contentsOf: URL(fileURLWithPath: localFilePath))
     }
     
     private func getDocumentsDirectory() -> URL {

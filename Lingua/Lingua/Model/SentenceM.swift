@@ -12,3 +12,12 @@ struct Sentence: Decodable {
     let sentence: String?
     let breath: Array<String>?
 }
+
+struct CheckSentence: Decodable {
+    let time: Float?
+    let similarity: Int?
+    let text: String?
+    let breaths: Array<String>?
+    let compared: Array<Int>?
+    let origin: Array<Int>?
+}
