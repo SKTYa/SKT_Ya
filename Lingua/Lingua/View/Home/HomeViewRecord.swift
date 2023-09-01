@@ -55,7 +55,6 @@ struct HomeViewRecord: View {
                     }
                 }
                 .foregroundColor(Color("list_fill"))
-                .border(Color("stroke"), width: 1)
             
             RoundedRectangle(cornerRadius: 24)
                 .frame(width:.infinity, height:68)
@@ -83,7 +82,6 @@ struct HomeViewRecord: View {
                     }
                 }
                 .foregroundColor(Color("list_fill"))
-                .border(Color("stroke"), width: 1)
             
             RoundedRectangle(cornerRadius: 24)
                 .frame(width:.infinity, height:68)
@@ -111,7 +109,6 @@ struct HomeViewRecord: View {
                     }
                 }
                 .foregroundColor(Color("list_fill"))
-                .border(Color("stroke"), width: 1)
             
             RoundedRectangle(cornerRadius: 24)
                 .frame(width:.infinity, height:68)
@@ -139,7 +136,6 @@ struct HomeViewRecord: View {
                     }
                 }
                 .foregroundColor(Color("list_fill"))
-                .border(Color("stroke"), width: 1)
         }
 //        .padding(.horizontal, 16)
     }

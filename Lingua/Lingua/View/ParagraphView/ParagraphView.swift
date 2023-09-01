@@ -44,7 +44,6 @@ struct ParagraphView: View {
                                     }
                             }
                             .foregroundColor(Color("list_fill"))
-                            .border(Color("stroke"), width: 1)
                             
                             
                             
@@ -65,7 +64,6 @@ struct ParagraphView: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                            .border(Color("stroke"), width: 1)
                     }
                     Spacer()
                     
@@ -126,7 +124,6 @@ struct ParagraphView: View {
                         
                     }
                     .foregroundColor(Color("list_fill"))
-                    .border(Color("stroke"), width: 1)
                 
                 
                 Spacer().frame(height:98)

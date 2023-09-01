@@ -30,7 +30,6 @@ struct PronouncePronView: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                            .border(Color("stroke"), width: 1)
                         
                         Circle()
                             .overlay(){
@@ -66,7 +65,6 @@ struct PronouncePronView: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                            .border(Color("stroke"), width: 1)
                         
                         Circle()
                             .overlay(){
