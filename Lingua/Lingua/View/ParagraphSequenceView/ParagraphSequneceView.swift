@@ -11,8 +11,9 @@ import SwiftUI
 
 struct ParagraphSequneceView: View {
     
-    @State private var selectedOptionIndex = 0
-    private let options = ["1단계 단어 말하기", "2단계 단어 말하기", "3단계 단어 말하기"]
+    
+    @State private var selectedOptionIndex = 2
+    private let options = ["1단계 단어 말하기", "2단계 단어 말하기", "3단계 문단 말하기"]
     
     @State private var selectedTab = 0
 

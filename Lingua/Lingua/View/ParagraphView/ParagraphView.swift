@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ParagraphView: View {
+    @EnvironmentObject var paragraphNetwork: NetworkManagerParagraph
     
-    @State private var selectedOptionIndex = 0
-    private let options = ["1단계 단어 말하기", "2단계 단어 말하기", "3단계 단어 말하기"]
+    @State private var sentence:[String] = []
+    
+    @State private var selectedOptionIndex = 2
+    private let options = ["1단계 단어 말하기", "2단계 단어 말하기", "3단계 문단 말하기"]
     
     
     var body: some View {
-
+        
         ZStack(){
             Color("BG").edgesIgnoringSafeArea(.all)
             
@@ -78,29 +81,35 @@ struct ParagraphView: View {
                 //                Spacer().frame(height:30)
                 
                 
-                VStack(){
-
+                VStack(alignment: .leading){
+                    
                     LinearGradient(gradient: Gradient(stops: [
                         .init(color: Color("wht"), location: 0.6),
                         .init(color: Color.clear, location: 1)
                     ]), startPoint: .top, endPoint: .bottom)
                     .mask(
-                        VStack(){
-                            
-                            Text("밝은 태양 아래에서 귀여운 강아지가 즐겁게 뛰고 있어요. 공을 물고 놀면서 즐거움을 표현하고, 작은 고양이는 나무 위에서 살짝 울리는 소리를 내고 있어요.")
-                                .foregroundColor(Color("wht"))
-                                .font(.system(size: 34).weight(.bold))
-                                .bold()
-                                .lineSpacing(10)
-                                .frame(width:320)
-                                .padding(.top)
-                            
-                            Spacer()
+                        ScrollView(){
+                            VStack(alignment: .leading){
+                                
+                                ForEach(sentence, id: \.self) {str in
+                                    Text("\(str)")
+                                        .multilineTextAlignment(.leading)
+                                        .foregroundColor(Color("wht"))
+                                        .font(.system(size: 34).weight(.bold))
+                                        .bold()
+                                        .lineSpacing(10)
+                                        .frame(width:320)
+                                        .border(Color.red, width:2)
+//                                        .padding(.top)
+                                }
+                                
+//                                Spacer()
+                            }
                         }
                     )
                 }
-                .border(Color.red, width:2)
-
+                //                                .border(Color.red, width:2)
+                
                 
                 
                 
@@ -136,8 +145,8 @@ struct ParagraphView: View {
                     Image("replay")
                         .resizable()
                         .frame(width:48, height:48)
-
-
+                    
+                    
                     Image("mic")
                         .resizable()
                         .frame(width:96, height:96)
@@ -145,21 +154,30 @@ struct ParagraphView: View {
                     Image("black_arrow")
                         .resizable()
                         .frame(width:48, height:48)
-
+                    
                     
                 }
                 
                 
                 
             }
+            .onAppear{
+                let group = DispatchGroup()
+                
+                paragraphNetwork.getParagraph{
+                    paragraphs in DispatchQueue.main.async(group: group) {
+                        sentence = paragraphs.sentence ?? []
+                    }
+                }
+            }
             
         }
         
-
-
-
-
-
+        
+        
+        
+        
+        
     }
 }
 
