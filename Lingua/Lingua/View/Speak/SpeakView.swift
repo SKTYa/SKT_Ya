@@ -241,6 +241,22 @@ struct SpeakView: View {
                     }
                     // TODO:
                     Button {
+                        let group = DispatchGroup()
+                        
+                        if selectedOptionIndex == 0 {
+                            wordNetwork.checkWord(originStr: word, file: try! Data(contentsOf: audioRecorderManger.recordedFiles[0])){
+                                words in DispatchQueue.main.async(group: group) {
+                                    word = words.text ?? ""
+                                }
+                            }
+                        }
+                        else{
+                            sentenceNetwork.checkSentence(originStr: sentence, file: try! Data(contentsOf: audioRecorderManger.recordedFiles[0])){
+                                sentences in DispatchQueue.main.async(group: group) {
+                                    sentence = sentences.text ?? ""
+                                }
+                            }
+                        }
                         print("nextPage")
                     } label: {
                         Image("black_arrow")
