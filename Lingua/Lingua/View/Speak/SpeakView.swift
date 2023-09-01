@@ -90,6 +90,7 @@ struct SpeakView: View {
                                             .font(.system(size: 20).weight(.bold))
                                         
                                     }
+
                             }
                             .foregroundColor(Color("list_fill"))
                             .border(Color("stroke"), width: 1)
@@ -113,8 +114,6 @@ struct SpeakView: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                            .border(Color("stroke"), width: 1)
-                        
                     }
                     
                     Spacer()
@@ -186,7 +185,6 @@ struct SpeakView: View {
                         
                     }
                     .foregroundColor(Color("list_fill"))
-                    .border(Color("stroke"), width: 1)
                 
                 
                 Spacer().frame(height:98)

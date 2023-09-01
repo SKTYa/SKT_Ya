@@ -20,7 +20,7 @@ struct HomeViewSpeak: View {
                             .font(.system(size: 20).weight(.bold))
                     }
                     .foregroundColor(Color("list_fill"))
-                    .border(Color("stroke"), width: 1)
+//                    .border(Color("stroke"), width: 1)
 
                 
                 Text("학습 중입니다.")

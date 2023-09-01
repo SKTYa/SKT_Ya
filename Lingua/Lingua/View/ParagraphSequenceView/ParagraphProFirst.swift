@@ -37,7 +37,6 @@ struct ParagraphProFirst: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                            .border(Color("stroke"), width: 1)
                         
                         Circle()
                             .overlay(){
@@ -74,7 +73,6 @@ struct ParagraphProFirst: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                            .border(Color("stroke"), width: 1)
                         
                         Circle()
                             .overlay(){

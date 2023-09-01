@@ -49,7 +49,6 @@ struct AnalyzeView: View {
                                     }
                             }
                             .foregroundColor(Color("list_fill"))
-                            .border(Color("stroke"), width: 1)
                             
                             
                             
@@ -70,7 +69,6 @@ struct AnalyzeView: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                            .border(Color("stroke"), width: 1)
                     }
                         Spacer()
                         
@@ -91,10 +89,17 @@ struct AnalyzeView: View {
                     .resizable()
                     .frame(width: 219, height: 192)
                     .rotationEffect(.degrees(rotation))
-                    .animation(.linear(duration: 1))
-                    .onTapGesture {
-                        rotation += 360 
-                    }
+                    .animation(Animation.linear(duration: 10).repeatForever(autoreverses: false))
+                        .onAppear() {
+                            withAnimation {
+                                rotation += 1200
+                            }
+                        }
+//                    .animation(.linear(duration: 1))
+
+//                    .onTapGesture {
+//                        rotation += 360
+//                    }
                 
                 Spacer().frame(height:70)
 
@@ -119,7 +124,6 @@ struct AnalyzeView: View {
                         
                     }
                     .foregroundColor(Color("list_fill"))
-                    .border(Color("stroke"), width: 1)
                 
                 Spacer()
                 

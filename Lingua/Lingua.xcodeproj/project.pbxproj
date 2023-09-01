@@ -32,6 +32,7 @@
 		D1232D922AA0A72400EFA01B /* ParagraphProFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D912AA0A72400EFA01B /* ParagraphProFirst.swift */; };
 		D1232D942AA0B26D00EFA01B /* ParagraphTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D932AA0B26D00EFA01B /* ParagraphTab.swift */; };
 		D1232D962AA0BCAF00EFA01B /* ParagraphBreFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D952AA0BCAF00EFA01B /* ParagraphBreFirst.swift */; };
+		D1232D9D2AA11BB400EFA01B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D9C2AA11BB400EFA01B /* ResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		D1232D912AA0A72400EFA01B /* ParagraphProFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphProFirst.swift; sourceTree = "<group>"; };
 		D1232D932AA0B26D00EFA01B /* ParagraphTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphTab.swift; sourceTree = "<group>"; };
 		D1232D952AA0BCAF00EFA01B /* ParagraphBreFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphBreFirst.swift; sourceTree = "<group>"; };
+		D1232D9C2AA11BB400EFA01B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 		D1232D702A9F579800EFA01B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D1232D9B2AA11B6B00EFA01B /* ResultView */,
 				D1232D8E2AA0A66B00EFA01B /* ParagraphSequenceView */,
 				D1232D8B2AA07D0100EFA01B /* ParagraphView */,
 				D1232D822A9F966900EFA01B /* PronounceView */,
@@ -200,6 +203,14 @@
 				D1232D932AA0B26D00EFA01B /* ParagraphTab.swift */,
 			);
 			path = ParagraphSequenceView;
+			sourceTree = "<group>";
+		};
+		D1232D9B2AA11B6B00EFA01B /* ResultView */ = {
+			isa = PBXGroup;
+			children = (
+				D1232D9C2AA11BB400EFA01B /* ResultView.swift */,
+			);
+			path = ResultView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +286,7 @@
 				D1232D8A2AA0683C00EFA01B /* PronounceTab.swift in Sources */,
 				D1232D7C2A9F611600EFA01B /* SpeakView.swift in Sources */,
 				D1232D782A9F5E0300EFA01B /* HomeViewRecord.swift in Sources */,
+				D1232D9D2AA11BB400EFA01B /* ResultView.swift in Sources */,
 				D1232D722A9F5B3C00EFA01B /* HomeView.swift in Sources */,
 				7E8B16432AA185AA00B589CD /* NetworkManagerSentence.swift in Sources */,
 				D1232D7E2A9F615300EFA01B /* HomeViewTop.swift in Sources */,

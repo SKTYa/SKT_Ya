@@ -207,7 +207,6 @@ struct PronounceView: View {
                                     }
                             }
                             .foregroundColor(Color("list_fill"))
-                            .border(Color("stroke"), width: 1)
                             
                             
                             
@@ -228,7 +227,6 @@ struct PronounceView: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                            .border(Color("stroke"), width: 1)
                     }
 
                     
@@ -264,7 +262,6 @@ struct PronounceView: View {
                             }
                         }
                         .foregroundColor(Color("Primary"))
-                        .border(Color("stroke"), width: 1)
                     
                     RoundedRectangle(cornerRadius: 24)
                         .frame(width: 88, height:64)
@@ -276,7 +273,6 @@ struct PronounceView: View {
                             }
                         }
                         .foregroundColor(Color("list_fill"))
-                        .border(Color("stroke"), width: 1)
                     
                     RoundedRectangle(cornerRadius: 24)
                         .frame(width: 64, height:64)
@@ -288,7 +284,6 @@ struct PronounceView: View {
                             }
                         }
                         .foregroundColor(Color("Primary"))
-                        .border(Color("stroke"), width: 1)
                     
                 }
                 .padding(16)
