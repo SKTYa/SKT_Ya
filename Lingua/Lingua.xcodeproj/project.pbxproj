@@ -451,7 +451,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lingua/Preview Content\"";
-				DEVELOPMENT_TEAM = 34K3V5D9X5;
+				DEVELOPMENT_TEAM = SHJRTZNP7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use Microphon using Acception";
@@ -481,7 +481,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lingua/Preview Content\"";
-				DEVELOPMENT_TEAM = 34K3V5D9X5;
+				DEVELOPMENT_TEAM = SHJRTZNP7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use Microphon using Acception";

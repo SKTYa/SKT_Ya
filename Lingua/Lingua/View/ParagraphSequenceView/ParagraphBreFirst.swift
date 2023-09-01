@@ -46,11 +46,17 @@ struct ParagraphBreFirst: View {
                     }
                     
                     
-//                    Text("밝은 태양 아래에서 귀여운 강아지가 즐겁게 뛰고있어요.")
-                    Text(sentences[currentSentenceIndex].recommendedText)
-                        .foregroundColor(Color("wht"))
-                        .font(.system(size: 34).weight(.bold))
-                        .lineSpacing(10)
+                    HStack(){
+
+                        Text(sentences[currentSentenceIndex].recommendedText)
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 34).weight(.bold))
+                            .lineSpacing(10)
+                        
+                        Spacer()
+                    }
+                    .frame(maxWidth:365)
+
                     
                     Spacer().frame(height:12)
 
@@ -78,10 +84,17 @@ struct ParagraphBreFirst: View {
                         Spacer()
                     }
                     
-                    Text(sentences[currentSentenceIndex].actualText)
-                        .foregroundColor(Color("wht"))
-                        .font(.system(size: 34).weight(.bold))
-                        .lineSpacing(10)
+                    HStack(){
+                        Text(sentences[currentSentenceIndex].actualText)
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 34).weight(.bold))
+                            .lineSpacing(10)
+                        
+                        Spacer()
+                        
+                    }
+                    .frame(maxWidth:365)
+
 
                     
                     
