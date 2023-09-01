@@ -69,30 +69,7 @@ struct CircularImage: View {
     }
 }
 
-//struct CircularImage: View {
-//
-//    @Binding var percentage: Double // Binding to pass the value from another view
-//
-//    var body: some View {
-//        var imageName: String = ""
-//        switch percentage {
-//        case 0..<93:
-//            imageName = "orbit_First"
-//        case 93..<126:
-//            imageName = "orbit_Second"
-//        case 126..<153:
-//            imageName = "orbit_Third"
-//        case 153...180:
-//            imageName = "orbit_Fourth"
-//        default:
-//            imageName = "orbit_First" // Handle any other cases if needed
-//        }
-//
-//        return Image(imageName)
-//            .resizable()
-//            .frame(width: 283, height: 150)
-//    }
-//}
+
     
 
 struct CircularShape: Shape {
@@ -126,7 +103,7 @@ struct CircularShape: Shape {
 struct ResultView: View {
     
     //    var percentage: Double // 퍼센티지 값 (0.0 ~ 1.0)
-    @State private var percentage: Double = 70 // Initial percentage
+    @State private var percentage: Double = 78 // Initial percentage
     
     
     
@@ -155,7 +132,6 @@ struct ResultView: View {
                             .foregroundColor(Color("wht"))
                             .font(.system(size: 17).weight(.bold))
                             .frame(width:48, height:64)
-                        //                        .border(Color.red, width:2)
                         
                         
                         
@@ -224,21 +200,21 @@ struct ResultView: View {
                                             .frame(width: 283, height: 150)
                                         
                                         
-                                        //                                        Image("orbit_First")
-                                        //                                            .resizable()
-                                        //                                            .frame(width:283, height:150)
+                                        Text(" \(Int(percentage))%")
+                                            .foregroundColor(Color("Primary"))
+                                            .font(.system(size: 48).weight(.bold))
+                                            .padding(.top, 115)
+                                        
                                         
                                         ZStack {
                                             
                                             
-                                            //                                            Slider(value: $percentage, in: 0...100, step: 1)
-                                            //                                                .padding()
                                             
                                             GeometryReader { geometry in
                                                 CircularShape(percentage: percentage)
                                                     .fill(Color("list_fill"))
                                                     .opacity(0)
-                                                    .rotationEffect(.degrees(180)) // Rotate around x-axis
+                                                    .rotationEffect(.degrees(180))
                                                     .animation(.easeInOut(duration: 1))
                                                     .onReceive([self.percentage].publisher.first()) { _ in
                                                         // Calculate the endpoint of the circular segment whenever percentage changes
@@ -432,6 +408,9 @@ struct ResultView: View {
                                         Image("chart")
                                             .resizable()
                                             .frame(width:292, height:277)
+                                        
+                                        
+                                        
                                         
                                     }
                                     

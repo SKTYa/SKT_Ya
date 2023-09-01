@@ -109,7 +109,7 @@ struct AnalyzeView: View {
                     .overlay(){
                         HStack(){
                             
-                            Image("Component1")
+                            Image("robot_black")
                                 .resizable()
                                 .frame(width : 46, height:41.954)
                             

@@ -60,49 +60,96 @@ struct HomeViewLearn: View {
                             .frame(width:167, height:104)
                             .foregroundColor(Color("list_fill"))
                             .overlay(){
-                                VStack(alignment: .leading){
+                                ZStack(){
                                     
-                                    Image(systemName: "arrow.up.right")
-                                        .font(.system(size: 24).weight(.bold))
-                                        .foregroundColor(Color("wht"))
-                                        .opacity(0.75)
-                                        .padding(.leading, 125)
-                                        .padding(.trailing, 16)
-                                        .padding(.top, 19)
+                                    Image("robot_black")
+                                        .resizable()
+                                        .frame(width:78, height:71)
+                                        .padding(.bottom, 11)
+
                                     
-                                    Spacer()
+                                    VStack(alignment: .leading){
+                                        
+                                        Image(systemName: "arrow.up.right")
+                                            .font(.system(size: 24).weight(.bold))
+                                            .foregroundColor(Color("wht"))
+                                            .padding(.leading, 125)
+                                            .padding(.trailing, 16)
+                                            .padding(.top, 19)
+                                        
+                                        Spacer()
+
+                                        
+                                        Text("AI 분석")
+                                            .font(.system(size: 22).weight(.bold))
+                                            .foregroundColor(Color("wht"))
+                                            .padding(.leading, 22)
+                                            .padding(.bottom, 16)
+                                        
+                                        
+                                    }
                                     
-                                    Text("AI 분석")
-                                        .font(.system(size: 22).weight(.bold))
-                                        .foregroundColor(Color("wht"))
-                                        .padding(.leading, 22)
-                                        .padding(.bottom, 16)
+                                    
                                     
                                     
                                 }
+                                
+//                                ZStack(alignment: .leading){
+//
+//                                    Image(systemName: "arrow.up.right")
+//                                        .font(.system(size: 24).weight(.bold))
+//                                        .foregroundColor(Color("wht"))
+//                                        .opacity(0.75)
+//                                        .padding(.leading, 125)
+//                                        .padding(.trailing, 16)
+//                                        .padding(.top, 19)
+//
+//                                    Spacer()
+//
+//                                    Text("AI 분석")
+//                                        .font(.system(size: 22).weight(.bold))
+//                                        .foregroundColor(Color("wht"))
+//                                        .padding(.leading, 22)
+//                                        .padding(.bottom, 16)
+//
+//
+//                                }
                             }
                         
                         RoundedRectangle(cornerRadius: 24)
                             .frame(width:167, height:104)
                             .foregroundColor(Color("list_fill"))
                             .overlay(){
-                                VStack(alignment: .leading){
+                                ZStack(){
                                     
-                                    Image(systemName: "arrow.up.right")
-                                        .font(.system(size: 24).weight(.bold))
-                                        .foregroundColor(Color("wht"))
-                                        .opacity(0.75)
-                                        .padding(.leading, 125)
-                                        .padding(.trailing, 16)
-                                        .padding(.top, 19)
+                                    Image("bookmark_black")
+                                        .resizable()
+                                        .frame(width:38, height:59)
+                                        .padding(.bottom, 11)
                                     
-                                    Spacer()
                                     
-                                    Text("북마크")
-                                        .font(.system(size: 22).weight(.bold))
-                                        .foregroundColor(Color("wht"))
-                                        .padding(.leading, 22)
-                                        .padding(.bottom, 16)
+                                    VStack(alignment: .leading){
+                                        
+                                        Image(systemName: "arrow.up.right")
+                                            .font(.system(size: 24).weight(.bold))
+                                            .foregroundColor(Color("wht"))
+                                            .padding(.leading, 125)
+                                            .padding(.trailing, 16)
+                                            .padding(.top, 19)
+                                        
+                                        Spacer()
+
+                                        
+                                        Text("북마크")
+                                            .font(.system(size: 22).weight(.bold))
+                                            .foregroundColor(Color("wht"))
+                                            .padding(.leading, 22)
+                                            .padding(.bottom, 16)
+                                        
+                                        
+                                    }
+                                    
+                                    
                                     
                                     
                                 }
