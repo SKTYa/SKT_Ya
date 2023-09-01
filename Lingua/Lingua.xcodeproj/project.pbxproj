@@ -16,6 +16,7 @@
 		7E8B163E2AA1222A00B589CD /* ParagrphM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B163D2AA1222A00B589CD /* ParagrphM.swift */; };
 		7E8B16412AA124E700B589CD /* NetworkManagerWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B16402AA124E700B589CD /* NetworkManagerWord.swift */; };
 		7E8B16432AA185AA00B589CD /* NetworkManagerSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B16422AA185AA00B589CD /* NetworkManagerSentence.swift */; };
+		7E8B16452AA18B5F00B589CD /* NetworkManagerParagraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B16442AA18B5F00B589CD /* NetworkManagerParagraph.swift */; };
 		D1232D722A9F5B3C00EFA01B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D712A9F5B3C00EFA01B /* HomeView.swift */; };
 		D1232D742A9F5C6600EFA01B /* HomeViewSpeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D732A9F5C6600EFA01B /* HomeViewSpeak.swift */; };
 		D1232D762A9F5CC700EFA01B /* HomeViewLearn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1232D752A9F5CC700EFA01B /* HomeViewLearn.swift */; };
@@ -45,6 +46,7 @@
 		7E8B163D2AA1222A00B589CD /* ParagrphM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagrphM.swift; sourceTree = "<group>"; };
 		7E8B16402AA124E700B589CD /* NetworkManagerWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerWord.swift; sourceTree = "<group>"; };
 		7E8B16422AA185AA00B589CD /* NetworkManagerSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerSentence.swift; sourceTree = "<group>"; };
+		7E8B16442AA18B5F00B589CD /* NetworkManagerParagraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerParagraph.swift; sourceTree = "<group>"; };
 		D1232D712A9F5B3C00EFA01B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D1232D732A9F5C6600EFA01B /* HomeViewSpeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewSpeak.swift; sourceTree = "<group>"; };
 		D1232D752A9F5CC700EFA01B /* HomeViewLearn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewLearn.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			children = (
 				7E8B16402AA124E700B589CD /* NetworkManagerWord.swift */,
 				7E8B16422AA185AA00B589CD /* NetworkManagerSentence.swift */,
+				7E8B16442AA18B5F00B589CD /* NetworkManagerParagraph.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				D1232D862A9F9AF700EFA01B /* PronouncePronView.swift in Sources */,
 				7E8B163C2AA1221600B589CD /* WordM.swift in Sources */,
 				13AD7E192A9F1D5C00346B2C /* ContentView.swift in Sources */,
+				7E8B16452AA18B5F00B589CD /* NetworkManagerParagraph.swift in Sources */,
 				D1232D842A9F968500EFA01B /* PronounceView.swift in Sources */,
 				7E8B163A2AA121F500B589CD /* SentenceM.swift in Sources */,
 				D1232D962AA0BCAF00EFA01B /* ParagraphBreFirst.swift in Sources */,

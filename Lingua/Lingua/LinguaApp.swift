@@ -11,12 +11,14 @@ import SwiftUI
 struct LinguaApp: App {
     var wordNetwork = NetworkManagerWord()
     var sentenceNetwork = NetworkManagerSentence()
+    var paragraphNetwork = NetworkManagerParagraph()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(wordNetwork)
                 .environmentObject(sentenceNetwork)
+                .environmentObject(paragraphNetwork)
         }
     }
 }
