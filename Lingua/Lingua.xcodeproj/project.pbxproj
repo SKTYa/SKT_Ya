@@ -11,6 +11,7 @@
 		13AD7E192A9F1D5C00346B2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AD7E182A9F1D5C00346B2C /* ContentView.swift */; };
 		13AD7E1B2A9F1D5E00346B2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13AD7E1A2A9F1D5E00346B2C /* Assets.xcassets */; };
 		13AD7E1E2A9F1D5E00346B2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13AD7E1D2A9F1D5E00346B2C /* Preview Assets.xcassets */; };
+		13AD7E452AA18B4100346B2C /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AD7E442AA18B4100346B2C /* Audio.swift */; };
 		7E8B163A2AA121F500B589CD /* SentenceM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B16392AA121F400B589CD /* SentenceM.swift */; };
 		7E8B163C2AA1221600B589CD /* WordM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B163B2AA1221600B589CD /* WordM.swift */; };
 		7E8B163E2AA1222A00B589CD /* ParagrphM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B163D2AA1222A00B589CD /* ParagrphM.swift */; };
@@ -41,6 +42,7 @@
 		13AD7E182A9F1D5C00346B2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		13AD7E1A2A9F1D5E00346B2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13AD7E1D2A9F1D5E00346B2C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		13AD7E442AA18B4100346B2C /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		7E8B16392AA121F400B589CD /* SentenceM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceM.swift; sourceTree = "<group>"; };
 		7E8B163B2AA1221600B589CD /* WordM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordM.swift; sourceTree = "<group>"; };
 		7E8B163D2AA1222A00B589CD /* ParagrphM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagrphM.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 		13AD7E152A9F1D5C00346B2C /* Lingua */ = {
 			isa = PBXGroup;
 			children = (
+				13AD7E432AA18B2E00346B2C /* Audio */,
 				7E8B163F2AA124C200B589CD /* Network */,
 				D1232D702A9F579800EFA01B /* View */,
 				7E8B16382AA1217700B589CD /* Model */,
@@ -112,6 +115,14 @@
 				13AD7E1D2A9F1D5E00346B2C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		13AD7E432AA18B2E00346B2C /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				13AD7E442AA18B4100346B2C /* Audio.swift */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		7E8B16382AA1217700B589CD /* Model */ = {
@@ -283,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13AD7E452AA18B4100346B2C /* Audio.swift in Sources */,
 				D1232D8A2AA0683C00EFA01B /* PronounceTab.swift in Sources */,
 				D1232D7C2A9F611600EFA01B /* SpeakView.swift in Sources */,
 				D1232D782A9F5E0300EFA01B /* HomeViewRecord.swift in Sources */,
@@ -435,9 +447,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lingua/Preview Content\"";
-				DEVELOPMENT_TEAM = FLG797DV64;
+				DEVELOPMENT_TEAM = 34K3V5D9X5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use Microphon using Acception";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -464,9 +477,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lingua/Preview Content\"";
-				DEVELOPMENT_TEAM = FLG797DV64;
+				DEVELOPMENT_TEAM = 34K3V5D9X5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use Microphon using Acception";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -14,7 +14,7 @@ struct HomeViewLearn: View {
             VStack(){
                 HStack(spacing : 16){
                     
-                    NavigationLink(destination: SpeakView()) {
+                    NavigationLink(destination: SpeakView(audioRecorderManger: AudioRecorderManger())) {
                         
                         
                         RoundedRectangle(cornerRadius: 24)

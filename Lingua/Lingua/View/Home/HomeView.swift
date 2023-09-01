@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var audioRecorderManger = AudioRecorderManger()
     var body: some View {
         
         NavigationView {

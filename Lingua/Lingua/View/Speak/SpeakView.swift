@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct SpeakView: View {
+    @ObservedObject var audioRecorderManger: AudioRecorderManger
     @EnvironmentObject var wordNetwork: NetworkManagerWord
     @EnvironmentObject var sentenceNetwork: NetworkManagerSentence
+    @State private var isAnimate = false
     @State private var word = ""
     @State private var sentence = ""
     @State private var selectedOptionIndex = 1
@@ -17,7 +19,6 @@ struct SpeakView: View {
     
     
     var body: some View {
-        
         
         ZStack {
             Color("BG").edgesIgnoringSafeArea(.all)
@@ -192,18 +193,64 @@ struct SpeakView: View {
                 
                 HStack(spacing : 75){
                     
-                    Image("replay")
-                        .resizable()
-                        .frame(width:48, height:48)
+                    Button {
+                        audioRecorderManger.isRecording ? audioRecorderManger.stopRecording() : audioRecorderManger.startRecording()
+                        isAnimate.toggle()
+                    } label: {
+                        Image("replay")
+                            .resizable()
+                            .frame(width:48, height:48)
+                    }
                     
-                    
-                    Image("mic")
-                        .resizable()
-                        .frame(width:96, height:96)
-                    
-                    Image("black_arrow")
-                        .resizable()
-                        .frame(width:48, height:48)
+                    Button {
+                        audioRecorderManger.isRecording ? audioRecorderManger.stopRecording() : audioRecorderManger.startRecording()
+                        isAnimate.toggle()
+                    } label: {
+                        if audioRecorderManger.isRecording == false {
+                            Image("mic")
+                                .resizable()
+                                .frame(width:96, height:96)
+                        }
+                        else {
+                            ZStack {
+                                Circle()
+                                    .stroke(Color("Primary").opacity(0.1), lineWidth: 1)
+                                    .foregroundColor(.clear)
+                                    .frame(width: isAnimate ? 96 : 198 ,height: isAnimate ? 96 : 198)
+                                    .animation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true))
+                                Circle()
+                                    .stroke(Color("Primary").opacity(0.25), lineWidth: 1)
+                                    .foregroundColor(.clear)
+                                    .frame(width: isAnimate ? 96 : 154 ,height: isAnimate ? 96 : 154)
+                                    .animation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true))
+                                Circle()
+                                    .stroke(Color("Primary").opacity(0.5), lineWidth: 1)
+                                    .foregroundColor(.clear)
+                                    .frame(width: isAnimate ? 96 : 118 ,height: isAnimate ? 96 : 118)
+                                    .animation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true))
+                                
+                                Image("voice")
+                                    .resizable()
+                                    .foregroundColor(.red)
+                                    .frame(width: 96,height: 96)
+    
+                                    
+    
+                            }
+                            
+                        }
+                       
+                    }
+
+                    Button {
+                        print("nextPage")
+                    } label: {
+                        Image("black_arrow")
+                            .resizable()
+                            .frame(width:48, height:48)
+                    }
+
+                  
                     
                     
                 }
@@ -246,9 +293,9 @@ struct SpeakView: View {
     
     
 }
-
-struct SpeakView_Previews: PreviewProvider {
-    static var previews: some View {
-        SpeakView()
-    }
-}
+//
+//struct SpeakView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SpeakView(audioRecorderManger:AudioRecorderManger)
+//    }
+//}
