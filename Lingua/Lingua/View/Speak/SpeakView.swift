@@ -1,4 +1,4 @@
-//
+
 //  SpeakView.swift
 //  Lingua
 //
@@ -20,6 +20,9 @@ struct SpeakView: View {
     private let options = ["1단계 단어 말하기", "2단계 문장 말하기", "3단계 문단 말하기"]
     private let waveImages = ["wave1","wave2","wave3","wave4","wave5"]
     
+    @State private var animateMedium = false
+
+    
     var body: some View {
         
         ZStack {
@@ -38,47 +41,7 @@ struct SpeakView: View {
                     
                     Spacer()
                     
-                    //                    RoundedRectangle(cornerRadius: 24)
-                    //                        .frame(width: 223, height:48)
-                    //                        .overlay(){
-                    //                            HStack(){
-                    //                                Text("2단계 문장 말하기")
-                    //                                    .foregroundColor(Color("Primary"))
-                    //                                    .font(.system(size: 20).weight(.bold))
-                    //                                Image(systemName: "chevron.down")
-                    //                                    .foregroundColor(Color("wht"))
-                    //                                    .font(.system(size: 20))
-                    //
-                    //                            }
-                    //                        }
-                    //                        .foregroundColor(Color("list_fill"))
-                    //                        .border(Color("stroke"), width: 1)
-                    //                        .contextMenu{
-                    //                            VStack{
-                    //                                Button(action: {
-                    //                                            print("1단계 문장 말하기 선택됨")
-                    //                                        }) {
-                    //                                            Text("1단계 문장 말하기")
-                    //                                                .foregroundColor(Color("Primary"))
-                    //                                                .font(.system(size: 20).weight(.bold))
-                    //                                        }
-                    //                                Button(action: {
-                    //                                            print("1단계 문장 말하기 선택됨")
-                    //                                        }) {
-                    //                                            Text("1단계 문장 말하기")
-                    //                                                .foregroundColor(Color("Primary"))
-                    //                                                .font(.system(size: 20).weight(.bold))
-                    //                                        }
-                    //                                Button(action: {
-                    //                                            print("1단계 문장 말하기 선택됨")
-                    //                                        }) {
-                    //                                            Text("1단계 문장 말하기")
-                    //                                                .foregroundColor(Color("Primary"))
-                    //                                                .font(.system(size: 20).weight(.bold))
-                    //                                        }
-                    //                            }
-                    //
-                    //                        }
+                    
                     
                     Menu {
                         ForEach(options.indices, id: \.self) { index in
@@ -128,8 +91,7 @@ struct SpeakView: View {
                         .bold()
                     
                 }
-                //                .frame(width:.infinity)
-                //                .border(Color.red, width: 2)
+                
                 
                 
                 Spacer().frame(height:170.5)
@@ -137,7 +99,6 @@ struct SpeakView: View {
                 
                 
                 
-                //                Text("높은 산 꼭대기에\n작은 꽃이 피어있네요.")
                 if selectedOptionIndex == 0 {
                     if word == "" {
                         Text("")
@@ -172,7 +133,7 @@ struct SpeakView: View {
                     .overlay(){
                         HStack(){
                             
-                            Image("Component 1")
+                            Image("robot_black")
                                 .resizable()
                                 .opacity(0.5)
                                 .frame(width : 46, height:41.954)
@@ -227,6 +188,7 @@ struct SpeakView: View {
                                         .resizable()
                                         .frame(width: 70,height: 30)
                                         .onAppear {
+                                            
                                             // 0.5초마다 이미지 인덱스를 증가시키고, 배열 크기를 벗어나면 처음으로 되돌립니다.
                                             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
                                                 withAnimation {
@@ -240,22 +202,33 @@ struct SpeakView: View {
                                         }
                                     
                                     Circle()
-                                        .stroke(Color("Primary").opacity(0.1), lineWidth: 1)
-                                        .frame(width: isAnimate ? 96 : 198, height: isAnimate ? 96 : 198)
+                                        .stroke(Color("Primary").opacity(0.1), lineWidth: 2)
+                                        .frame(width: isAnimate ? 96 : 242, height: isAnimate ? 96 : 242)
                                         .animation(Animation.linear(duration: 1).repeatForever(autoreverses: true))
                                         .onAppear() {
                                             isAnimate.toggle()
                                         }
                                     
                                     Circle()
-                                        .stroke(Color("Primary").opacity(0.25), lineWidth: 1)
-                                        .frame(width: isAnimate ? 96 : 154, height: isAnimate ? 96 : 154)
-                                        .animation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true))
+                                        .stroke(Color("Primary").opacity(0.25), lineWidth: 2)
+                                        .frame(width: isAnimate ? 96 : 198, height: isAnimate ? 96 : 198)
+                                        .scaleEffect(animateMedium ? 1.2 : 1, anchor: .center)
+                                        .animation(Animation.easeOut(duration: 1).repeatForever(autoreverses: true).delay(0.4))
+                                        .onAppear() {
+                                            self.animateMedium.toggle()
+                                    }
+//                                        .animation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true))
                                     
                                     Circle()
-                                        .stroke(Color("Primary").opacity(0.5), lineWidth: 1)
-                                        .frame(width: isAnimate ? 96 : 118, height: isAnimate ? 96 : 118)
-                                        .animation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true))
+                                        .stroke(Color("Primary").opacity(0.5), lineWidth: 2)
+                                        .frame(width: isAnimate ? 96 : 154, height: isAnimate ? 96 : 154)
+                                        .scaleEffect(animateMedium ? 1.6 : 0.8, anchor: .center)
+                                        .animation(Animation.easeOut(duration: 1).repeatForever(autoreverses: true).delay(0.4))
+                                        .onAppear() {
+                                            self.animateMedium.toggle()
+                                    }
+                                    
+//                                        .animation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true))
 
                                 }
 
@@ -266,7 +239,7 @@ struct SpeakView: View {
                         
                         
                     }
-                    // TODO: 
+                    // TODO:
                     Button {
                         print("nextPage")
                     } label: {
