@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct SpeakView: View {
-    
-    @State private var selectedOptionIndex = 0
-    private let options = ["1단계 단어 말하기", "2단계 단어 말하기", "3단계 단어 말하기"]
+    @EnvironmentObject var wordNetwork: NetworkManagerWord
+    @EnvironmentObject var sentenceNetwork: NetworkManagerSentence
+    @State private var word = ""
+    @State private var sentence = ""
+    @State private var selectedOptionIndex = 1
+    private let options = ["1단계 단어 말하기", "2단계 문장 말하기", "3단계 문단 말하기"]
     
     
     var body: some View {
@@ -32,47 +35,47 @@ struct SpeakView: View {
                     
                     Spacer()
                     
-//                    RoundedRectangle(cornerRadius: 24)
-//                        .frame(width: 223, height:48)
-//                        .overlay(){
-//                            HStack(){
-//                                Text("2단계 문장 말하기")
-//                                    .foregroundColor(Color("Primary"))
-//                                    .font(.system(size: 20).weight(.bold))
-//                                Image(systemName: "chevron.down")
-//                                    .foregroundColor(Color("wht"))
-//                                    .font(.system(size: 20))
-//
-//                            }
-//                        }
-//                        .foregroundColor(Color("list_fill"))
-//                        .border(Color("stroke"), width: 1)
-//                        .contextMenu{
-//                            VStack{
-//                                Button(action: {
-//                                            print("1단계 문장 말하기 선택됨")
-//                                        }) {
-//                                            Text("1단계 문장 말하기")
-//                                                .foregroundColor(Color("Primary"))
-//                                                .font(.system(size: 20).weight(.bold))
-//                                        }
-//                                Button(action: {
-//                                            print("1단계 문장 말하기 선택됨")
-//                                        }) {
-//                                            Text("1단계 문장 말하기")
-//                                                .foregroundColor(Color("Primary"))
-//                                                .font(.system(size: 20).weight(.bold))
-//                                        }
-//                                Button(action: {
-//                                            print("1단계 문장 말하기 선택됨")
-//                                        }) {
-//                                            Text("1단계 문장 말하기")
-//                                                .foregroundColor(Color("Primary"))
-//                                                .font(.system(size: 20).weight(.bold))
-//                                        }
-//                            }
-//
-//                        }
+                    //                    RoundedRectangle(cornerRadius: 24)
+                    //                        .frame(width: 223, height:48)
+                    //                        .overlay(){
+                    //                            HStack(){
+                    //                                Text("2단계 문장 말하기")
+                    //                                    .foregroundColor(Color("Primary"))
+                    //                                    .font(.system(size: 20).weight(.bold))
+                    //                                Image(systemName: "chevron.down")
+                    //                                    .foregroundColor(Color("wht"))
+                    //                                    .font(.system(size: 20))
+                    //
+                    //                            }
+                    //                        }
+                    //                        .foregroundColor(Color("list_fill"))
+                    //                        .border(Color("stroke"), width: 1)
+                    //                        .contextMenu{
+                    //                            VStack{
+                    //                                Button(action: {
+                    //                                            print("1단계 문장 말하기 선택됨")
+                    //                                        }) {
+                    //                                            Text("1단계 문장 말하기")
+                    //                                                .foregroundColor(Color("Primary"))
+                    //                                                .font(.system(size: 20).weight(.bold))
+                    //                                        }
+                    //                                Button(action: {
+                    //                                            print("1단계 문장 말하기 선택됨")
+                    //                                        }) {
+                    //                                            Text("1단계 문장 말하기")
+                    //                                                .foregroundColor(Color("Primary"))
+                    //                                                .font(.system(size: 20).weight(.bold))
+                    //                                        }
+                    //                                Button(action: {
+                    //                                            print("1단계 문장 말하기 선택됨")
+                    //                                        }) {
+                    //                                            Text("1단계 문장 말하기")
+                    //                                                .foregroundColor(Color("Primary"))
+                    //                                                .font(.system(size: 20).weight(.bold))
+                    //                                        }
+                    //                            }
+                    //
+                    //                        }
                     
                     Menu {
                         ForEach(options.indices, id: \.self) { index in
@@ -82,19 +85,19 @@ struct SpeakView: View {
                                 RoundedRectangle(cornerRadius: 24)
                                     .frame(width: 223, height:48)
                                     .overlay(){
-                                            Text(options[index])
-                                                .foregroundColor(Color("Primary"))
-                                                .font(.system(size: 20).weight(.bold))
-
-                                        }
+                                        Text(options[index])
+                                            .foregroundColor(Color("Primary"))
+                                            .font(.system(size: 20).weight(.bold))
+                                        
                                     }
-                                    .foregroundColor(Color("list_fill"))
-                                    .border(Color("stroke"), width: 1)
-
-
-
                             }
-
+                            .foregroundColor(Color("list_fill"))
+                            .border(Color("stroke"), width: 1)
+                            
+                            
+                            
+                        }
+                        
                     } label: {
                         RoundedRectangle(cornerRadius: 24)
                             .frame(width: 223, height:48)
@@ -106,12 +109,12 @@ struct SpeakView: View {
                                     Image(systemName: "chevron.down")
                                         .foregroundColor(Color("wht"))
                                         .font(.system(size: 20))
-
+                                    
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
                             .border(Color("stroke"), width: 1)
-
+                        
                     }
                     
                     Spacer()
@@ -124,7 +127,7 @@ struct SpeakView: View {
                     
                 }
                 //                .frame(width:.infinity)
-//                .border(Color.red, width: 2)
+                //                .border(Color.red, width: 2)
                 
                 
                 Spacer().frame(height:170.5)
@@ -132,12 +135,35 @@ struct SpeakView: View {
                 
                 
                 
-                Text("높은 산 꼭대기에\n작은 꽃이 피어있네요.")
-                    .foregroundColor(Color("wht"))
-                    .font(.system(size: 34).weight(.bold))
+                //                Text("높은 산 꼭대기에\n작은 꽃이 피어있네요.")
+                if selectedOptionIndex == 0 {
+                    if word == "" {
+                        Text("")
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 34).weight(.bold))
+                    }
+                    else{
+                        Text("\(word)")
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 34).weight(.bold))
+                    }
+                }
+                else {
+                    if sentence == "" {
+                        Text("")
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 34).weight(.bold))
+                    }
+                    else{
+                        Text("\(sentence)")
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 34).weight(.bold))
+                    }
+                }
+                
                 
                 Spacer().frame(height:130)
-
+                
                 
                 RoundedRectangle(cornerRadius: 24)
                     .frame(width: 259, height:58)
@@ -164,15 +190,15 @@ struct SpeakView: View {
                 
                 
                 Spacer().frame(height:98)
-
+                
                 
                 HStack(spacing : 75){
                     
                     Image("replay")
                         .resizable()
                         .frame(width:48, height:48)
-
-
+                    
+                    
                     Image("mic")
                         .resizable()
                         .frame(width:96, height:96)
@@ -180,7 +206,7 @@ struct SpeakView: View {
                     Image("black_arrow")
                         .resizable()
                         .frame(width:48, height:48)
-
+                    
                     
                 }
                 
@@ -193,9 +219,33 @@ struct SpeakView: View {
             
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear{
+            let group = DispatchGroup()
+            
+            if selectedOptionIndex == 0 {
+                wordNetwork.getWord{
+                    words in DispatchQueue.main.async(group: group) {
+                        word = words.wordName ?? ""
+                    }
+                }
+            }
+            else{
+                sentenceNetwork.getSentence{
+                    sentences in DispatchQueue.main.async(group: group) {
+                        sentence = sentences.sentence ?? ""
+                    }
+                }
+            }
+           
+            
+        }
+        
+        
         
         
     }
+    
+    
     
 }
 
