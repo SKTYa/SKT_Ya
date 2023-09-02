@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct ParagraphSequneceView: View {
-    
+    @Environment(\.dismiss) private var dismiss
     
     @State private var selectedOptionIndex = 2
     private let options = ["1단계 단어 말하기", "2단계 단어 말하기", "3단계 문단 말하기"]
@@ -48,12 +48,17 @@ struct ParagraphSequneceView: View {
                 HStack(spacing : 38){
                     
                     
-                    
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(Color("wht"))
-                        .font(.system(size: 22).weight(.bold))
-                        .frame(width:48, height:64)
-                        .bold()
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 22).weight(.bold))
+                            .frame(width:48, height:64)
+                            .bold()
+                    }
+
+                  
                     
                     
                     

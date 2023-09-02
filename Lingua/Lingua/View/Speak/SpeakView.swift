@@ -36,7 +36,7 @@ import SwiftUI
 
 
 struct SpeakView: View {
-    
+    @Environment(\.dismiss) private var dismiss
     @ObservedObject var audioRecorderManger: AudioRecorderManger
     @EnvironmentObject var wordNetwork: NetworkManagerWord
     @EnvironmentObject var sentenceNetwork: NetworkManagerSentence
@@ -55,9 +55,7 @@ struct SpeakView: View {
     @State private var rotation: Double = 0.0
     
     
-    
     var body: some View {
-        
         ZStack {
             if isLoading {
                 AnalyzeView()
@@ -70,17 +68,21 @@ struct SpeakView: View {
             }
             else {
                 Color("BG").edgesIgnoringSafeArea(.all)
-
+                
                 VStack(){
                     
                     HStack(spacing : 8){
                         
-                        
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(Color("wht"))
-                            .font(.system(size: 22).weight(.bold))
-                            .bold()
-                        
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(Color("wht"))
+                                .font(.system(size: 22).weight(.bold))
+                                .bold()
+                            
+                        }
+                     
                         
                         Spacer()
                         

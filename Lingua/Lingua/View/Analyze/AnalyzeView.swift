@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AnalyzeView: View {
+    @Environment(\.dismiss) private var dismiss
     
     @State private var rotation: Double = 0.0
     
@@ -16,8 +17,6 @@ struct AnalyzeView: View {
     
     
     var body: some View {
-        
-        
         ZStack {
             Color("BG").edgesIgnoringSafeArea(.all)
             
@@ -26,11 +25,16 @@ struct AnalyzeView: View {
                 
                 HStack(spacing : 8){
                     
-                    
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(Color("wht"))
-                        .font(.system(size: 22).weight(.bold))
-                        .bold()
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 22).weight(.bold))
+                            .bold()
+                        
+                    }
+
                     
                     Spacer()
                     

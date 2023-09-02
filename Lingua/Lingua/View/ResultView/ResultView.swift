@@ -101,7 +101,7 @@ struct CircularShape: Shape {
 
 
 struct ResultView: View {
-    
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var wordNetwork: NetworkManagerWord
     @EnvironmentObject var sentenceNetwork: NetworkManagerSentence
     
@@ -119,9 +119,6 @@ struct ResultView: View {
     
     
     var body: some View {
-        
-        
-        
         ZStack(){
             Color("BG").edgesIgnoringSafeArea(.all)
             
@@ -132,11 +129,16 @@ struct ResultView: View {
                     
                     
                     HStack(){
-                        
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(Color("wht"))
-                            .font(.system(size: 17).weight(.bold))
-                            .frame(width:48, height:64)
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(Color("wht"))
+                                .font(.system(size: 17).weight(.bold))
+                                .frame(width:48, height:64)
+                        }
+
+                       
                         
                         
                         
@@ -206,8 +208,7 @@ struct ResultView: View {
                                             
                                             CircularImage(percentage: score)
                                                 .frame(width: 283, height: 150)
-                                            
-                                            
+                               
                                             Text(" \(Int(score))%")
                                                 .foregroundColor(Color("Primary"))
                                                 .font(.system(size: 48).weight(.bold))

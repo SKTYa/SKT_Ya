@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ParagraphView: View {
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var paragraphNetwork: NetworkManagerParagraph
     
     @State private var sentence:[String] = []
@@ -24,11 +25,16 @@ struct ParagraphView: View {
             VStack(){
                 HStack(spacing : 8){
                     
-                    
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(Color("wht"))
-                        .font(.system(size: 22).weight(.bold))
-                        .bold()
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 22).weight(.bold))
+                            .bold()
+
+                    }
+
                     
                     Spacer()
                     

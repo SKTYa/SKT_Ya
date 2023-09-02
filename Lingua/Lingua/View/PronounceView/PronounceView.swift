@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct PronounceView: View {
+    @Environment(\.dismiss) private var dismiss
     
     @State var selectedOptionIndex: Int
     private let options = ["1단계 단어 말하기", "2단계 단어 말하기", "3단계 단어 말하기"]
@@ -13,7 +14,6 @@ struct PronounceView: View {
     
     
     var body: some View {
-
         ZStack(){
             Color("BG").edgesIgnoringSafeArea(.all)
             
@@ -21,11 +21,15 @@ struct PronounceView: View {
                 HStack(spacing : 38){
                     
                     
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(Color("wht"))
-                        .font(.system(size: 22).weight(.bold))
-                        .frame(width:48, height:64)
-                        .bold()
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 22).weight(.bold))
+                            .frame(width:48, height:64)
+                            .bold()
+                    }
                     
                     
                     
