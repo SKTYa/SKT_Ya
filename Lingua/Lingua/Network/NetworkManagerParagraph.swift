@@ -14,7 +14,7 @@ class NetworkManagerParagraph: ObservableObject {
     func getParagraph(completion: @escaping (Paragraph) -> ()) {
         //        let requestBody = try! JSONSerialization.data(withJSONObject: parameters, options: [])
         
-        guard let url = URL(string: "http://127.0.0.1:8000/get-paragraph") else {
+        guard let url = URL(string: "http://35.202.5.120:8000/get-paragraph") else {
             print("Error: cannot create URL")
             return
         }
@@ -52,7 +52,7 @@ class NetworkManagerParagraph: ObservableObject {
     
     func checkParagraph(originStr : String, file: Data, completion: @escaping (CheckParagraph) -> ()) {
         // 서버 URL 설정
-        var serverURL = URLComponents(string: "http://127.0.0.1:8000/check/paragraph")!
+        var serverURL = URLComponents(string: "http://35.202.5.120:8000/check/paragraph")!
         
         // 쿼리 매개변수 추가
         serverURL.queryItems = [

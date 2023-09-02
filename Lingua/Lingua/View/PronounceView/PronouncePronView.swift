@@ -61,21 +61,13 @@ struct PronouncePronView: View {
                             let text = sentenceNetwork.sentences.sentence!
                             let origin = sentenceNetwork.checkSentences.origin!
                             
-                            //                            ForEach(0..<text.count, id: \.self) { idx in
-                            //                                let character = text[text.index(text.startIndex, offsetBy: idx)]
                             //
-                            //                                Text(String(character))
-                            //                                    .padding(0)
-                            //                                    .frame(width: 24)
-                            //                                    .foregroundColor(origin[idx] % 2 == 0 ? Color("wht") : Color("Primary"))
-                            //                                    .font(.system(size: 34).weight(.bold))
-                            //                            }
                             
                             ForEach( 0..<text.count / 11, id: \.self) { i in
                                 
                                 let text_len = (text.count / 11 == i ? text.count % 11 : 11)
                                 
-                                HStack{
+                                HStack(spacing : 0){
                                     ForEach( 0..<text_len, id: \.self) { j in
                                         let idx = i * 11 + j
                                         
@@ -85,10 +77,15 @@ struct PronouncePronView: View {
                                             .padding(0)
                                             .foregroundColor(origin[idx] % 2 == 0 ? Color("wht") : Color("Primary"))
                                             .font(.system(size: 34).weight(.bold))
-                                        //                                    .lineSpacing(10)
+                                            .lineSpacing(10)
+                                            .lineLimit(nil)
                                         
                                     }
+                                    
                                 }
+                                //                                .frame(maxWidth : 358, maxHeight : .infinity)
+//                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                                
                                 
                                 
                             }
@@ -96,7 +93,7 @@ struct PronouncePronView: View {
                         
                         Spacer()
                     }
-                    .frame(width: 358)
+//                    .frame(maxWidth : .infinity, maxHeight : .infinity)
                     
                     Spacer().frame(height:20)
                     
@@ -135,37 +132,29 @@ struct PronouncePronView: View {
                             let text = sentenceNetwork.checkSentences.text!
                             let origin = sentenceNetwork.checkSentences.compared!
                             
-                            //                            ForEach(0..<text.count, id: \.self) { idx in
-                            //                                let character = text[text.index(text.startIndex, offsetBy: idx)]
-                            //
-                            //                                Text(String(character))
-                            //                                    .padding(0)
-                            //                                    .frame(width: 24)
-                            //                                    .foregroundColor(origin[idx] % 2 == 0 ? Color("wht") : Color("Primary"))
-                            //                                    .font(.system(size: 34).weight(.bold))
-                            //                            }
                             
-                            ForEach( 0..<text.count / 11, id: \.self) { i in
-                                
+                            ForEach(0..<text.count / 11, id: \.self) { i in
                                 let text_len = (text.count / 11 == i ? text.count % 11 : 11)
-                                
-                                HStack{
-                                    ForEach( 0..<text_len, id: \.self) { j in
+
+                                HStack(spacing: 0) { // spacing: 0으로 공백 없이 텍스트를 붙입니다.
+                                    ForEach(0..<text_len, id: \.self) { j in
                                         let idx = i * 11 + j
-                                        
+
                                         let character = text[text.index(text.startIndex, offsetBy: idx)]
-                                        
+
                                         Text(String(character))
                                             .padding(0)
                                             .foregroundColor(origin[idx] % 2 == 0 ? Color("wht") : Color("Wrong"))
                                             .font(.system(size: 34).weight(.bold))
-                                        //                                    .lineSpacing(10)
-                                        
+                                            .lineSpacing(10) // 텍스트 사이의 줄 간격을 조정합니다.
+//                                            .lineLimit(1)
+                                            .lineLimit(nil)
                                     }
                                 }
-                                
-                                
+//                                .frame(maxWidth : .infinity, maxHeight : .infinity)
                             }
+
+                     
                         }
                         Spacer()
                     }
@@ -175,7 +164,7 @@ struct PronouncePronView: View {
                 
             }
             
-            .frame(width:358, height:474)
+            .frame(width:.infinity, height:.infinity)
             .padding(16)
             
             //            .introspectScrollView { scrollView in
