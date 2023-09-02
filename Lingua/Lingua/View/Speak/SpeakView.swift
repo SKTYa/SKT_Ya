@@ -1,4 +1,3 @@
-
 //  SpeakView.swift
 //  Lingua
 //
@@ -44,7 +43,6 @@ struct SpeakView: View {
     @State private var isAnimate = true
     @State private var word = ""
     @State private var sentence = ""
-    @State private var similarity = 0
     @State private var selectedOptionIndex = 1
     @State private var imageIndex = 0
     @State private var isLoading = false
@@ -55,167 +53,156 @@ struct SpeakView: View {
     @State private var animateMedium = false
     @State private var rotation: Double = 0.0
     
+    
+    
     var body: some View {
         
         ZStack {
-            
-            
-            
             if isLoading {
                 AnalyzeView()
             }
             else if isResult {
-                
+                PronounceView(selectedOptionIndex: selectedOptionIndex)
+            }
+            else {
+                Color("BG").edgesIgnoringSafeArea(.all)
 
-                HStack(spacing : 8){
+                VStack(){
                     
-                    
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(Color("wht"))
-                        .font(.system(size: 22).weight(.bold))
-                        .bold()
-                    
-                    
-                    Spacer()
-                    
-                    
-                    
-                    Menu {
-                        ForEach(options.indices, id: \.self) { index in
-                            Button(action: {
-                                selectedOptionIndex = index
-                            }) {
-                                RoundedRectangle(cornerRadius: 24)
-                                    .frame(width: 223, height:48)
-                                    .overlay(){
-                                        Text(options[index])
-//                                            .modifier(CustomTextModifier()) // 커스텀 스타일 적용
-
-//                                            .foregroundColor(Color("Primary"))
-//                                            .font(.system(size: 20).weight(.bold))
-//
+                    HStack(spacing : 8){
+                        
+                        
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 22).weight(.bold))
+                            .bold()
+                        
+                        
+                        Spacer()
+                        
+                        
+                        
+                        Menu {
+                            ForEach(options.indices, id: \.self) { index in
+                                Button(action: {
+                                    selectedOptionIndex = index
+                                }) {
+                                    RoundedRectangle(cornerRadius: 24)
+                                        .frame(width: 223, height:48)
+                                        .overlay(){
+                                            Text(options[index])
+                                            //                                            .modifier(CustomTextModifier()) // 커스텀 스타일 적용
+                                            
+                                            //                                            .foregroundColor(Color("Primary"))
+                                            //                                            .font(.system(size: 20).weight(.bold))
+                                            //
+                                        }
+                                    
+                                }
+                                .foregroundColor(Color("list_fill"))
+                                .border(Color("stroke"), width: 1)
+                                
+                                
+                                
+                            }
+                            
+                            
+                        } label: {
+                            RoundedRectangle(cornerRadius: 24)
+                                .frame(width: 223, height:48)
+                                .overlay(){
+                                    HStack(){
+                                        Text("2단계 문장 말하기")
+                                            .foregroundColor(Color("Primary"))
+                                            .font(.system(size: 20).weight(.bold))
+                                        Image(systemName: "chevron.down")
+                                            .foregroundColor(Color("wht"))
+                                            .font(.system(size: 20))
+                                        
                                     }
                                 }
                                 .foregroundColor(Color("list_fill"))
+                            
                         }
-
                         
-
-                    } label: {
-                        RoundedRectangle(cornerRadius: 24)
-                            .frame(width: 223, height:48)
-                            .overlay(){
-                                HStack(){
-                                    Text("2단계 문장 말하기")
-                                        .foregroundColor(Color("Primary"))
-                                        .font(.system(size: 20).weight(.bold))
-                                    Image(systemName: "chevron.down")
-                                        .foregroundColor(Color("wht"))
-                                        .font(.system(size: 20))
-                                    
-                                }
-                            }
-                            .foregroundColor(Color("list_fill"))
                         
-                    } 
-                                            
+                        
+                        Spacer()
+                        
+                        
+                        Image(systemName: "person.crop.circle.fill")
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 22).weight(.bold))
+                            .bold()
+                        
+                    }
                     
                     
-                    Spacer().frame(height:170.5)
+                    
+                    //                Spacer().frame(height:147)
                     // 임시
                     
-
-                }
-                
-                
-                
-//                Spacer().frame(height:147)
-                // 임시
-                
-                
-                
-                if selectedOptionIndex == 0 {
-                    if word == "" {
-                        
-                        
-                        Spacer().frame(height:140)
-
-                        Image("oneone")
-                            .resizable()
-                            .frame(width: 219, height: 192)
-                            .rotationEffect(.degrees(rotation))
-                            .animation(Animation.linear(duration: 10).repeatForever(autoreverses: false))
-                                .onAppear() {
-                                    withAnimation {
-                                        rotation += 1200
-                                    }
-                                }
-                        
-//                        Text("")
-//                            .foregroundColor(Color("wht"))
-//                            .font(.system(size: 34).weight(.bold))
-                    }
-                    else{
-                        Spacer().frame(height:170.5)
-
-                        Text("\(word)")
-                            .foregroundColor(Color("wht"))
-                            .font(.system(size: 34).weight(.bold))
-                    }
-                }
-                else {
-                    if sentence == "" {
-                        
-                        Spacer().frame(height:140)
-
-                        Image("oneone")
-                            .resizable()
-                            .frame(width: 219, height: 192)
-                            .rotationEffect(.degrees(rotation))
-                            .animation(Animation.linear(duration: 10).repeatForever(autoreverses: false))
-                                .onAppear() {
-                                    withAnimation {
-                                        rotation += 1200
-                                    }
-                                }
-                        
-//
-                    }
-                    else{
-                        
-                        Spacer().frame(height:170.5)
-
-                        
-                        Text("\(sentence)")
-                            .foregroundColor(Color("wht"))
-                            .font(.system(size: 34).weight(.bold))
-                    }
-                }
-                
-                Spacer().frame(height:70)
-                
-                
-                RoundedRectangle(cornerRadius: 24)
-                    .frame(width: 259, height:58)
-                    .overlay(){
-                        HStack(){
+                    
+                    
+                    if selectedOptionIndex == 0 {
+                        if word == "" {
                             
-                            Image("robot_black")
+                            
+                            Spacer().frame(height:140)
+                            
+                            Image("oneone")
                                 .resizable()
-                                .opacity(0.5)
-                                .frame(width : 46, height:41.954)
+                                .frame(width: 219, height: 192)
+                                .rotationEffect(.degrees(rotation))
+                                .animation(Animation.linear(duration: 10).repeatForever(autoreverses: false))
+                                .onAppear() {
+                                    withAnimation {
+                                        rotation += 1200
+                                    }
+                                }
+                            
+                            //                        Text("")
+                            //                            .foregroundColor(Color("wht"))
+                            //                            .font(.system(size: 34).weight(.bold))
+                        }
+                        else{
+                            Spacer().frame(height:170.5)
+                            
+                            Text("\(word)")
+                                .foregroundColor(Color("wht"))
+                                .font(.system(size: 34).weight(.bold))
+                        }
+                    }
+                    else {
+                        if sentence == "" {
+                            
+                            Spacer().frame(height:140)
+                            
+                            Image("oneone")
+                                .resizable()
+                                .frame(width: 219, height: 192)
+                                .rotationEffect(.degrees(rotation))
+                                .animation(Animation.linear(duration: 10).repeatForever(autoreverses: false))
+                                .onAppear() {
+                                    withAnimation {
+                                        rotation += 1200
+                                    }
+                                }
+                            
+                            //
+                        }
+                        else{
+                            
+                            Spacer().frame(height:170.5)
                             
                             
-                            Text("지금 말해보세요.")
-                                .foregroundColor(Color("Primary"))
-                                .font(.system(size: 20).weight(.bold))
-                            
-                            
+                            Text("\(sentence)")
+                                .foregroundColor(Color("wht"))
+                                .font(.system(size: 34).weight(.bold))
                         }
                     }
                     
-                    
-                    Spacer().frame(height:130)
+                    Spacer().frame(height:70)
                     
                     
                     RoundedRectangle(cornerRadius: 24)
@@ -330,8 +317,6 @@ struct SpeakView: View {
                             
                         }
                         // TODO:
-                        
-                        
                         Button {
                             let group = DispatchGroup()
                             
@@ -341,7 +326,6 @@ struct SpeakView: View {
                                     words in DispatchQueue.main.async(group: group) {
                                         self.isLoading = false
                                         self.isResult = true
-                                        self.similarity = words.similarity!
                                         //                                        word = words.text ?? ""
                                         
                                     }
@@ -355,7 +339,6 @@ struct SpeakView: View {
                                         //                                            NavigationLink(destination: ResultView()) {}
                                         self.isLoading = false
                                         self.isResult = true
-                                        self.similarity = sentences.similarity!
                                         print(sentenceNetwork.checkSentences)
                                     }
                                 }
@@ -367,14 +350,20 @@ struct SpeakView: View {
                                 .resizable()
                                 .frame(width:48, height:48)
                         }
+                        
+                        
+                        
+                        
                     }
-                    
                     
                     
                     
                     
                 }
             }
+            
+            
+            
             
             
             
@@ -400,14 +389,13 @@ struct SpeakView: View {
             
             
         }
+        
+        
+        
+        
     }
     
     
     
 }
-//
-//struct SpeakView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SpeakView(audioRecorderManger:AudioRecorderManger)
-//    }
-//}
+
