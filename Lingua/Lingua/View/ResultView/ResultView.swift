@@ -101,7 +101,7 @@ struct CircularShape: Shape {
 
 
 struct ResultView: View {
-    @Environment(\.dismiss) private var dismiss
+    
     @EnvironmentObject var wordNetwork: NetworkManagerWord
     @EnvironmentObject var sentenceNetwork: NetworkManagerSentence
     
@@ -119,6 +119,9 @@ struct ResultView: View {
     
     
     var body: some View {
+        
+        
+        
         ZStack(){
             Color("BG").edgesIgnoringSafeArea(.all)
             
@@ -129,16 +132,11 @@ struct ResultView: View {
                     
                     
                     HStack(){
-                        Button {
-                            dismiss()
-                        } label: {
-                            Image(systemName: "chevron.left")
-                                .foregroundColor(Color("wht"))
-                                .font(.system(size: 17).weight(.bold))
-                                .frame(width:48, height:64)
-                        }
-
-                       
+                        
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 17).weight(.bold))
+                            .frame(width:48, height:64)
                         
                         
                         
@@ -157,10 +155,10 @@ struct ResultView: View {
                     //                .border(Color.green, width:2)
                     
                     HStack(){
-                        Text("총 ")
-                            .foregroundColor(Color("wht"))
-                            .font(.system(size: 22).weight(.bold)) +
-                        Text("4문장")
+//                        Text("총 ")
+//                            .foregroundColor(Color("wht"))
+//                            .font(.system(size: 22).weight(.bold)) +
+                        Text("\(option == 0 ? "단어" : "문장")")
                             .foregroundColor(Color("Secondary"))
                             .font(.system(size: 34).weight(.bold)) +
                         Text("을 학습했어요")
@@ -208,7 +206,8 @@ struct ResultView: View {
                                             
                                             CircularImage(percentage: score)
                                                 .frame(width: 283, height: 150)
-                               
+                                            
+                                            
                                             Text(" \(Int(score))%")
                                                 .foregroundColor(Color("Primary"))
                                                 .font(.system(size: 48).weight(.bold))
@@ -249,12 +248,15 @@ struct ResultView: View {
                                                 }
                                             }
                                         }
-                                        else {
-                                            CircularImage(percentage: percentage)
+                                        else if option == 0
+                                        {
+                                            var score = Double(wordNetwork.checkWords.similarity ?? 0)
+                                            
+                                            CircularImage(percentage: score)
                                                 .frame(width: 283, height: 150)
                                             
                                             
-                                            Text(" \(Int(percentage))%")
+                                            Text(" \(Int(score))%")
                                                 .foregroundColor(Color("Primary"))
                                                 .font(.system(size: 48).weight(.bold))
                                                 .padding(.top, 115)
@@ -262,17 +264,17 @@ struct ResultView: View {
                                             
                                             ZStack {
                                                 GeometryReader { geometry in
-                                                    CircularShape(percentage: percentage)
+                                                    CircularShape(percentage: score)
                                                         .fill(Color("list_fill"))
                                                         .opacity(0)
                                                         .rotationEffect(.degrees(180))
                                                         .animation(.easeInOut(duration: 1))
-                                                        .onReceive([self.percentage].publisher.first()) { _ in
+                                                        .onReceive([score].publisher.first()) { _ in
                                                             // Calculate the endpoint of the circular segment whenever percentage changes
                                                             let center = CGPoint(x: geometry.size.width / 2 , y: geometry.size.height / 2 - 65 )
                                                             let radius: CGFloat = 133.5
                                                             
-                                                            let endAngle = Angle(degrees: 180 * (percentage / 100))
+                                                            let endAngle = Angle(degrees: 180 * (score / 100))
                                                             endPoint = CGPoint(x: center.x + radius * cos(CGFloat(endAngle.radians)), y: center.y + radius * sin(CGFloat(endAngle.radians)))
                                                             
                                                         }
@@ -308,7 +310,7 @@ struct ResultView: View {
                                     Spacer().frame(height:24)
                                     
                                     
-                                    Text("님 발음 좀 치는 듯?")
+                                    Text("조금 더 노력해 볼까요?")
                                         .foregroundColor(Color("wht"))
                                         .font(.system(size: 16).weight(.bold))
                                     
@@ -322,60 +324,61 @@ struct ResultView: View {
                         
                     }
                     
-                    
-                    ZStack(){
-                        
-                        RoundedRectangle(cornerRadius: 24)
-                            .frame(width:360, height:297)
-                            .foregroundStyle(LinearGradient(
-                                colors: [Color("Primary"), Color("Secondary")],
-                                startPoint: .top, endPoint: .bottom))
-                        RoundedRectangle(cornerRadius : 24)
-                            .frame(width:358, height:295)
-                            .foregroundColor(Color("list_fill"))
-                            .overlay(){
-                                VStack(){
-                                    
-                                    HStack(){
-                                        Text("호흡 횟수")
+                    if option != 0 {
+                        ZStack(){
+                            RoundedRectangle(cornerRadius: 24)
+                                .frame(width:360, height:297)
+                                .foregroundStyle(LinearGradient(
+                                    colors: [Color("Primary"), Color("Secondary")],
+                                    startPoint: .top, endPoint: .bottom))
+                            RoundedRectangle(cornerRadius : 24)
+                                .frame(width:358, height:295)
+                                .foregroundColor(Color("list_fill"))
+                                .overlay(){
+                                    VStack(){
+                                        var check_sentence_breath = sentenceNetwork.checkSentences.breaths?.count ?? 0
+                                        var sentence_breath = sentenceNetwork.sentences.breath?.count ?? 0
+                                        
+                                        HStack(){
+                                            Text("호흡 횟수")
+                                                .foregroundColor(Color("wht"))
+                                                .font(.system(size: 14).weight(.bold))
+                                            Spacer()
+                                        }
+                                        .padding(.leading, 27)
+                                        
+                                        Spacer().frame(height:23.5)
+                                        
+                                        ZStack(alignment: .leading) {
+                                            Image("progressbar")
+                                                .resizable()
+                                                .frame(width:304, height:32)
+                                            
+                                            Image("breathbar")
+                                                .resizable()
+                                                .frame(width: CGFloat(check_sentence_breath) / CGFloat(sentence_breath) * 304, height: 32)
+                                        }
+                                        
+                                        
+                                        Spacer().frame(height:24)
+                                        
+                                        
+                                        Text("호흡 \(check_sentence_breath)회")
+                                            .foregroundColor(Color("wht"))
+                                            .font(.system(size: 16).weight(.bold))
+                                        
+                                        Spacer().frame(height:12)
+                                        
+                                        
+                                        Text("권장호흡 \(sentence_breath)회")
                                             .foregroundColor(Color("wht"))
                                             .font(.system(size: 14).weight(.bold))
-                                        Spacer()
-                                    }
-                                    .padding(.leading, 27)
-                                    
-                                    Spacer().frame(height:23.5)
-                                    
-                                    ZStack(alignment: .leading) {
+                                            .opacity(0.3)
                                         
-                                        Image("progressbar")
-                                            .resizable()
-                                            .frame(width:304, height:32)
                                         
-                                        Image("breathbar")
-                                            .resizable()
-                                            .frame(width: CGFloat(breathNum) / 6 * 304, height: 32)
                                     }
-                                    
-                                    
-                                    Spacer().frame(height:24)
-                                    
-                                    
-                                    Text("호흡 \(breathNum)회")
-                                        .foregroundColor(Color("wht"))
-                                        .font(.system(size: 16).weight(.bold))
-                                    
-                                    Spacer().frame(height:12)
-                                    
-                                    
-                                    Text("권장호흡 4회")
-                                        .foregroundColor(Color("wht"))
-                                        .font(.system(size: 14).weight(.bold))
-                                        .opacity(0.3)
-                                    
-                                    
                                 }
-                            }
+                        }
                     }
                     
                     
@@ -392,42 +395,80 @@ struct ResultView: View {
                             .foregroundColor(Color("list_fill"))
                             .overlay(){
                                 VStack(){
-                                    
-                                    HStack(){
-                                        Text("속도")
+                                    if option == 0 {
+                                        HStack(){
+                                            Text("속도")
+                                                .foregroundColor(Color("wht"))
+                                                .font(.system(size: 14).weight(.bold))
+                                            Spacer()
+                                        }
+                                        .padding(.leading, 27)
+                                        
+                                        ZStack(alignment: .leading) {
+                                            
+                                            Image("progressbar")
+                                                .resizable()
+                                                .frame(width:304, height:32)
+                                            
+                                            Image("speedbar")
+                                                .resizable()
+                                                .frame(width: CGFloat(wordNetwork.checkWords.time ?? 0) / CGFloat(wordNetwork.words.wordSpeed ?? 0) * 304, height: 32)
+                                            
+                                        }
+                                        
+                                        
+                                        Spacer().frame(height:24)
+                                        
+                                        
+                                        Text("속도 \(round(wordNetwork.checkWords.time ?? 0 * 10)/10)초")
+                                            .foregroundColor(Color("wht"))
+                                            .font(.system(size: 16).weight(.bold))
+                                        
+                                        Spacer().frame(height:12)
+                                        
+                                        Text("권장속도 \(wordNetwork.words.wordSpeed ?? 0)초")
                                             .foregroundColor(Color("wht"))
                                             .font(.system(size: 14).weight(.bold))
-                                        Spacer()
+                                            .opacity(0.3)
                                     }
-                                    .padding(.leading, 27)
-                                    
-                                    ZStack(alignment: .leading) {
+                                    else if option == 1 {
+                                        HStack(){
+                                            Text("속도")
+                                                .foregroundColor(Color("wht"))
+                                                .font(.system(size: 14).weight(.bold))
+                                            Spacer()
+                                        }
+                                        .padding(.leading, 27)
                                         
-                                        Image("progressbar")
-                                            .resizable()
-                                            .frame(width:304, height:32)
+                                        ZStack(alignment: .leading) {
+                                            
+                                            Image("progressbar")
+                                                .resizable()
+                                                .frame(width:304, height:32)
+                                            
+                                            Image("speedbar")
+                                                .resizable()
+                                                .frame(width: CGFloat(sentenceNetwork.checkSentences.time ?? 0) / CGFloat(sentenceNetwork.sentences.answerSpeed ?? 0 + 5) * 304, height: 32)
+                                            
+                                        }
                                         
-                                        Image("speedbar")
-                                            .resizable()
-                                            .frame(width: CGFloat(speedNum) / 6 * 304, height: 32)
+                                        
+                                        Spacer().frame(height:24)
+                                        
+                                        var speed = round((sentenceNetwork.checkSentences.time ?? 0) * 10) / 10
+                                        let speed_str = String(format: "%.1f", speed)
+                                        Text("속도 \(speed_str)초")
+                                            .foregroundColor(Color("wht"))
+                                            .font(.system(size: 16).weight(.bold))
+                                        
+                                        Spacer().frame(height:12)
+                                        
+                                        Text("권장속도 \(sentenceNetwork.sentences.answerSpeed ?? 0)초")
+                                            .foregroundColor(Color("wht"))
+                                            .font(.system(size: 14).weight(.bold))
+                                            .opacity(0.3)
                                         
                                     }
-                                    
-                                    
-                                    Spacer().frame(height:24)
-                                    
-                                    
-                                    Text("속도 7초")
-                                        .foregroundColor(Color("wht"))
-                                        .font(.system(size: 16).weight(.bold))
-                                    
-                                    Spacer().frame(height:12)
-                                    
-                                    Text("권장호흡 9초")
-                                        .foregroundColor(Color("wht"))
-                                        .font(.system(size: 14).weight(.bold))
-                                        .opacity(0.3)
-                                    
                                     
                                 }
                             }
@@ -472,9 +513,9 @@ struct ResultView: View {
                                     Spacer().frame(height:24)
                                     
                                     
-                                    Text("님 발음 좀 치는 듯?")
-                                        .foregroundColor(Color("wht"))
-                                        .font(.system(size: 16).weight(.bold))
+//                                    Text("님 발음 좀 치는 듯?")
+//                                        .foregroundColor(Color("wht"))
+//                                        .font(.system(size: 16).weight(.bold))
                                     
                                     
                                 }
@@ -509,3 +550,4 @@ struct ResultView_Previews: PreviewProvider {
         ResultView(option: 0, percentage: 79)
     }
 }
+
