@@ -138,7 +138,7 @@ struct PronounceBreath: View {
 
             }
             
-            .frame(width:358, height:474)
+            .frame(width:.infinity, height:.infinity)
             .padding(16)
         }
 

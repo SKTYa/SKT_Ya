@@ -14,7 +14,7 @@ class NetworkManagerWord: ObservableObject {
     @Published var checkWords: CheckWord = CheckWord(time: 0.0, similarity: 0, text: "", isCorrect: false)
     
     func getWord(completion: @escaping (Word) -> ()) {
-        guard let url = URL(string: "http://127.0.0.1:8000/get-word") else {
+        guard let url = URL(string: "http://35.202.5.120:8000/get-word") else {
             print("Error: cannot create URL")
             return
         }
@@ -54,7 +54,7 @@ class NetworkManagerWord: ObservableObject {
     
     func checkWord(originStr : String, file: Data, completion: @escaping (CheckWord) -> ()) {
         // 서버 URL 설정
-        var serverURL = URLComponents(string: "http://127.0.0.1:8000/check/word")!
+        var serverURL = URLComponents(string: "http://35.202.5.120:8000/check/word")!
         
         // 쿼리 매개변수 추가
         serverURL.queryItems = [

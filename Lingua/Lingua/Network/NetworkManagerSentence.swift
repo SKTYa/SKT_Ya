@@ -14,7 +14,7 @@ class NetworkManagerSentence: ObservableObject {
     func getSentence(completion: @escaping (Sentence) -> ()) {
         //        let requestBody = try! JSONSerialization.data(withJSONObject: parameters, options: [])
         
-        guard let url = URL(string: "http://127.0.0.1:8000/get-sentence") else {
+        guard let url = URL(string: "http://35.202.5.120:8000/get-sentence") else {
             print("Error: cannot create URL")
             return
         }
@@ -54,7 +54,7 @@ class NetworkManagerSentence: ObservableObject {
     
     func checkSentence(originStr : String, file: Data, completion: @escaping (CheckSentence) -> ()) {
         // 서버 URL 설정
-        var serverURL = URLComponents(string: "http://127.0.0.1:8000/check/sentence")!
+        var serverURL = URLComponents(string: "http://35.202.5.120:8000/check/sentence")!
         
         // 쿼리 매개변수 추가
         serverURL.queryItems = [

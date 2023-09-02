@@ -101,7 +101,7 @@ struct ParagraphProFirst: View {
                 
             }
             
-            .frame(width:358, height:425)
+            .frame(width:.infinity, height:.infinity)
             .padding(16)
         }
     }
