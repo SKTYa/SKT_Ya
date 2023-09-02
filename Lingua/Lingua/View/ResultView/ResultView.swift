@@ -29,40 +29,40 @@ struct RotatedTopHalfCircle: Shape {
 
 struct CircularImage: View {
     var percentage: Double
-
+    
     enum ImageState {
         case first, second, third, fourth
     }
-
+    
     private var imageState: ImageState {
         switch (percentage / 100) * 180 {
-            case 0..<93:
-                return .first
-            case 93..<126:
-                return .second
-            case 126..<153:
-                return .third
-            case 153...180:
-                return .fourth
-            default:
-                return .first // Handle any other cases if needed
+        case 0..<93:
+            return .first
+        case 93..<126:
+            return .second
+        case 126..<153:
+            return .third
+        case 153...180:
+            return .fourth
+        default:
+            return .first // Handle any other cases if needed
         }
     }
-
-
+    
+    
     var body: some View {
         var imageName: String
         switch imageState {
-            case .first:
-                imageName = "orbit_First"
-            case .second:
-                imageName = "orbit_Second"
-            case .third:
-                imageName = "orbit_Third"
-            case .fourth:
-                imageName = "orbit_Fourth"
+        case .first:
+            imageName = "orbit_First"
+        case .second:
+            imageName = "orbit_Second"
+        case .third:
+            imageName = "orbit_Third"
+        case .fourth:
+            imageName = "orbit_Fourth"
         }
-
+        
         return Image(imageName)
             .resizable()
             .frame(width: 283, height: 150)
@@ -70,7 +70,7 @@ struct CircularImage: View {
 }
 
 
-    
+
 
 struct CircularShape: Shape {
     var percentage: Double
@@ -101,7 +101,7 @@ struct CircularShape: Shape {
 
 
 struct ResultView: View {
-    
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var wordNetwork: NetworkManagerWord
     @EnvironmentObject var sentenceNetwork: NetworkManagerSentence
     
@@ -119,9 +119,6 @@ struct ResultView: View {
     
     
     var body: some View {
-        
-        
-        
         ZStack(){
             Color("BG").edgesIgnoringSafeArea(.all)
             
@@ -132,11 +129,16 @@ struct ResultView: View {
                     
                     
                     HStack(){
-                        
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(Color("wht"))
-                            .font(.system(size: 17).weight(.bold))
-                            .frame(width:48, height:64)
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(Color("wht"))
+                                .font(.system(size: 17).weight(.bold))
+                                .frame(width:48, height:64)
+                        }
+
+                       
                         
                         
                         
@@ -228,7 +230,7 @@ struct ResultView: View {
                                                         
                                                         let endAngle = Angle(degrees: 180 * (percentage / 100))
                                                         endPoint = CGPoint(x: center.x + radius * cos(CGFloat(endAngle.radians)), y: center.y + radius * sin(CGFloat(endAngle.radians)))
-
+                                                        
                                                     }
                                             }
                                             
