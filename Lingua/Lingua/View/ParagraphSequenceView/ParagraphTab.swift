@@ -89,7 +89,9 @@ struct ParagraphTab: View {
                     }
                     .tag("호흡")
                 }
-                .tabViewStyle(.page(indexDisplayMode: .never))
+//                .tabViewStyle(.page(indexDisplayMode: .never))
+                .tabViewStyle(DefaultTabViewStyle())
+
                 
             }
         }
