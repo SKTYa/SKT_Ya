@@ -53,6 +53,7 @@ struct HomeViewRecord: View {
                         
                         
                     }
+                    
                 }
                 .foregroundColor(Color("list_fill"))
             
@@ -138,6 +139,7 @@ struct HomeViewRecord: View {
                 .foregroundColor(Color("list_fill"))
         }
 //        .padding(.horizontal, 16)
+        // 여름에 가기로는 했는데, 덥거나 추우믄 다시 돌아오기
     }
 }
 

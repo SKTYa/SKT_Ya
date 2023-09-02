@@ -7,17 +7,22 @@
 
 import SwiftUI
 
+
+
+
 struct PronounceBreath: View {
     @State var selectedOptionIndex: Int
     @EnvironmentObject var wordNetwork: NetworkManagerWord
     @EnvironmentObject var sentenceNetwork: NetworkManagerSentence
     
     var body: some View {
+
+        
         
         ZStack()
         {
             Color("BG").edgesIgnoringSafeArea(.all)
-            
+
             ScrollView(.vertical){
                 
                 VStack(spacing : 26){
@@ -33,19 +38,19 @@ struct PronounceBreath: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                        
+
                         Circle()
                             .overlay(){
                                 Image(systemName: "speaker.wave.2.fill")
                                     .foregroundColor(Color("wht"))
-                                
+
                             }
                             .foregroundColor(Color("list_fill"))
                             .frame(width:40, height:40)
-                        
+
                         Spacer()
                     }
-                    
+
                     VStack(){
                         if selectedOptionIndex == 1 {
                             ForEach( 0..<(sentenceNetwork.sentences.breath?.count ?? 0), id: \.self) { idx in
@@ -67,11 +72,10 @@ struct PronounceBreath: View {
                                 .lineSpacing(10)
                             
                         }
-                        
                         Spacer()
                         
                     }
-                    
+
                     Spacer().frame(height:20)
                     
                     HStack(spacing : 16){
@@ -85,19 +89,19 @@ struct PronounceBreath: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                        
+
                         Circle()
                             .overlay(){
                                 Image(systemName: "speaker.wave.2.fill")
                                     .foregroundColor(Color("wht"))
-                                
+
                             }
                             .foregroundColor(Color("list_fill"))
                             .frame(width:40, height:40)
-                        
+
                         Spacer()
                     }
-                    
+
                     HStack(){
                         if selectedOptionIndex == 1 {
                             ForEach( 0..<(sentenceNetwork.checkSentences.breaths?.count ?? 0), id: \.self) { idx in
@@ -127,14 +131,17 @@ struct PronounceBreath: View {
                         Spacer()
                         
                     }
-                    
-                    
+
+
                 }
+                .onTapGesture {} // 빈 제스처 추가로 스와이프 비활성화
+
             }
+            
             .frame(width:358, height:474)
             .padding(16)
         }
-        
+
     }
 }
 

@@ -7,6 +7,35 @@
 
 import SwiftUI
 
+//struct RedBorderMenuStyle : MenuStyle {
+//    func makeBody(configuration: Configuration) -> some View {
+//        Menu(configuration)
+//            .padding(3)
+//            .border(Color.red)
+//    }
+//}
+
+//extension Menu {
+//    func menuButtonStyle() -> some View {
+//        self.menuStyle(MenuButtonStyle())
+//    }
+//}
+
+//struct MenuButtonStyle: MenuStyle{
+//
+//    func makeBody(configuration: Configuration) -> some View {
+//        Menu(configuration)
+//                    .padding()
+//                    .foregroundColor(.green)
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+//                            .foregroundColor(Color.blue)
+//                    )
+//    }
+//
+//}
+
+
 struct SpeakView: View {
     
     @ObservedObject var audioRecorderManger: AudioRecorderManger
@@ -24,6 +53,7 @@ struct SpeakView: View {
     private let waveImages = ["wave1","wave2","wave3","wave4","wave5"]
     
     @State private var animateMedium = false
+    @State private var rotation: Double = 0.0
     
     var body: some View {
         
@@ -36,107 +66,151 @@ struct SpeakView: View {
             }
             else if isResult {
                 
-                if selectedOptionIndex == 0 || selectedOptionIndex == 1{
-                    PronounceView(selectedOptionIndex: selectedOptionIndex)
-                }
-                
-//                ResultView(option: selectedOptionIndex, percentage: Double(similarity))
-            }
-            else{
-                Color("BG").edgesIgnoringSafeArea(.all)
-                
-                VStack(){
+
+                HStack(spacing : 8){
                     
-                    HStack(spacing : 8){
-                        
-                        
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(Color("wht"))
-                            .font(.system(size: 22).weight(.bold))
-                            .bold()
-                        
-                        Spacer()
-                        
-                        
-                        
-                        Menu {
-                            ForEach(options.indices, id: \.self) { index in
-                                Button(action: {
-                                    selectedOptionIndex = index
-                                }) {
-                                    RoundedRectangle(cornerRadius: 24)
-                                        .frame(width: 223, height:48)
-                                        .overlay(){
-                                            Text(options[index])
-                                                .foregroundColor(Color("Primary"))
-                                                .font(.system(size: 20).weight(.bold))
-                                            
-                                        }
-                                    
-                                }
-                                .foregroundColor(Color("list_fill"))
-                                .border(Color("stroke"), width: 1)
-                                
-                                
-                                
-                            }
-                            
-                        } label: {
-                            RoundedRectangle(cornerRadius: 24)
-                                .frame(width: 223, height:48)
-                                .overlay(){
-                                    HStack(){
-                                        Text("2단계 문장 말하기")
-                                            .foregroundColor(Color("Primary"))
-                                            .font(.system(size: 20).weight(.bold))
-                                        Image(systemName: "chevron.down")
-                                            .foregroundColor(Color("wht"))
-                                            .font(.system(size: 20))
-                                        
+                    
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(Color("wht"))
+                        .font(.system(size: 22).weight(.bold))
+                        .bold()
+                    
+                    
+                    Spacer()
+                    
+                    
+                    
+                    Menu {
+                        ForEach(options.indices, id: \.self) { index in
+                            Button(action: {
+                                selectedOptionIndex = index
+                            }) {
+                                RoundedRectangle(cornerRadius: 24)
+                                    .frame(width: 223, height:48)
+                                    .overlay(){
+                                        Text(options[index])
+//                                            .modifier(CustomTextModifier()) // 커스텀 스타일 적용
+
+//                                            .foregroundColor(Color("Primary"))
+//                                            .font(.system(size: 20).weight(.bold))
+//
                                     }
                                 }
                                 .foregroundColor(Color("list_fill"))
                         }
+
                         
-                        Spacer()
+
+                    } label: {
+                        RoundedRectangle(cornerRadius: 24)
+                            .frame(width: 223, height:48)
+                            .overlay(){
+                                HStack(){
+                                    Text("2단계 문장 말하기")
+                                        .foregroundColor(Color("Primary"))
+                                        .font(.system(size: 20).weight(.bold))
+                                    Image(systemName: "chevron.down")
+                                        .foregroundColor(Color("wht"))
+                                        .font(.system(size: 20))
+                                    
+                                }
+                            }
+                            .foregroundColor(Color("list_fill"))
                         
-                        
-                        Image(systemName: "person.crop.circle.fill")
-                            .foregroundColor(Color("wht"))
-                            .font(.system(size: 22).weight(.bold))
-                            .bold()
-                        
-                    }
-                    
+                    } 
+                                            
                     
                     
                     Spacer().frame(height:170.5)
                     // 임시
                     
-                    
-                    
-                    if selectedOptionIndex == 0 {
-                        if word == "" {
-                            Text("")
-                                .foregroundColor(Color("wht"))
-                                .font(.system(size: 34).weight(.bold))
-                        }
-                        else{
-                            Text("\(word)")
-                                .foregroundColor(Color("wht"))
-                                .font(.system(size: 34).weight(.bold))
-                        }
+
+                }
+                
+                
+                
+//                Spacer().frame(height:147)
+                // 임시
+                
+                
+                
+                if selectedOptionIndex == 0 {
+                    if word == "" {
+                        
+                        
+                        Spacer().frame(height:140)
+
+                        Image("oneone")
+                            .resizable()
+                            .frame(width: 219, height: 192)
+                            .rotationEffect(.degrees(rotation))
+                            .animation(Animation.linear(duration: 10).repeatForever(autoreverses: false))
+                                .onAppear() {
+                                    withAnimation {
+                                        rotation += 1200
+                                    }
+                                }
+                        
+//                        Text("")
+//                            .foregroundColor(Color("wht"))
+//                            .font(.system(size: 34).weight(.bold))
                     }
-                    else {
-                        if sentence == "" {
-                            Text("")
-                                .foregroundColor(Color("wht"))
-                                .font(.system(size: 34).weight(.bold))
-                        }
-                        else{
-                            Text("\(sentence)")
-                                .foregroundColor(Color("wht"))
-                                .font(.system(size: 34).weight(.bold))
+                    else{
+                        Spacer().frame(height:170.5)
+
+                        Text("\(word)")
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 34).weight(.bold))
+                    }
+                }
+                else {
+                    if sentence == "" {
+                        
+                        Spacer().frame(height:140)
+
+                        Image("oneone")
+                            .resizable()
+                            .frame(width: 219, height: 192)
+                            .rotationEffect(.degrees(rotation))
+                            .animation(Animation.linear(duration: 10).repeatForever(autoreverses: false))
+                                .onAppear() {
+                                    withAnimation {
+                                        rotation += 1200
+                                    }
+                                }
+                        
+//
+                    }
+                    else{
+                        
+                        Spacer().frame(height:170.5)
+
+                        
+                        Text("\(sentence)")
+                            .foregroundColor(Color("wht"))
+                            .font(.system(size: 34).weight(.bold))
+                    }
+                }
+                
+                Spacer().frame(height:70)
+                
+                
+                RoundedRectangle(cornerRadius: 24)
+                    .frame(width: 259, height:58)
+                    .overlay(){
+                        HStack(){
+                            
+                            Image("robot_black")
+                                .resizable()
+                                .opacity(0.5)
+                                .frame(width : 46, height:41.954)
+                            
+                            
+                            Text("지금 말해보세요.")
+                                .foregroundColor(Color("Primary"))
+                                .font(.system(size: 20).weight(.bold))
+                            
+                            
                         }
                     }
                     

@@ -78,6 +78,9 @@
 
 import SwiftUI
 
+
+
+
 struct PronounceTab: View {
     
     
@@ -145,18 +148,23 @@ struct PronounceTab: View {
                     
                     VStack {
                         // "호흡"에 해당하는 뷰들을 이곳에 추가
-                        
                         PronounceBreath(selectedOptionIndex: self.selectedOptionIndex)
                         
                     }
                     .tag("호흡")
                 }
-                .tabViewStyle(.page(indexDisplayMode: .never))
                 
+                //                .tabViewStyle(PageTabViewStyle.init(indexDisplayMode: .never))
+
+                .tabViewStyle(DefaultTabViewStyle())
+
+
             }
         }
     }
 }
+
+
 
 
 struct PronounceTab_Previews: PreviewProvider {

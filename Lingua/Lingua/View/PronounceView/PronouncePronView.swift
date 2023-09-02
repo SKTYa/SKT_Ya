@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import UIKit
+
+
 
 struct PronouncePronView: View {
     @State var selectedOptionIndex: Int
@@ -15,8 +18,10 @@ struct PronouncePronView: View {
     var body: some View {
         ZStack(){
             Color("BG").edgesIgnoringSafeArea(.all)
-            
+
             ScrollView(.vertical){
+
+            
                 
                 VStack(spacing : 26){
                     // 46
@@ -31,20 +36,20 @@ struct PronouncePronView: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                        
+
                         Circle()
                             .overlay(){
                                 Image(systemName: "speaker.wave.2.fill")
                                     .foregroundColor(Color("wht"))
-                                
+
                             }
                             .foregroundColor(Color("list_fill"))
                             .frame(width:40, height:40)
-                        
+
                         Spacer()
                     }
-                    
-                    
+
+
                     HStack(){
                         if selectedOptionIndex == 0 {
                             Text("\(self.wordNetwork.words.wordName ?? "")")
@@ -96,8 +101,7 @@ struct PronouncePronView: View {
                         
                         Spacer()
                     }
-                    //                    .frame(width: 358)
-                    
+
                     Spacer().frame(height:20)
                     
                     HStack(spacing : 16){
@@ -111,19 +115,19 @@ struct PronouncePronView: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                        
+
                         Circle()
                             .overlay(){
                                 Image(systemName: "speaker.wave.2.fill")
                                     .foregroundColor(Color("wht"))
-                                
+
                             }
                             .foregroundColor(Color("list_fill"))
                             .frame(width:40, height:40)
-                        
+
                         Spacer()
                     }
-                    
+
                     HStack(){
                         if selectedOptionIndex == 0 {
                             Text(self.wordNetwork.checkWords.text ?? "")
@@ -139,17 +143,32 @@ struct PronouncePronView: View {
                         }
                         Spacer()
                     }
-                    
+
                 }
+                .offset(y:50)
+
             }
+            
             .frame(width:358, height:474)
             .padding(16)
+            
+//            .introspectScrollView { scrollView in
+//                            scrollView.isDirectionalLockEnabled = true // 스와이프 비활성화
+//                        }
         }
-        
-        
-        
+
+
+
     }
 }
+
+
+
+
+
+
+
+
 
 struct PronouncePronView_Previews: PreviewProvider {
     static var previews: some View {
