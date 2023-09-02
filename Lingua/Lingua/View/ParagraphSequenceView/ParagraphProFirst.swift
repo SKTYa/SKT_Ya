@@ -13,7 +13,7 @@ struct ParagraphProFirst: View {
     let sentences: [ParagraphSequneceView.Sentence]
     
     var body: some View {
-
+        
         
         ZStack(){
             Color("BG").edgesIgnoringSafeArea(.all)
@@ -23,7 +23,7 @@ struct ParagraphProFirst: View {
                 VStack(spacing : 34){
                     // 46
                     
-//                    Spacer().frame(height:26)
+                    //                    Spacer().frame(height:26)
                     
                     
                     HStack(spacing : 16){
@@ -38,20 +38,13 @@ struct ParagraphProFirst: View {
                             }
                             .foregroundColor(Color("list_fill"))
                         
-                        Circle()
-                            .overlay(){
-                                Image(systemName: "speaker.wave.2.fill")
-                                    .foregroundColor(Color("wht"))
-                                
-                            }
-                            .foregroundColor(Color("list_fill"))
-                            .frame(width:40, height:40)
+                        TTSBtn(ttsText: "권장발음")
                         
                         Spacer()
                     }
                     
                     HStack(){
-
+                        
                         Text(sentences[currentSentenceIndex].recommendedText)
                             .foregroundColor(Color("wht"))
                             .font(.system(size: 34).weight(.bold))
@@ -60,10 +53,10 @@ struct ParagraphProFirst: View {
                         Spacer()
                     }
                     .frame(maxWidth:365)
-//                    .border(Color.green, width:2)
+                    //                    .border(Color.green, width:2)
                     
                     Spacer().frame(height:12)
-
+                    
                     HStack(spacing : 16){
                         RoundedRectangle(cornerRadius: 24)
                             .frame(width: 88, height:40)
@@ -98,14 +91,14 @@ struct ParagraphProFirst: View {
                         
                     }
                     .frame(maxWidth:365)
-
-//                    .border(Color.red, width:2)
-
+                    
+                    //                    .border(Color.red, width:2)
+                    
                     
                     
                 }
-//                .border(Color.red, width:2)
-
+                //                .border(Color.red, width:2)
+                
             }
             
             .frame(width:358, height:425)
