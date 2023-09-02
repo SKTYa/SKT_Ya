@@ -14,10 +14,10 @@ struct PronounceView: View {
     
     
     var body: some View {
-        ZStack(){
+        ZStack(alignment: .top){
             Color("BG").edgesIgnoringSafeArea(.all)
             
-            VStack(){
+            VStack() {
                 HStack(spacing : 38){
                     
                     

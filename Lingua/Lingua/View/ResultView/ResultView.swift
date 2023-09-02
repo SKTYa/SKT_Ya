@@ -119,7 +119,7 @@ struct ResultView: View {
     
     
     var body: some View {
-        ZStack(){
+        ZStack(alignment: .top) {
             Color("BG").edgesIgnoringSafeArea(.all)
             
             

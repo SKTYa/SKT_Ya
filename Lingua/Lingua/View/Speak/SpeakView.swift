@@ -44,10 +44,13 @@ struct SpeakView: View {
     @State private var word = ""
     @State private var sentence = ""
     @State private var selectedOptionIndex = 1
+    @State private var textIndex = 0
     @State private var imageIndex = 0
+    @State private var btnOption = 0
     @State private var isLoading = false
     @State var isResult = false
     @State var isComplete = false
+    private let infoTexts = ["5초 정도 소요됩니다.","지금 말해보세요.","녹음이 끝났다면 저장하세요."]
     private let options = ["1단계 단어 말하기", "2단계 문장 말하기", "3단계 문단 말하기"]
     private let waveImages = ["wave1","wave2","wave3","wave4","wave5"]
     
@@ -56,7 +59,7 @@ struct SpeakView: View {
     
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             if isLoading {
                 AnalyzeView()
             }
@@ -82,7 +85,7 @@ struct SpeakView: View {
                                 .bold()
                             
                         }
-                     
+                        
                         
                         Spacer()
                         
@@ -161,23 +164,28 @@ struct SpeakView: View {
                                 .frame(width: 219, height: 192)
                                 .rotationEffect(.degrees(rotation))
                                 .animation(Animation.linear(duration: 10).repeatForever(autoreverses: false))
+                            
                                 .onAppear() {
                                     withAnimation {
                                         rotation += 1200
                                     }
+                                   
                                 }
                             
                             //                        Text("")
                             //                            .foregroundColor(Color("wht"))
                             //                            .font(.system(size: 34).weight(.bold))
                         }
-                        else{
+                        else {
                             Spacer().frame(height:170.5)
-                            
                             Text("\(word)")
                                 .foregroundColor(Color("wht"))
                                 .font(.system(size: 34).weight(.bold))
+                            
+                            
                         }
+        
+                        
                     }
                     else {
                         if sentence == "" {
@@ -208,30 +216,48 @@ struct SpeakView: View {
                         }
                     }
                     
-                    Spacer().frame(height:70)
+                    Spacer()
                     
                     
-                    RoundedRectangle(cornerRadius: 24)
-                        .frame(width: 259, height:58)
-                        .overlay(){
-                            HStack(){
-                                
-                                Image("robot_black")
-                                    .resizable()
-                                    .opacity(0.5)
-                                    .frame(width : 46, height:41.954)
-                                
-                                
-                                Text("지금 말해보세요.")
-                                    .foregroundColor(Color("Primary"))
-                                    .font(.system(size: 20).weight(.bold))
-                                
-                                
-                            }
-                            .padding()
+                    HStack(){
+                        
+                        Image("robot_black")
+                            .resizable()
+                            .scaledToFit()
+                            .opacity(0.5)
+                            .frame(width : 46, height:41.954)
+                        
+                        Text(infoTexts[self.textIndex])
+                            .foregroundColor(Color("Primary"))
+                            .font(.system(size: 20).weight(.bold))
+                        
+                    }
+                    .padding(.horizontal,12)
+                    .overlay() {
+                        RoundedRectangle(cornerRadius: 24)
+                            .foregroundColor(Color("list_fill"))
+                    }
+                    .overlay() {
+                        HStack(){
+                            
+                            Image("robot_black")
+                                .resizable()
+                                .scaledToFit()
+                                .opacity(0.5)
+                                .frame(width : 46, height:41.954)
+                            
+                            
+                            Text(infoTexts[self.textIndex])
+                                .foregroundColor(Color("Primary"))
+                                .font(.system(size: 20).weight(.bold))
+                            
                             
                         }
-                        .foregroundColor(Color("list_fill"))
+                        
+                    }
+                    .fixedSize()
+                    .padding()
+                    
                     
                     
                     Spacer().frame(height:98)
@@ -240,6 +266,7 @@ struct SpeakView: View {
                     HStack(spacing : 75){
                         
                         Button {
+                            btnOption = 0
                             audioRecorderManger.isRecording ? audioRecorderManger.stopRecording() : audioRecorderManger.startRecording()
                         } label: {
                             Image("replay")
@@ -248,6 +275,10 @@ struct SpeakView: View {
                         }
                         
                         Button {
+                            btnOption += 1
+                            if (btnOption % 2 == 1 && btnOption != 0 ) {
+                                self.textIndex += 1
+                            }
                             audioRecorderManger.isRecording ? audioRecorderManger.stopRecording() : audioRecorderManger.startRecording()
                         } label: {
                             if audioRecorderManger.isRecording == false {
@@ -328,6 +359,7 @@ struct SpeakView: View {
                             
                             if selectedOptionIndex == 0 {
                                 self.isLoading = true
+                                self.textIndex += 1
                                 wordNetwork.checkWord(originStr: word, file: try! Data(contentsOf: audioRecorderManger.recordedFiles[0])){
                                     words in DispatchQueue.main.async(group: group) {
                                         self.isLoading = false
@@ -340,6 +372,7 @@ struct SpeakView: View {
                             }
                             else{
                                 self.isLoading = true
+                                self.textIndex += 1
                                 sentenceNetwork.checkSentence(originStr: sentence, file: try! Data(contentsOf: audioRecorderManger.recordedFiles[0])){
                                     sentences in DispatchQueue.main.async(group: group) {
                                         //                                        sentence = sentences.text ?? ""
@@ -354,15 +387,21 @@ struct SpeakView: View {
                             }
                             print("nextPage")
                         } label: {
-                            Image("black_arrow")
-                                .resizable()
-                                .frame(width:48, height:48)
+                            Circle()
+                                .frame(width: 48,height: 48)
+                                .foregroundColor(btnOption % 2 != 1 ? Color("listfill") : Color("Primary"))
+                                .overlay {
+                                    Image(systemName: "arrow.up.right")
+                                        .font(.system(size: 16,weight: .bold))
+                                        .foregroundColor(btnOption % 2 != 1 ? Color("wht") : Color("bk"))
+                                }
                         }
                         
                         
                         
                         
                     }
+                    .padding(.bottom,50)
                     
                     
                     
