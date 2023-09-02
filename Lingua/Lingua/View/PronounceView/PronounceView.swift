@@ -4,7 +4,7 @@ import SwiftUI
 
 struct PronounceView: View {
     
-    @State private var selectedOptionIndex = 0
+    @State var selectedOptionIndex: Int
     private let options = ["1단계 단어 말하기", "2단계 단어 말하기", "3단계 단어 말하기"]
     
     @State private var selectedTab = 0
@@ -83,7 +83,7 @@ struct PronounceView: View {
                 Spacer()
                 
                 
-                PronounceTab()
+                PronounceTab(selectedOptionIndex: selectedOptionIndex)
                 
 
                 
@@ -136,6 +136,6 @@ struct PronounceView: View {
 
 struct PronounceView_Previews: PreviewProvider {
     static var previews: some View {
-        PronounceView()
+        PronounceView(selectedOptionIndex: 0)
     }
 }

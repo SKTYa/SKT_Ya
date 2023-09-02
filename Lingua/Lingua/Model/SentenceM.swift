@@ -8,16 +8,16 @@
 import Foundation
 
 struct Sentence: Decodable {
-    let answerSpeed, index: Int?
-    let sentence: String?
-    let breath: Array<String>?
+    var answerSpeed, index: Int?
+    var sentence: String?
+    var breath: Array<String>?
 }
 
 struct CheckSentence: Decodable {
-    let time: Float?
-    let similarity: Int?
-    let text: String?
-    let breaths: Array<String>?
-    let compared: Array<Int>?
-    let origin: Array<Int>?
+    var time: Float?
+    var similarity: Int?
+    var text: String?
+    var breaths: Array<String>?
+    var compared: Array<Int>?
+    var origin: Array<Int>?
 }

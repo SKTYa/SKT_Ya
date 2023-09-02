@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct PronouncePronView: View {
+    @State var selectedOptionIndex: Int
+    @EnvironmentObject var wordNetwork: NetworkManagerWord
+    @EnvironmentObject var sentenceNetwork: NetworkManagerSentence
+    
     var body: some View {
-        
-        
         ZStack(){
-            
             Color("BG").edgesIgnoringSafeArea(.all)
             
             ScrollView(.vertical){
@@ -45,15 +46,60 @@ struct PronouncePronView: View {
                     
                     
                     HStack(){
-                        Text("높은 산 꼭대기에 작은 꽃이 피어있네요.")
-                            .foregroundColor(Color("wht"))
-                            .font(.system(size: 34).weight(.bold))
-                            .lineSpacing(10)
+                        if selectedOptionIndex == 0 {
+                            Text("\(self.wordNetwork.words.wordName ?? "")")
+                                .foregroundColor(wordNetwork.checkWords.isCorrect ?? false ? Color("wht"):Color("Primary"))
+                                .font(.system(size: 34).weight(.bold))
+                                .lineSpacing(10)
+                        }
+                        else{
+                            let text = sentenceNetwork.sentences.sentence!
+                            let origin = sentenceNetwork.checkSentences.origin!
+                            
+                                                        ForEach(0..<text.count, id: \.self) { idx in
+                                                            let character = text[text.index(text.startIndex, offsetBy: idx)]
+                            
+                                                            Text(String(character))
+                                                                .padding(0)
+                                                                .frame(width: 24)
+                                                                .foregroundColor(origin[idx] % 2 == 0 ? Color("wht") : Color("Primary"))
+                                                                .font(.system(size: 34).weight(.bold))
+                                                        }
+                            
+//                            ForEach( 0..<text.count / 10, id: \.self) { i in
+//
+//                                let text_len = (text.count / 10 - 1 == i ? text.count % 10 : 10)
+//
+//                                HStack{
+//                                    ForEach( 0..<text_len, id: \.self) { j in
+//                                        let idx = i * 10 + j
+//
+//                                        let character = text[text.index(text.startIndex, offsetBy: idx)]
+//
+//                                        Text(String(character))
+//                                            .padding(0)
+//                                            .foregroundColor(origin[idx] % 2 == 0 ? Color("wht") : Color("Primary"))
+//                                            .font(.system(size: 34).weight(.bold))
+//                                        //                                    .lineSpacing(10)
+//
+//                                    }
+//                                }
+//
+//
+//                            }
+                            
+                            //                                                        Text("\(self.sentenceNetwork.sentences.sentence ?? "")")
+                            //                                                            .foregroundColor(Color("wht"))
+                            //                                                            .font(.system(size: 34).weight(.bold))
+                            //                                                            .lineSpacing(10)
+                        }
+                        
                         Spacer()
                     }
+                    //                    .frame(width: 358)
                     
                     Spacer().frame(height:20)
-
+                    
                     HStack(spacing : 16){
                         RoundedRectangle(cornerRadius: 24)
                             .frame(width: 88, height:40)
@@ -79,10 +125,18 @@ struct PronouncePronView: View {
                     }
                     
                     HStack(){
-                        Text("높은 산 고때끼에 자은 곶이 피어있네요.")
-                            .foregroundColor(Color("wht"))
-                            .font(.system(size: 34).weight(.bold))
-                            .lineSpacing(10)
+                        if selectedOptionIndex == 0 {
+                            Text(self.wordNetwork.checkWords.text ?? "")
+                                .foregroundColor(wordNetwork.checkWords.isCorrect ?? false ? Color("wht"):Color("Wrong"))
+                                .font(.system(size: 34).weight(.bold))
+                                .lineSpacing(10)
+                        }
+                        else{
+                            Text("\(self.sentenceNetwork.checkSentences.text ?? "")")
+                                .foregroundColor(Color("wht"))
+                                .font(.system(size: 34).weight(.bold))
+                                .lineSpacing(10)
+                        }
                         Spacer()
                     }
                     
@@ -99,6 +153,6 @@ struct PronouncePronView: View {
 
 struct PronouncePronView_Previews: PreviewProvider {
     static var previews: some View {
-        PronouncePronView()
+        PronouncePronView(selectedOptionIndex: 0)
     }
 }

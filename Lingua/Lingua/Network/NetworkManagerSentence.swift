@@ -8,8 +8,8 @@
 import Foundation
 
 class NetworkManagerSentence: ObservableObject {
-    @Published var sentences: [Sentence] = []
-    @Published var checkSentences: [CheckSentence] = []
+    @Published var sentences: Sentence = Sentence(answerSpeed: 0, index: 0, sentence: "", breath: [])
+    @Published var checkSentences: CheckSentence = CheckSentence(time: 0.0, similarity: 0, text: "", breaths: [], compared: [], origin: [])
     
     func getSentence(completion: @escaping (Sentence) -> ()) {
         //        let requestBody = try! JSONSerialization.data(withJSONObject: parameters, options: [])
@@ -44,6 +44,8 @@ class NetworkManagerSentence: ObservableObject {
             print("output: \n")
             print(output)
             print(output.sentence)
+            
+            self.sentences = output
             
             //            completionHandler(true, output.data)
         }.resume()
@@ -107,6 +109,8 @@ class NetworkManagerSentence: ObservableObject {
             print("output:")
             print(output)
             print(output.text?.utf8)
+            
+            self.checkSentences =  output
             
         }.resume()
         
