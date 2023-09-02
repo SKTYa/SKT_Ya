@@ -8,7 +8,7 @@ import SwiftUI
 
 struct PronounceView: View {
     
-    @State private var selectedOptionIndex = 0
+    @State var selectedOptionIndex: Int
     private let options = ["1단계 단어 말하기", "2단계 단어 말하기", "3단계 단어 말하기"]
     
     @State private var selectedTab = 0
@@ -95,19 +95,28 @@ struct PronounceView: View {
                     
                     PronounceTab()
                     
+                }
+                .frame(width:.infinity)
+                .padding(.leading, -16)
+                
+                Spacer()
+                
+                
+                PronounceTab(selectedOptionIndex: selectedOptionIndex)
+                
+
+                
+                HStack(){
                     
-                    
-                    HStack(){
-                        
-                        RoundedRectangle(cornerRadius: 24)
-                            .frame(width: 174, height:64)
-                            .overlay(){
-                                HStack(){
-                                    Text("다음 문장")
-                                        .foregroundColor(Color("bk"))
-                                        .font(.system(size: 22).weight(.bold))
-                                }
+                    RoundedRectangle(cornerRadius: 24)
+                        .frame(width: 174, height:64)
+                        .overlay(){
+                            HStack(){
+                                Text("다음 문장")
+                                    .foregroundColor(Color("bk"))
+                                    .font(.system(size: 22).weight(.bold))
                             }
+                        }
                             .foregroundColor(Color("Primary"))
                         
                         RoundedRectangle(cornerRadius: 24)
@@ -143,9 +152,10 @@ struct PronounceView: View {
             
         }
     }
-    
-    struct PronounceView_Previews: PreviewProvider {
-        static var previews: some View {
-            PronounceView()
-        }
+}
+
+struct PronounceView_Previews: PreviewProvider {
+    static var previews: some View {
+        PronounceView(selectedOptionIndex: 0)
+
     }

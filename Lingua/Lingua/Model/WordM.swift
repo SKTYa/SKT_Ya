@@ -8,13 +8,13 @@
 import Foundation
 
 struct Word: Decodable {
-    let wordSpeed, index: Int?
-    let wordName: String?
+    var wordSpeed, index: Int?
+    var wordName: String?
 }
 
 struct CheckWord: Decodable {
-    let time: Float?
-    let similarity: Int?
-    let text: String?
-    let isCorrect: Bool?
+    var time: Float?
+    var similarity: Int?
+    var text: String?
+    var isCorrect: Bool?
 }

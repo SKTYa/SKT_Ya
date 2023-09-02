@@ -102,8 +102,13 @@ struct CircularShape: Shape {
 
 struct ResultView: View {
     
+    @EnvironmentObject var wordNetwork: NetworkManagerWord
+    @EnvironmentObject var sentenceNetwork: NetworkManagerSentence
+    
+    @State var option: Int
+    
     //    var percentage: Double // 퍼센티지 값 (0.0 ~ 1.0)
-    @State private var percentage: Double = 78 // Initial percentage
+    @State var percentage: Double // Initial percentage
     
     
     
@@ -452,6 +457,6 @@ struct ResultView: View {
 
 struct ResultView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultView()
+        ResultView(option: 0, percentage: 79)
     }
 }

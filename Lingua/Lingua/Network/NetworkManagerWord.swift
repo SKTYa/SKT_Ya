@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
+import Combine
 
 class NetworkManagerWord: ObservableObject {
-    @Published var words: [Word] = []
-    @Published var checkWords: [CheckWord] = []
+    @Published var words: Word = Word(wordSpeed: 0, index: 0, wordName: "")
+    @Published var checkWords: CheckWord = CheckWord(time: 0.0, similarity: 0, text: "", isCorrect: false)
     
     func getWord(completion: @escaping (Word) -> ()) {
         guard let url = URL(string: "http://127.0.0.1:8000/get-word") else {
@@ -41,7 +43,9 @@ class NetworkManagerWord: ObservableObject {
             completion(output)
             print("output: \n")
             print(output)
-            print(output.wordName)
+            self.words.wordName = output.wordName
+            self.words.index = output.index
+            self.words.wordSpeed = output.wordSpeed
             
             //            completionHandler(true, output.data)
         }.resume()
@@ -105,6 +109,11 @@ class NetworkManagerWord: ObservableObject {
             print("output:")
             print(output)
             print(output.text?.utf8)
+            
+            self.checkWords.isCorrect = output.isCorrect
+            self.checkWords.similarity = output.similarity
+            self.checkWords.text = output.text
+            self.checkWords.time = output.time
             
         }.resume()
         
