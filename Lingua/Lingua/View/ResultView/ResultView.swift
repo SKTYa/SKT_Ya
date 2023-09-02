@@ -29,40 +29,40 @@ struct RotatedTopHalfCircle: Shape {
 
 struct CircularImage: View {
     var percentage: Double
-
+    
     enum ImageState {
         case first, second, third, fourth
     }
-
+    
     private var imageState: ImageState {
         switch (percentage / 100) * 180 {
-            case 0..<93:
-                return .first
-            case 93..<126:
-                return .second
-            case 126..<153:
-                return .third
-            case 153...180:
-                return .fourth
-            default:
-                return .first // Handle any other cases if needed
+        case 0..<93:
+            return .first
+        case 93..<126:
+            return .second
+        case 126..<153:
+            return .third
+        case 153...180:
+            return .fourth
+        default:
+            return .first // Handle any other cases if needed
         }
     }
-
-
+    
+    
     var body: some View {
         var imageName: String
         switch imageState {
-            case .first:
-                imageName = "orbit_First"
-            case .second:
-                imageName = "orbit_Second"
-            case .third:
-                imageName = "orbit_Third"
-            case .fourth:
-                imageName = "orbit_Fourth"
+        case .first:
+            imageName = "orbit_First"
+        case .second:
+            imageName = "orbit_Second"
+        case .third:
+            imageName = "orbit_Third"
+        case .fourth:
+            imageName = "orbit_Fourth"
         }
-
+        
         return Image(imageName)
             .resizable()
             .frame(width: 283, height: 150)
@@ -70,7 +70,7 @@ struct CircularImage: View {
 }
 
 
-    
+
 
 struct CircularShape: Shape {
     var percentage: Double
@@ -108,7 +108,7 @@ struct ResultView: View {
     @State var option: Int
     
     //    var percentage: Double // 퍼센티지 값 (0.0 ~ 1.0)
-    @State var percentage: Double // Initial percentage
+    @State var percentage: Double = 0 // Initial percentage
     
     
     
@@ -201,52 +201,100 @@ struct ResultView: View {
                                     
                                     ZStack {
                                         
-                                        CircularImage(percentage: percentage)
-                                            .frame(width: 283, height: 150)
-                                        
-                                        
-                                        Text(" \(Int(percentage))%")
-                                            .foregroundColor(Color("Primary"))
-                                            .font(.system(size: 48).weight(.bold))
-                                            .padding(.top, 115)
-                                        
-                                        
-                                        ZStack {
+                                        if option == 1 {
+                                            var score = Double(sentenceNetwork.checkSentences.similarity ?? 0)
+                                            
+                                            CircularImage(percentage: score)
+                                                .frame(width: 283, height: 150)
                                             
                                             
+                                            Text(" \(Int(score))%")
+                                                .foregroundColor(Color("Primary"))
+                                                .font(.system(size: 48).weight(.bold))
+                                                .padding(.top, 115)
                                             
-                                            GeometryReader { geometry in
-                                                CircularShape(percentage: percentage)
-                                                    .fill(Color("list_fill"))
-                                                    .opacity(0)
-                                                    .rotationEffect(.degrees(180))
-                                                    .animation(.easeInOut(duration: 1))
-                                                    .onReceive([self.percentage].publisher.first()) { _ in
-                                                        // Calculate the endpoint of the circular segment whenever percentage changes
-                                                        let center = CGPoint(x: geometry.size.width / 2 , y: geometry.size.height / 2 - 65 )
-                                                        let radius: CGFloat = 133.5
-                                                        
-                                                        let endAngle = Angle(degrees: 180 * (percentage / 100))
-                                                        endPoint = CGPoint(x: center.x + radius * cos(CGFloat(endAngle.radians)), y: center.y + radius * sin(CGFloat(endAngle.radians)))
-
-                                                    }
-                                            }
                                             
-                                            ZStack(){
+                                            ZStack {
+                                                GeometryReader { geometry in
+                                                    CircularShape(percentage: score)
+                                                        .fill(Color("list_fill"))
+                                                        .opacity(0)
+                                                        .rotationEffect(.degrees(180))
+                                                        .animation(.easeInOut(duration: 1))
+                                                        .onReceive([score].publisher.first()) { _ in
+                                                            // Calculate the endpoint of the circular segment whenever percentage changes
+                                                            let center = CGPoint(x: geometry.size.width / 2 , y: geometry.size.height / 2 - 65 )
+                                                            let radius: CGFloat = 133.5
+                                                            
+                                                            let endAngle = Angle(degrees: 180 * (score / 100))
+                                                            endPoint = CGPoint(x: center.x + radius * cos(CGFloat(endAngle.radians)), y: center.y + radius * sin(CGFloat(endAngle.radians)))
+                                                            
+                                                        }
+                                                }
                                                 
-                                                Ellipse()
-                                                    .fill(Color("Primary"))
-                                                    .frame(width: 28, height: 28)
-                                                    .position(endPoint)
-                                                    .rotationEffect(.degrees(180)) // Rotate around x-axis
-                                                
-                                                Ellipse()
-                                                    .fill(Color.black)
-                                                    .frame(width: 12, height: 12)
-                                                    .position(endPoint)
-                                                    .rotationEffect(.degrees(180))
+                                                ZStack(){
+                                                    
+                                                    Ellipse()
+                                                        .fill(Color("Primary"))
+                                                        .frame(width: 28, height: 28)
+                                                        .position(endPoint)
+                                                        .rotationEffect(.degrees(180)) // Rotate around x-axis
+                                                    
+                                                    Ellipse()
+                                                        .fill(Color.black)
+                                                        .frame(width: 12, height: 12)
+                                                        .position(endPoint)
+                                                        .rotationEffect(.degrees(180))
+                                                }
                                             }
                                         }
+                                        else {
+                                            CircularImage(percentage: percentage)
+                                                .frame(width: 283, height: 150)
+                                            
+                                            
+                                            Text(" \(Int(percentage))%")
+                                                .foregroundColor(Color("Primary"))
+                                                .font(.system(size: 48).weight(.bold))
+                                                .padding(.top, 115)
+                                            
+                                            
+                                            ZStack {
+                                                GeometryReader { geometry in
+                                                    CircularShape(percentage: percentage)
+                                                        .fill(Color("list_fill"))
+                                                        .opacity(0)
+                                                        .rotationEffect(.degrees(180))
+                                                        .animation(.easeInOut(duration: 1))
+                                                        .onReceive([self.percentage].publisher.first()) { _ in
+                                                            // Calculate the endpoint of the circular segment whenever percentage changes
+                                                            let center = CGPoint(x: geometry.size.width / 2 , y: geometry.size.height / 2 - 65 )
+                                                            let radius: CGFloat = 133.5
+                                                            
+                                                            let endAngle = Angle(degrees: 180 * (percentage / 100))
+                                                            endPoint = CGPoint(x: center.x + radius * cos(CGFloat(endAngle.radians)), y: center.y + radius * sin(CGFloat(endAngle.radians)))
+                                                            
+                                                        }
+                                                }
+                                                
+                                                ZStack(){
+                                                    
+                                                    Ellipse()
+                                                        .fill(Color("Primary"))
+                                                        .frame(width: 28, height: 28)
+                                                        .position(endPoint)
+                                                        .rotationEffect(.degrees(180)) // Rotate around x-axis
+                                                    
+                                                    Ellipse()
+                                                        .fill(Color.black)
+                                                        .frame(width: 12, height: 12)
+                                                        .position(endPoint)
+                                                        .rotationEffect(.degrees(180))
+                                                }
+                                            }
+                                        }
+                                        
+                                        
                                         
                                         
                                         
