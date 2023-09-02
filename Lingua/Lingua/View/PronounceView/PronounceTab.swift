@@ -78,6 +78,9 @@
 
 import SwiftUI
 
+
+
+
 struct PronounceTab: View {
     
     
@@ -138,7 +141,6 @@ struct PronounceTab: View {
                         // "발음"에 해당하는 뷰들을 이곳에 추가
                         
                         PronouncePronView()
-                        
                     }
                     .tag("발음")
                     
@@ -146,16 +148,21 @@ struct PronounceTab: View {
                         // "호흡"에 해당하는 뷰들을 이곳에 추가
                         
                         PronounceBreath()
-                        
                     }
                     .tag("호흡")
                 }
-                .tabViewStyle(.page(indexDisplayMode: .never))
                 
+                //                .tabViewStyle(PageTabViewStyle.init(indexDisplayMode: .never))
+
+                .tabViewStyle(DefaultTabViewStyle())
+
+
             }
         }
     }
 }
+
+
 
 
 struct PronounceTab_Previews: PreviewProvider {

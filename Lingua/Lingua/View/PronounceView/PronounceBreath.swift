@@ -7,13 +7,18 @@
 
 import SwiftUI
 
+
+
+
 struct PronounceBreath: View {
     var body: some View {
+
+        
         
         ZStack()
         {
             Color("BG").edgesIgnoringSafeArea(.all)
-            
+
             ScrollView(.vertical){
 
                 VStack(spacing : 26){
@@ -29,29 +34,29 @@ struct PronounceBreath: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                        
+
                         Circle()
                             .overlay(){
                                 Image(systemName: "speaker.wave.2.fill")
                                     .foregroundColor(Color("wht"))
-                                
+
                             }
                             .foregroundColor(Color("list_fill"))
                             .frame(width:40, height:40)
-                        
+
                         Spacer()
                     }
-                    
+
                     HStack(){
                         Text("높은 산 꼭대기에 \(Image(systemName: "pause.circle.fill")) \n작은 꽃이 피어있네요.")
                             .foregroundColor(Color("wht"))
                             .font(.system(size: 34).weight(.bold))
                             .lineSpacing(10)
-                        
+
                         Spacer()
 
                     }
-                    
+
                     Spacer().frame(height:20)
 
                     HStack(spacing : 16){
@@ -65,19 +70,19 @@ struct PronounceBreath: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                        
+
                         Circle()
                             .overlay(){
                                 Image(systemName: "speaker.wave.2.fill")
                                     .foregroundColor(Color("wht"))
-                                
+
                             }
                             .foregroundColor(Color("list_fill"))
                             .frame(width:40, height:40)
-                        
+
                         Spacer()
                     }
-                    
+
                     HStack(){
                         Text("높은 산 \(Image(systemName: "pause.circle.fill")) 고때끼에 \(Image(systemName: "pause.circle.fill")) \n자은 곶이 피어 \(Image(systemName: "pause.circle.fill")) 있네요.")
                             .foregroundColor(Color("wht"))
@@ -86,16 +91,19 @@ struct PronounceBreath: View {
                         Spacer()
 
                     }
-                    
-                    
+
+
                 }
+                .onTapGesture {} // 빈 제스처 추가로 스와이프 비활성화
+
             }
+            
             .frame(width:358, height:474)
             .padding(16)
         }
-            
-        
-        
+
+
+
 //        VStack(){
 //
 //            HStack(spacing : 16){
@@ -161,10 +169,10 @@ struct PronounceBreath: View {
 //
 //        }
 //                        .padding(.leading, 16)
-        
+
 //        Spacer()
-        
-        
+
+
     }
 }
 

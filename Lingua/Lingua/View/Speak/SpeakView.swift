@@ -7,6 +7,35 @@
 
 import SwiftUI
 
+//struct RedBorderMenuStyle : MenuStyle {
+//    func makeBody(configuration: Configuration) -> some View {
+//        Menu(configuration)
+//            .padding(3)
+//            .border(Color.red)
+//    }
+//}
+
+//extension Menu {
+//    func menuButtonStyle() -> some View {
+//        self.menuStyle(MenuButtonStyle())
+//    }
+//}
+
+//struct MenuButtonStyle: MenuStyle{
+//
+//    func makeBody(configuration: Configuration) -> some View {
+//        Menu(configuration)
+//                    .padding()
+//                    .foregroundColor(.green)
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+//                            .foregroundColor(Color.blue)
+//                    )
+//    }
+//
+//}
+
+
 struct SpeakView: View {
     
     @ObservedObject var audioRecorderManger: AudioRecorderManger
@@ -21,6 +50,8 @@ struct SpeakView: View {
     private let waveImages = ["wave1","wave2","wave3","wave4","wave5"]
     
     @State private var animateMedium = false
+    @State private var rotation: Double = 0.0
+
 
     
     var body: some View {
@@ -39,6 +70,7 @@ struct SpeakView: View {
                         .font(.system(size: 22).weight(.bold))
                         .bold()
                     
+                    
                     Spacer()
                     
                     
@@ -52,9 +84,11 @@ struct SpeakView: View {
                                     .frame(width: 223, height:48)
                                     .overlay(){
                                         Text(options[index])
-                                            .foregroundColor(Color("Primary"))
-                                            .font(.system(size: 20).weight(.bold))
-                                        
+//                                            .modifier(CustomTextModifier()) // 커스텀 스타일 적용
+
+//                                            .foregroundColor(Color("Primary"))
+//                                            .font(.system(size: 20).weight(.bold))
+//
                                     }
 
                             }
@@ -64,6 +98,7 @@ struct SpeakView: View {
                             
                             
                         }
+
                         
                     } label: {
                         RoundedRectangle(cornerRadius: 24)
@@ -80,7 +115,10 @@ struct SpeakView: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-                    }
+                        
+                    } 
+                        
+
                     
                     Spacer()
                     
@@ -94,18 +132,35 @@ struct SpeakView: View {
                 
                 
                 
-                Spacer().frame(height:170.5)
+//                Spacer().frame(height:147)
                 // 임시
                 
                 
                 
                 if selectedOptionIndex == 0 {
                     if word == "" {
-                        Text("")
-                            .foregroundColor(Color("wht"))
-                            .font(.system(size: 34).weight(.bold))
+                        
+                        
+                        Spacer().frame(height:140)
+
+                        Image("oneone")
+                            .resizable()
+                            .frame(width: 219, height: 192)
+                            .rotationEffect(.degrees(rotation))
+                            .animation(Animation.linear(duration: 10).repeatForever(autoreverses: false))
+                                .onAppear() {
+                                    withAnimation {
+                                        rotation += 1200
+                                    }
+                                }
+                        
+//                        Text("")
+//                            .foregroundColor(Color("wht"))
+//                            .font(.system(size: 34).weight(.bold))
                     }
                     else{
+                        Spacer().frame(height:170.5)
+
                         Text("\(word)")
                             .foregroundColor(Color("wht"))
                             .font(.system(size: 34).weight(.bold))
@@ -113,19 +168,34 @@ struct SpeakView: View {
                 }
                 else {
                     if sentence == "" {
-                        Text("")
-                            .foregroundColor(Color("wht"))
-                            .font(.system(size: 34).weight(.bold))
+                        
+                        Spacer().frame(height:140)
+
+                        Image("oneone")
+                            .resizable()
+                            .frame(width: 219, height: 192)
+                            .rotationEffect(.degrees(rotation))
+                            .animation(Animation.linear(duration: 10).repeatForever(autoreverses: false))
+                                .onAppear() {
+                                    withAnimation {
+                                        rotation += 1200
+                                    }
+                                }
+                        
+//
                     }
                     else{
+                        
+                        Spacer().frame(height:170.5)
+
+                        
                         Text("\(sentence)")
                             .foregroundColor(Color("wht"))
                             .font(.system(size: 34).weight(.bold))
                     }
                 }
                 
-                
-                Spacer().frame(height:130)
+                Spacer().frame(height:70)
                 
                 
                 RoundedRectangle(cornerRadius: 24)
