@@ -46,7 +46,8 @@ struct SpeakView: View {
     @State private var selectedOptionIndex = 1
     @State private var imageIndex = 0
     @State private var isLoading = false
-    @State private var isResult = false
+    @State var isResult = false
+    @State var isComplete = false
     private let options = ["1단계 단어 말하기", "2단계 문장 말하기", "3단계 문단 말하기"]
     private let waveImages = ["wave1","wave2","wave3","wave4","wave5"]
     
@@ -60,7 +61,10 @@ struct SpeakView: View {
                 AnalyzeView()
             }
             else if isResult {
-                PronounceView(selectedOptionIndex: selectedOptionIndex)
+                PronounceView(selectedOptionIndex: selectedOptionIndex, isResult: $isResult, isComplete: $isComplete)
+            }
+            else if isComplete {
+                ResultView(option: selectedOptionIndex)
             }
             else {
                 Color("BG").edgesIgnoringSafeArea(.all)
@@ -328,6 +332,7 @@ struct SpeakView: View {
                                     words in DispatchQueue.main.async(group: group) {
                                         self.isLoading = false
                                         self.isResult = true
+                                        self.word = ""
                                         //                                        word = words.text ?? ""
                                         
                                     }
@@ -341,6 +346,7 @@ struct SpeakView: View {
                                         //                                            NavigationLink(destination: ResultView()) {}
                                         self.isLoading = false
                                         self.isResult = true
+                                        self.sentence = ""
                                         print(sentenceNetwork.checkSentences)
                                     }
                                 }
@@ -362,6 +368,26 @@ struct SpeakView: View {
                     
                     
                 }
+                .onAppear{
+                    let group = DispatchGroup()
+                    
+                    if selectedOptionIndex == 0 {
+                        wordNetwork.getWord{
+                            words in DispatchQueue.main.async(group: group) {
+                                word = words.wordName ?? ""
+                            }
+                        }
+                    }
+                    else{
+                        sentenceNetwork.getSentence{
+                            sentences in DispatchQueue.main.async(group: group) {
+                                sentence = sentences.sentence ?? ""
+                            }
+                        }
+                    }
+                    
+                    
+                }
             }
             
             
@@ -371,26 +397,6 @@ struct SpeakView: View {
             
         }
         .navigationBarBackButtonHidden(true)
-        .onAppear{
-            let group = DispatchGroup()
-            
-            if selectedOptionIndex == 0 {
-                wordNetwork.getWord{
-                    words in DispatchQueue.main.async(group: group) {
-                        word = words.wordName ?? ""
-                    }
-                }
-            }
-            else{
-                sentenceNetwork.getSentence{
-                    sentences in DispatchQueue.main.async(group: group) {
-                        sentence = sentences.sentence ?? ""
-                    }
-                }
-            }
-            
-            
-        }
         
         
         

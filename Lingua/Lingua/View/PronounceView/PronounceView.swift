@@ -7,6 +7,8 @@ struct PronounceView: View {
     private let options = ["1단계 단어 말하기", "2단계 단어 말하기", "3단계 단어 말하기"]
     
     @State private var selectedTab = 0
+    @Binding var isResult: Bool
+    @Binding var isComplete: Bool
 
 
     
@@ -91,27 +93,36 @@ struct PronounceView: View {
                 
                 HStack(){
                     
-                    RoundedRectangle(cornerRadius: 24)
-                        .frame(width: 174, height:64)
-                        .overlay(){
-                            HStack(){
-                                Text("다음 문장")
-                                    .foregroundColor(Color("bk"))
-                                    .font(.system(size: 22).weight(.bold))
+                    Button{
+                        self.$isResult.wrappedValue = false
+                    }label: {
+                        RoundedRectangle(cornerRadius: 24)
+                            .frame(width: 174, height:64)
+                            .overlay(){
+                                HStack(){
+                                    Text("다음 문장")
+                                        .foregroundColor(Color("bk"))
+                                        .font(.system(size: 22).weight(.bold))
+                                }
                             }
-                        }
-                        .foregroundColor(Color("Primary"))
+                            .foregroundColor(Color("Primary"))
+                    }
                     
-                    RoundedRectangle(cornerRadius: 24)
-                        .frame(width: 88, height:64)
-                        .overlay(){
-                            HStack(){
-                                Text("완료")
-                                    .foregroundColor(Color("wht"))
-                                    .font(.system(size: 22).weight(.bold))
+                    Button{
+                        self.$isResult.wrappedValue = false
+                        self.$isComplete.wrappedValue = true
+                    }label: {
+                        RoundedRectangle(cornerRadius: 24)
+                            .frame(width: 88, height:64)
+                            .overlay(){
+                                HStack(){
+                                    Text("완료")
+                                        .foregroundColor(Color("wht"))
+                                        .font(.system(size: 22).weight(.bold))
+                                }
                             }
-                        }
-                        .foregroundColor(Color("list_fill"))
+                            .foregroundColor(Color("list_fill"))
+                    }
                     
                     RoundedRectangle(cornerRadius: 24)
                         .frame(width: 64, height:64)
@@ -136,8 +147,8 @@ struct PronounceView: View {
     }
 }
 
-struct PronounceView_Previews: PreviewProvider {
-    static var previews: some View {
-        PronounceView(selectedOptionIndex: 0)
-    }
-}
+//struct PronounceView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PronounceView(selectedOptionIndex: 0, isResult: )
+//    }
+//}
