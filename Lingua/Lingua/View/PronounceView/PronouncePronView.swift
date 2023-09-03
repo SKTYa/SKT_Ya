@@ -111,14 +111,28 @@ struct PronouncePronView: View {
                             }
                             .foregroundColor(Color("list_fill"))
                         
-                        Circle()
-                            .overlay(){
-                                Image(systemName: "speaker.wave.2.fill")
-                                    .foregroundColor(Color("wht"))
-                                
+                        Button {
+                            if audioRecorderManger.isPlaying &&
+                                audioRecorderManger.audioPlayer?.url == audioRecorderManger.recordedFiles.first {
+                                audioRecorderManger.isPaused ? audioRecorderManger.resumePlaying()
+                                : audioRecorderManger.pausePlaying()
+                            } else {
+                                print("\(audioRecorderManger.recordedFiles)")
+                                audioRecorderManger.startPlaying(recordingURL: audioRecorderManger.recordedFiles[0])
                             }
-                            .foregroundColor(Color("list_fill"))
-                            .frame(width:40, height:40)
+                      
+
+                        } label: {
+                            Circle()
+                                .overlay(){
+                                    Image(systemName: "speaker.wave.2.fill")
+                                        .foregroundColor(Color("wht"))
+
+                                }
+                                .foregroundColor(Color("list_fill"))
+                                .frame(width:40, height:40)
+                        }
+
                         
                         Spacer()
                     }

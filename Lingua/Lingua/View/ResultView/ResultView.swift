@@ -101,7 +101,7 @@ struct CircularShape: Shape {
 
 
 struct ResultView: View {
-    
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var wordNetwork: NetworkManagerWord
     @EnvironmentObject var sentenceNetwork: NetworkManagerSentence
     
@@ -132,10 +132,15 @@ struct ResultView: View {
                     
                     HStack(){
                         
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(Color("wht"))
-                            .font(.system(size: 17).weight(.bold))
-                            .frame(width:48, height:64)
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(Color("wht"))
+                                .font(.system(size: 22).weight(.bold))
+                                .frame(width:48, height:64)
+                                .bold()
+                        }
                         
                         
                         
