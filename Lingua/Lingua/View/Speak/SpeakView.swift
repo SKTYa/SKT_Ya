@@ -100,7 +100,7 @@ struct SpeakView: View {
                                     menuText = options[index]
                                     word = ""
                                     sentence = ""
-
+                                    
                                     
                                     if selectedOptionIndex == 0 {
                                         wordNetwork.getWord{
@@ -191,7 +191,7 @@ struct SpeakView: View {
                                     withAnimation {
                                         rotation += 1200
                                     }
-                                   
+                                    
                                 }
                             
                             //                        Text("")
@@ -206,7 +206,7 @@ struct SpeakView: View {
                             
                             
                         }
-        
+                        
                         
                     }
                     else {
@@ -400,41 +400,54 @@ struct SpeakView: View {
                             
                         }
                         // TODO:
-                        Button {
-                            let group = DispatchGroup()
-                            
-                            if selectedOptionIndex == 0 {
-                                self.isLoading = true
-                                self.textIndex = 0
-                                wordNetwork.checkWord(originStr: word, file: try! Data(contentsOf: audioRecorderManger.recordedFiles[0])){
-                                    words in DispatchQueue.main.async(group: group) {
-                                        self.isLoading = false
-                                        self.isResult = true
-                                        self.btnOption = 0
-                                        self.word = ""
-                                        //                                        word = words.text ?? ""
-                                        
-                                    }
-                                }
-                            }
-                            else{
-                                if audioRecorderManger.recordedFiles.count != 0 {
+                        
+                        if audioRecorderManger.recordedFiles.count != 0 {
+                            Button {
+                                let group = DispatchGroup()
+                                
+                                if selectedOptionIndex == 0 {
                                     self.isLoading = true
                                     self.textIndex = 0
-                                    sentenceNetwork.checkSentence(originStr: sentence, file: try! Data(contentsOf: audioRecorderManger.recordedFiles[0])){
-                                        sentences in DispatchQueue.main.async(group: group) {
-                                            //                                        sentence = sentences.text ?? ""
-                                            //                                            NavigationLink(destination: ResultView()) {}
+                                    wordNetwork.checkWord(originStr: word, file: try! Data(contentsOf: audioRecorderManger.recordedFiles[0])){
+                                        words in DispatchQueue.main.async(group: group) {
                                             self.isLoading = false
                                             self.isResult = true
-                                            self.sentence = ""
-                                            print(sentenceNetwork.checkSentences)
+                                            self.btnOption = 0
+                                            self.word = ""
+                                            //                                        word = words.text ?? ""
+                                            
                                         }
                                     }
                                 }
-                                
+                                else{
+                                    if audioRecorderManger.recordedFiles.count != 0 {
+                                        self.isLoading = true
+                                        self.textIndex = 0
+                                        sentenceNetwork.checkSentence(originStr: sentence, file: try! Data(contentsOf: audioRecorderManger.recordedFiles[0])){
+                                            sentences in DispatchQueue.main.async(group: group) {
+                                                //                                        sentence = sentences.text ?? ""
+                                                //                                            NavigationLink(destination: ResultView()) {}
+                                                self.isLoading = false
+                                                self.isResult = true
+                                                self.sentence = ""
+                                                print(sentenceNetwork.checkSentences)
+                                            }
+                                        }
+                                    }
+                                    
+                                }
+                            } label: {
+                                Circle()
+                                    .frame(width: 48,height: 48)
+                                    .foregroundColor(btnOption % 2 != 1 ? Color("list_fill") : Color("Primary"))
+                                    .overlay {
+                                        Image(systemName: "arrow.up.right")
+                                            .font(.system(size: 16,weight: .bold))
+                                            .foregroundColor(btnOption % 2 != 1 ? Color("wht") : Color("bk"))
+                                    }
                             }
-                        } label: {
+                        }
+                        else{
                             Circle()
                                 .frame(width: 48,height: 48)
                                 .foregroundColor(btnOption % 2 != 1 ? Color("list_fill") : Color("Primary"))
@@ -444,9 +457,6 @@ struct SpeakView: View {
                                         .foregroundColor(btnOption % 2 != 1 ? Color("wht") : Color("bk"))
                                 }
                         }
-                        
-                        
-                        
                         
                     }
                     .padding(.bottom,50)
