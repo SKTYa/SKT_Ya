@@ -167,8 +167,8 @@
 				D1232D9B2AA11B6B00EFA01B /* ResultView */,
 				D1232D8E2AA0A66B00EFA01B /* ParagraphSequenceView */,
 				D1232D8B2AA07D0100EFA01B /* ParagraphView */,
-				D1232D822A9F966900EFA01B /* PronounceView */,
 				D1232D7F2A9F8CD700EFA01B /* Analyze */,
+				D1232D822A9F966900EFA01B /* PronounceView */,
 				D1232D7A2A9F610700EFA01B /* Speak */,
 				D1232D792A9F609600EFA01B /* Home */,
 			);
@@ -467,7 +467,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lingua/Preview Content\"";
-				DEVELOPMENT_TEAM = SHJRTZNP7N;
+				DEVELOPMENT_TEAM = FLG797DV64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use Microphon using Acception";
@@ -481,11 +481,14 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = d.Lingua;
+				PRODUCT_BUNDLE_IDENTIFIER = skt.Lingua;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -497,7 +500,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lingua/Preview Content\"";
-				DEVELOPMENT_TEAM = SHJRTZNP7N;
+				DEVELOPMENT_TEAM = FLG797DV64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use Microphon using Acception";
@@ -511,11 +514,14 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = d.Lingua;
+				PRODUCT_BUNDLE_IDENTIFIER = skt.Lingua;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

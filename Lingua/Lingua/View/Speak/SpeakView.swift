@@ -267,7 +267,27 @@ struct SpeakView: View {
                         
                         Button {
                             btnOption = 0
-                            audioRecorderManger.isRecording ? audioRecorderManger.stopRecording() : audioRecorderManger.startRecording()
+                            
+                            word = ""
+                            sentence = ""
+                            
+                            let group = DispatchGroup()
+                            
+                            if selectedOptionIndex == 0 {
+                                wordNetwork.getWord{
+                                    words in DispatchQueue.main.async(group: group) {
+                                        word = words.wordName ?? ""
+                                    }
+                                }
+                            }
+                            else{
+                                sentenceNetwork.getSentence{
+                                    sentences in DispatchQueue.main.async(group: group) {
+                                        sentence = sentences.sentence ?? ""
+                                    }
+                                }
+                            }
+                            
                         } label: {
                             Image("replay")
                                 .resizable()
