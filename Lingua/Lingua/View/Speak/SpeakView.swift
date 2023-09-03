@@ -51,11 +51,13 @@ struct SpeakView: View {
     @State var isResult = false
     @State var isComplete = false
     private let infoTexts = ["5초 정도 소요됩니다.","지금 말해보세요.","녹음이 끝났다면 저장하세요."]
-    private let options = ["1단계 단어 말하기", "2단계 문장 말하기", "3단계 문단 말하기"]
+    @State private var options = ["1단계 단어 말하기", "2단계 문장 말하기", "3단계 문단 말하기"]
     private let waveImages = ["wave1","wave2","wave3","wave4","wave5"]
     
+    @State private var menuText = ""
     @State private var animateMedium = false
     @State private var rotation: Double = 0.0
+    let group = DispatchGroup()
     
     
     var body: some View {
@@ -95,6 +97,26 @@ struct SpeakView: View {
                             ForEach(options.indices, id: \.self) { index in
                                 Button(action: {
                                     selectedOptionIndex = index
+                                    menuText = options[index]
+                                    word = ""
+                                    sentence = ""
+
+                                    
+                                    if selectedOptionIndex == 0 {
+                                        wordNetwork.getWord{
+                                            words in DispatchQueue.main.async(group: group) {
+                                                word = words.wordName ?? ""
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        sentenceNetwork.getSentence{
+                                            sentences in DispatchQueue.main.async(group: group) {
+                                                sentence = sentences.sentence ?? ""
+                                            }
+                                        }
+                                    }
+                                    
                                 }) {
                                     RoundedRectangle(cornerRadius: 24)
                                         .frame(width: 223, height:48)
@@ -121,7 +143,7 @@ struct SpeakView: View {
                                 .frame(width: 223, height:48)
                                 .overlay(){
                                     HStack(){
-                                        Text("2단계 문장 말하기")
+                                        Text(menuText)
                                             .foregroundColor(Color("Primary"))
                                             .font(.system(size: 20).weight(.bold))
                                         Image(systemName: "chevron.down")
@@ -433,7 +455,8 @@ struct SpeakView: View {
                     
                     
                 }
-                .onAppear{
+                .onAppear {
+                    menuText = options[1]
                     let group = DispatchGroup()
                     
                     if selectedOptionIndex == 0 {
