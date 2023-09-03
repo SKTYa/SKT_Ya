@@ -14,6 +14,8 @@ struct PronouncePronView: View {
     @State var selectedOptionIndex: Int
     @EnvironmentObject var wordNetwork: NetworkManagerWord
     @EnvironmentObject var sentenceNetwork: NetworkManagerSentence
+    @ObservedObject var audioRecorderManger: AudioRecorderManger
+
     
     var body: some View {
         ZStack(){
@@ -37,14 +39,14 @@ struct PronouncePronView: View {
                             }
                             .foregroundColor(Color("list_fill"))
                         
-                        Circle()
-                            .overlay(){
-                                Image(systemName: "speaker.wave.2.fill")
-                                    .foregroundColor(Color("wht"))
-                                
-                            }
-                            .foregroundColor(Color("list_fill"))
-                            .frame(width:40, height:40)
+                        if selectedOptionIndex == 0 {
+                            TTSBtn(ttsText: self.wordNetwork.words.wordName ?? "")
+                        }
+                        else if selectedOptionIndex == 1 {
+                            TTSBtn(ttsText: self.sentenceNetwork.sentences.sentence ?? "")
+                        }
+                        
+
                         
                         Spacer()
                     }
@@ -185,8 +187,3 @@ struct PronouncePronView: View {
 
 
 
-struct PronouncePronView_Previews: PreviewProvider {
-    static var previews: some View {
-        PronouncePronView(selectedOptionIndex: 0)
-    }
-}

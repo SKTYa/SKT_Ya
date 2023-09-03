@@ -141,7 +141,7 @@ struct PronounceTab: View {
                     VStack {
                         // "발음"에 해당하는 뷰들을 이곳에 추가
                         
-                        PronouncePronView(selectedOptionIndex: self.selectedOptionIndex)
+                        PronouncePronView(selectedOptionIndex: self.selectedOptionIndex, audioRecorderManger: AudioRecorderManger())
                         
                     }
                     .tag("발음")
