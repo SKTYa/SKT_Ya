@@ -61,7 +61,7 @@ struct SpeakView: View {
     var body: some View {
         ZStack(alignment: .top) {
             if isLoading {
-                AnalyzeView()
+                AnalyzeView(selectedOptionIndex: selectedOptionIndex)
             }
             else if isResult {
                 PronounceView(selectedOptionIndex: selectedOptionIndex, audioRecorderManger: audioRecorderManger, isResult: $isResult, isComplete: $isComplete)
@@ -267,7 +267,27 @@ struct SpeakView: View {
                         
                         Button {
                             btnOption = 0
-                            audioRecorderManger.isRecording ? audioRecorderManger.stopRecording() : audioRecorderManger.startRecording()
+                            
+                            word = ""
+                            sentence = ""
+                            
+                            let group = DispatchGroup()
+                            
+                            if selectedOptionIndex == 0 {
+                                wordNetwork.getWord{
+                                    words in DispatchQueue.main.async(group: group) {
+                                        word = words.wordName ?? ""
+                                    }
+                                }
+                            }
+                            else{
+                                sentenceNetwork.getSentence{
+                                    sentences in DispatchQueue.main.async(group: group) {
+                                        sentence = sentences.sentence ?? ""
+                                    }
+                                }
+                            }
+                            
                         } label: {
                             Image("replay")
                                 .resizable()
@@ -275,9 +295,12 @@ struct SpeakView: View {
                         }
                         
                         Button {
-                            btnOption += 1
+                            btnOption = 1
                             if (btnOption % 2 == 1 && btnOption != 0 ) {
                                 self.textIndex += 1
+                                if self.textIndex  > 2 {
+                                    self.textIndex = 2
+                                }
                             }
                             audioRecorderManger.isRecording ? audioRecorderManger.stopRecording() : audioRecorderManger.startRecording()
                         } label: {
@@ -350,6 +373,7 @@ struct SpeakView: View {
                                 
                             }
                             
+                            //
                             
                             
                         }
@@ -359,11 +383,12 @@ struct SpeakView: View {
                             
                             if selectedOptionIndex == 0 {
                                 self.isLoading = true
-                                self.textIndex += 1
+                                self.textIndex = 0
                                 wordNetwork.checkWord(originStr: word, file: try! Data(contentsOf: audioRecorderManger.recordedFiles[0])){
                                     words in DispatchQueue.main.async(group: group) {
                                         self.isLoading = false
                                         self.isResult = true
+                                        self.btnOption = 0
                                         self.word = ""
                                         //                                        word = words.text ?? ""
                                         
@@ -371,25 +396,26 @@ struct SpeakView: View {
                                 }
                             }
                             else{
-                                self.isLoading = true
-                                self.textIndex += 1
-                                sentenceNetwork.checkSentence(originStr: sentence, file: try! Data(contentsOf: audioRecorderManger.recordedFiles[0])){
-                                    sentences in DispatchQueue.main.async(group: group) {
-                                        //                                        sentence = sentences.text ?? ""
-                                        //                                            NavigationLink(destination: ResultView()) {}
-                                        self.isLoading = false
-                                        self.isResult = true
-                                        self.sentence = ""
-                                        print(sentenceNetwork.checkSentences)
+                                if audioRecorderManger.recordedFiles.count != 0 {
+                                    self.isLoading = true
+                                    self.textIndex = 0
+                                    sentenceNetwork.checkSentence(originStr: sentence, file: try! Data(contentsOf: audioRecorderManger.recordedFiles[0])){
+                                        sentences in DispatchQueue.main.async(group: group) {
+                                            //                                        sentence = sentences.text ?? ""
+                                            //                                            NavigationLink(destination: ResultView()) {}
+                                            self.isLoading = false
+                                            self.isResult = true
+                                            self.sentence = ""
+                                            print(sentenceNetwork.checkSentences)
+                                        }
                                     }
                                 }
                                 
                             }
-                            print("nextPage")
                         } label: {
                             Circle()
                                 .frame(width: 48,height: 48)
-                                .foregroundColor(btnOption % 2 != 1 ? Color("listfill") : Color("Primary"))
+                                .foregroundColor(btnOption % 2 != 1 ? Color("list_fill") : Color("Primary"))
                                 .overlay {
                                     Image(systemName: "arrow.up.right")
                                         .font(.system(size: 16,weight: .bold))

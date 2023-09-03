@@ -167,8 +167,8 @@
 				D1232D9B2AA11B6B00EFA01B /* ResultView */,
 				D1232D8E2AA0A66B00EFA01B /* ParagraphSequenceView */,
 				D1232D8B2AA07D0100EFA01B /* ParagraphView */,
-				D1232D822A9F966900EFA01B /* PronounceView */,
 				D1232D7F2A9F8CD700EFA01B /* Analyze */,
+				D1232D822A9F966900EFA01B /* PronounceView */,
 				D1232D7A2A9F610700EFA01B /* Speak */,
 				D1232D792A9F609600EFA01B /* Home */,
 			);
@@ -179,8 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				D1232D712A9F5B3C00EFA01B /* HomeView.swift */,
-				D1232D7D2A9F615300EFA01B /* HomeViewTop.swift */,
 				D1232D732A9F5C6600EFA01B /* HomeViewSpeak.swift */,
+				D1232D7D2A9F615300EFA01B /* HomeViewTop.swift */,
 				D1232D752A9F5CC700EFA01B /* HomeViewLearn.swift */,
 				D1232D772A9F5E0300EFA01B /* HomeViewRecord.swift */,
 			);
@@ -467,7 +467,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lingua/Preview Content\"";
-				DEVELOPMENT_TEAM = 34K3V5D9X5;
+				DEVELOPMENT_TEAM = FLG797DV64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -482,7 +482,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = d.Lingua;
+				PRODUCT_BUNDLE_IDENTIFIER = skt.Lingua;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -501,7 +501,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lingua/Preview Content\"";
-				DEVELOPMENT_TEAM = 34K3V5D9X5;
+				DEVELOPMENT_TEAM = FLG797DV64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -516,7 +516,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = d.Lingua;
+				PRODUCT_BUNDLE_IDENTIFIER = skt.Lingua;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

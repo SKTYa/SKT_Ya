@@ -4,7 +4,8 @@ struct PronounceView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State var selectedOptionIndex: Int
-    private let options = ["1단계 단어 말하기", "2단계 단어 말하기", "3단계 단어 말하기"]
+
+    private let options = ["1단계 단어 말하기", "2단계 문장 말하기", "3단계 문단 말하기"]
     @ObservedObject var audioRecorderManger: AudioRecorderManger
     
     @State private var selectedTab = 0
@@ -19,71 +20,36 @@ struct PronounceView: View {
             Color("BG").edgesIgnoringSafeArea(.all)
             
             VStack() {
-                HStack(spacing : 38){
-                    
-                    
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(Color("wht"))
-                            .font(.system(size: 22).weight(.bold))
-                            .frame(width:48, height:64)
-                            .bold()
-                    }
-                    
-                    
-                    
-                    Menu {
-                        ForEach(options.indices, id: \.self) { index in
-                            Button(action: {
-                                selectedOptionIndex = index
-                            }) {
-                                RoundedRectangle(cornerRadius: 24)
-                                    .frame(width: 223, height:48)
-                                    .overlay(){
-                                        Text(options[index])
-                                            .foregroundColor(Color("Primary"))
-                                            .font(.system(size: 20).weight(.bold))
-                                        
-                                    }
-                            }
-                            .foregroundColor(Color("list_fill"))
-                            
-                            
-                            
+                ZStack{
+                    HStack(spacing : 38){
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(Color("wht"))
+                                .font(.system(size: 22).weight(.bold))
+                                .frame(width:48, height:64)
+                                .bold()
                         }
+                        //                .padding(.leading, -16)
                         
-                    } label: {
+                        Spacer()
+                    }
+                    
+                    HStack(alignment: .center){
+                        Spacer()
                         RoundedRectangle(cornerRadius: 24)
-                            .frame(width: 223, height:48)
+                            .frame(width:192, height:48)
                             .overlay(){
-                                HStack(){
-                                    Text("2단계 문장 말하기")
-                                        .foregroundColor(Color("Primary"))
-                                        .font(.system(size: 20).weight(.bold))
-                                    Image(systemName: "chevron.down")
-                                        .foregroundColor(Color("wht"))
-                                        .font(.system(size: 20))
-                                    
-                                }
+                                Text("\(options[selectedOptionIndex])")
+                                    .foregroundColor(Color("Primary"))
+                                    .font(.system(size: 20).weight(.bold))
                             }
                             .foregroundColor(Color("list_fill"))
+                        Spacer()
                     }
-
-                    
-                    
-                    
-                    Image(systemName: "person.crop.circle.fill")
-                        .foregroundColor(Color("wht"))
-                        .font(.system(size: 22).weight(.bold))
-                        .bold()
-                        .frame(width:27)
-                    
-                    
+                    .frame(width: .infinity)
                 }
-                .frame(width:.infinity)
-                .padding(.leading, -16)
                 
                 Spacer()
                 

@@ -65,7 +65,7 @@ struct PronouncePronView: View {
                             
                             //
                             
-                            ForEach( 0..<text.count / 11, id: \.self) { i in
+                            ForEach( 0..<text.count / 11 + 1, id: \.self) { i in
                                 
                                 let text_len = (text.count / 11 == i ? text.count % 11 : 11)
                                 
@@ -135,7 +135,7 @@ struct PronouncePronView: View {
                             let origin = sentenceNetwork.checkSentences.compared!
                             
                             
-                            ForEach(0..<text.count / 11, id: \.self) { i in
+                            ForEach(0..<text.count / 11 + 1, id: \.self) { i in
                                 let text_len = (text.count / 11 == i ? text.count % 11 : 11)
 
                                 HStack(spacing: 0) { // spacing: 0으로 공백 없이 텍스트를 붙입니다.
@@ -162,7 +162,7 @@ struct PronouncePronView: View {
                     }
                     
                 }
-                .offset(y:50)
+//                .offset(y:50)
                 
             }
             
