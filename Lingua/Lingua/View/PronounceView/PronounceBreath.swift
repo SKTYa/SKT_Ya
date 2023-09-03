@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import AVFoundation
 
 
 
@@ -14,7 +14,10 @@ struct PronounceBreath: View {
     @State var selectedOptionIndex: Int
     @EnvironmentObject var wordNetwork: NetworkManagerWord
     @EnvironmentObject var sentenceNetwork: NetworkManagerSentence
+    @ObservedObject var audioRecorderManger: AudioRecorderManger
     
+
+    let audioFileName = "recordedAudio.m4a"
     var body: some View {
 
         
@@ -39,15 +42,12 @@ struct PronounceBreath: View {
                             }
                             .foregroundColor(Color("list_fill"))
 
-                        Circle()
-                            .overlay(){
-                                Image(systemName: "speaker.wave.2.fill")
-                                    .foregroundColor(Color("wht"))
-
-                            }
-                            .foregroundColor(Color("list_fill"))
-                            .frame(width:40, height:40)
-
+                        if selectedOptionIndex == 0 {
+                            TTSBtn(ttsText: self.wordNetwork.words.wordName ?? "")
+                        }
+                        else if selectedOptionIndex == 1 {
+                            TTSBtn(ttsText: self.sentenceNetwork.sentences.sentence ?? "")
+                        }
                         Spacer()
                     }
 
@@ -89,15 +89,29 @@ struct PronounceBreath: View {
                                 }
                             }
                             .foregroundColor(Color("list_fill"))
-
-                        Circle()
-                            .overlay(){
-                                Image(systemName: "speaker.wave.2.fill")
-                                    .foregroundColor(Color("wht"))
-
+                        Button {
+                            if audioRecorderManger.isPlaying &&
+                                audioRecorderManger.audioPlayer?.url == audioRecorderManger.recordedFiles.first {
+                                audioRecorderManger.isPaused ? audioRecorderManger.resumePlaying()
+                                : audioRecorderManger.pausePlaying()
+                            } else {
+                                print("\(audioRecorderManger.recordedFiles)")
+                                audioRecorderManger.startPlaying(recordingURL: audioRecorderManger.recordedFiles[0])
                             }
-                            .foregroundColor(Color("list_fill"))
-                            .frame(width:40, height:40)
+                      
+
+                        } label: {
+                            Circle()
+                                .overlay(){
+                                    Image(systemName: "speaker.wave.2.fill")
+                                        .foregroundColor(Color("wht"))
+
+                                }
+                                .foregroundColor(Color("list_fill"))
+                                .frame(width:40, height:40)
+                        }
+
+                      
 
                         Spacer()
                     }
@@ -141,12 +155,10 @@ struct PronounceBreath: View {
             .frame(width:.infinity, height:.infinity)
             .padding(16)
         }
+        .onAppear {
+           
+        }
 
     }
 }
 
-struct PronounceBreath_Previews: PreviewProvider {
-    static var previews: some View {
-        PronounceBreath(selectedOptionIndex: 0)
-    }
-}

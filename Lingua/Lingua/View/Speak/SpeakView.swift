@@ -64,7 +64,7 @@ struct SpeakView: View {
                 AnalyzeView(selectedOptionIndex: selectedOptionIndex)
             }
             else if isResult {
-                PronounceView(selectedOptionIndex: selectedOptionIndex, isResult: $isResult, isComplete: $isComplete)
+                PronounceView(selectedOptionIndex: selectedOptionIndex, audioRecorderManger: audioRecorderManger, isResult: $isResult, isComplete: $isComplete)
             }
             else if isComplete {
                 ResultView(option: selectedOptionIndex)

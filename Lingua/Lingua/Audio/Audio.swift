@@ -28,6 +28,9 @@ class AudioRecorderManger: NSObject, ObservableObject, AVAudioPlayerDelegate {
 extension AudioRecorderManger {
     func startRecording() {
         let fileURL = getDocumentsDirectory().appendingPathComponent("inputAudio.m4a")
+        self.recordedFiles.append(fileURL)
+        print("recordfiles:  ")
+        print(recordedFiles)
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
@@ -46,7 +49,7 @@ extension AudioRecorderManger {
     
     func stopRecording() {
         audioRecorder?.stop()
-        self.recordedFiles.append(self.audioRecorder!.url)
+//        self.recordedFiles.append(self.audioRecorder!.url)
         self.isRecording = false
         
         let sourceURL = getDocumentsDirectory().appendingPathComponent("inputAudio.m4a")
@@ -73,6 +76,41 @@ extension AudioRecorderManger {
     }
     
 
+}
+// MARK: 음성메모 재생 관련 메서드
+extension AudioRecorderManger {
+    func startPlaying(recordingURL: URL) {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: recordingURL)
+            audioPlayer?.delegate = self
+            audioPlayer?.play()
+            self.isPlaying = true
+            self.isPaused = false
+        } catch {
+            print("재생 중 오류 발생:")
+        }
+    }
+    
+    func stopPlaying() {
+        audioPlayer?.stop()
+        self.isPlaying = false
+    }
+    
+    func pausePlaying() {
+        audioPlayer?.pause()
+        self.isPaused = true
+    }
+    
+    func resumePlaying() {
+        audioPlayer?.play()
+        self.isPaused = false
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        self.isPlaying = false
+        self.isPaused = false
+    }
+    
 }
 
 
