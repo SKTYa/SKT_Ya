@@ -74,5 +74,40 @@ extension AudioRecorderManger {
     
 
 }
+// MARK: 음성메모 재생 관련 메서드
+extension AudioRecorderManger {
+    func startPlaying(recordingURL: URL) {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: recordingURL)
+            audioPlayer?.delegate = self
+            audioPlayer?.play()
+            self.isPlaying = true
+            self.isPaused = false
+        } catch {
+            print("재생 중 오류 발생:")
+        }
+    }
+    
+    func stopPlaying() {
+        audioPlayer?.stop()
+        self.isPlaying = false
+    }
+    
+    func pausePlaying() {
+        audioPlayer?.pause()
+        self.isPaused = true
+    }
+    
+    func resumePlaying() {
+        audioPlayer?.play()
+        self.isPaused = false
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        self.isPlaying = false
+        self.isPaused = false
+    }
+    
+}
 
 
