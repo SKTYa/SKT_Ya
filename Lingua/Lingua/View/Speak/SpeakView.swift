@@ -61,7 +61,7 @@ struct SpeakView: View {
     var body: some View {
         ZStack(alignment: .top) {
             if isLoading {
-                AnalyzeView()
+                AnalyzeView(selectedOptionIndex: selectedOptionIndex)
             }
             else if isResult {
                 PronounceView(selectedOptionIndex: selectedOptionIndex, isResult: $isResult, isComplete: $isComplete)

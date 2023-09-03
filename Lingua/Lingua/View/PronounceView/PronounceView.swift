@@ -4,7 +4,7 @@ struct PronounceView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State var selectedOptionIndex: Int
-    private let options = ["1단계 단어 말하기", "2단계 단어 말하기", "3단계 단어 말하기"]
+    private let options = ["1단계 단어 말하기", "2단계 문장 말하기", "3단계 문단 말하기"]
     
     @State private var selectedTab = 0
     @Binding var isResult: Bool
@@ -39,7 +39,7 @@ struct PronounceView: View {
                         RoundedRectangle(cornerRadius: 24)
                             .frame(width:192, height:48)
                             .overlay(){
-                                Text("2단계 문장 말하기")
+                                Text("\(options[selectedOptionIndex])")
                                     .foregroundColor(Color("Primary"))
                                     .font(.system(size: 20).weight(.bold))
                             }
