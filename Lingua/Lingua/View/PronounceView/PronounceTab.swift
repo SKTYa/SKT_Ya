@@ -89,6 +89,8 @@ struct PronounceTab: View {
     @State var selected = "발음" // 기본 선택된 탭 변경
     @State var animationSelected = "발음"
     @State var selectedOptionIndex: Int
+    @ObservedObject var audioRecorderManger: AudioRecorderManger
+    
     @Namespace var namespace
     
     var body: some View {
@@ -141,14 +143,14 @@ struct PronounceTab: View {
                     VStack {
                         // "발음"에 해당하는 뷰들을 이곳에 추가
                         
-                        PronouncePronView(selectedOptionIndex: self.selectedOptionIndex, audioRecorderManger: AudioRecorderManger())
+                        PronouncePronView(selectedOptionIndex: self.selectedOptionIndex, audioRecorderManger: audioRecorderManger)
                         
                     }
                     .tag("발음")
                     
                     VStack {
                         // "호흡"에 해당하는 뷰들을 이곳에 추가
-                        PronounceBreath(selectedOptionIndex: self.selectedOptionIndex)
+                        PronounceBreath(selectedOptionIndex: self.selectedOptionIndex, audioRecorderManger: audioRecorderManger)
                         
                     }
                     .tag("호흡")
@@ -166,9 +168,9 @@ struct PronounceTab: View {
 
 
 
-
-struct PronounceTab_Previews: PreviewProvider {
-    static var previews: some View {
-        PronounceTab(selectedOptionIndex: 0)
-    }
-}
+//
+//struct PronounceTab_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PronounceTab(selectedOptionIndex: 0, audioRecorderManger: )
+//    }
+//}

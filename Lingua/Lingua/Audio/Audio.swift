@@ -28,6 +28,9 @@ class AudioRecorderManger: NSObject, ObservableObject, AVAudioPlayerDelegate {
 extension AudioRecorderManger {
     func startRecording() {
         let fileURL = getDocumentsDirectory().appendingPathComponent("inputAudio.m4a")
+        self.recordedFiles.append(fileURL)
+        print("recordfiles:  ")
+        print(recordedFiles)
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
@@ -46,7 +49,7 @@ extension AudioRecorderManger {
     
     func stopRecording() {
         audioRecorder?.stop()
-        self.recordedFiles.append(self.audioRecorder!.url)
+//        self.recordedFiles.append(self.audioRecorder!.url)
         self.isRecording = false
         
         let sourceURL = getDocumentsDirectory().appendingPathComponent("inputAudio.m4a")

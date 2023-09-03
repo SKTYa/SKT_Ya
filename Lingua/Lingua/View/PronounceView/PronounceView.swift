@@ -5,6 +5,7 @@ struct PronounceView: View {
     
     @State var selectedOptionIndex: Int
     private let options = ["1단계 단어 말하기", "2단계 단어 말하기", "3단계 단어 말하기"]
+    @ObservedObject var audioRecorderManger: AudioRecorderManger
     
     @State private var selectedTab = 0
     @Binding var isResult: Bool
@@ -86,8 +87,8 @@ struct PronounceView: View {
                 
                 Spacer()
                 
-                
-                PronounceTab(selectedOptionIndex: selectedOptionIndex)
+                 
+                PronounceTab(selectedOptionIndex: selectedOptionIndex, audioRecorderManger: audioRecorderManger)
                 
 
                 
