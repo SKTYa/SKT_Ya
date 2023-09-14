@@ -360,7 +360,7 @@ struct ResultView: View {
                                             
                                             Image("breathbar")
                                                 .resizable()
-                                                .frame(width: CGFloat(check_sentence_breath) / CGFloat(sentence_breath) * 304, height: 32)
+                                                .frame(width: (CGFloat(check_sentence_breath) / CGFloat(sentence_breath) > 1 ? 1 : CGFloat(check_sentence_breath) / CGFloat(sentence_breath)) * 304 , height: 32)
                                         }
                                         
                                         
