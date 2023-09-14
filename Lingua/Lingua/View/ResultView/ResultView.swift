@@ -534,6 +534,7 @@ struct ResultView: View {
                 .frame(maxWidth:.infinity)
                 
             }
+            .padding(.top, 1)
             
             
             
