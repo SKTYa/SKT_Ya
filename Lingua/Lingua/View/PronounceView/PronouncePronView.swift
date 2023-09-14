@@ -15,7 +15,7 @@ struct PronouncePronView: View {
     @EnvironmentObject var wordNetwork: NetworkManagerWord
     @EnvironmentObject var sentenceNetwork: NetworkManagerSentence
     @ObservedObject var audioRecorderManger: AudioRecorderManger
-
+    
     
     var body: some View {
         ZStack(){
@@ -46,7 +46,7 @@ struct PronouncePronView: View {
                             TTSBtn(ttsText: self.sentenceNetwork.sentences.sentence ?? "")
                         }
                         
-
+                        
                         
                         Spacer()
                     }
@@ -86,7 +86,7 @@ struct PronouncePronView: View {
                                     
                                 }
                                 //                                .frame(maxWidth : 358, maxHeight : .infinity)
-//                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                                //                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                                 
                                 
                                 
@@ -95,7 +95,7 @@ struct PronouncePronView: View {
                         
                         Spacer()
                     }
-//                    .frame(maxWidth : .infinity, maxHeight : .infinity)
+                    //                    .frame(maxWidth : .infinity, maxHeight : .infinity)
                     
                     Spacer().frame(height:20)
                     
@@ -120,19 +120,19 @@ struct PronouncePronView: View {
                                 print("\(audioRecorderManger.recordedFiles)")
                                 audioRecorderManger.startPlaying(recordingURL: audioRecorderManger.recordedFiles[0])
                             }
-                      
-
+                            
+                            
                         } label: {
                             Circle()
                                 .overlay(){
                                     Image(systemName: "speaker.wave.2.fill")
                                         .foregroundColor(Color("wht"))
-
+                                    
                                 }
                                 .foregroundColor(Color("list_fill"))
                                 .frame(width:40, height:40)
                         }
-
+                        
                         
                         Spacer()
                     }
@@ -151,35 +151,35 @@ struct PronouncePronView: View {
                             
                             ForEach(0..<text.count / 11 + 1, id: \.self) { i in
                                 let text_len = (text.count / 11 == i ? text.count % 11 : 11)
-
+                                
                                 HStack(spacing: 0) { // spacing: 0으로 공백 없이 텍스트를 붙입니다.
                                     ForEach(0..<text_len, id: \.self) { j in
                                         let idx = i * 11 + j
-
+                                        
                                         let character = text[text.index(text.startIndex, offsetBy: idx)]
-
+                                        
                                         Text(String(character))
                                             .padding(0)
                                             .foregroundColor(origin[idx] % 2 == 0 ? Color("wht") : Color("Wrong"))
                                             .font(.system(size: 34).weight(.bold))
                                             .lineSpacing(10) // 텍스트 사이의 줄 간격을 조정합니다.
-//                                            .lineLimit(1)
+                                        //                                            .lineLimit(1)
                                             .lineLimit(nil)
                                     }
                                 }
-//                                .frame(maxWidth : .infinity, maxHeight : .infinity)
+                                //                                .frame(maxWidth : .infinity, maxHeight : .infinity)
                             }
-
-                     
+                            
+                            
                         }
                         Spacer()
                     }
                     
                 }
-//                .offset(y:50)
+                //                .offset(y:50)
                 
             }
-            
+            .ignoresSafeArea()
             .frame(width:.infinity, height:.infinity)
             .padding(16)
             
