@@ -50,7 +50,7 @@ struct SpeakView: View {
     @State private var isLoading = false
     @State var isResult = false
     @State var isComplete = false
-    private let infoTexts = ["5초 정도 소요됩니다.","지금 말해보세요.","녹음이 끝났다면 저장하세요."]
+    private let infoTexts = ["문장을 불러옵니다. 10초 정도 소요될 예정이에요.","지금 말해보세요.","녹음이 끝났다면 저장하세요."]
     @State private var options = ["1단계 단어 말하기", "2단계 문장 말하기", "3단계 문단 말하기"]
     private let waveImages = ["wave1","wave2","wave3","wave4","wave5"]
     
