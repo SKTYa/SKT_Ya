@@ -110,7 +110,14 @@ class NetworkManagerSentence: ObservableObject {
             print(output)
             print(output.text?.utf8)
             
-            self.checkSentences =  output
+            DispatchQueue.main.async {
+                self.checkSentences.breaths = output.breaths
+                self.checkSentences.compared = output.compared
+                self.checkSentences.origin = output.origin
+                self.checkSentences.similarity = output.similarity
+                self.checkSentences.text = output.text
+                self.checkSentences.time = output.time
+            }
             
         }.resume()
         
