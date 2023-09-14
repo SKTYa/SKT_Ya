@@ -49,6 +49,7 @@ struct PronounceBreath: View {
                             TTSBtn(ttsText: self.sentenceNetwork.sentences.sentence ?? "")
                         }
                         Spacer()
+                        
                     }
 
                     VStack(){
@@ -116,7 +117,7 @@ struct PronounceBreath: View {
                         Spacer()
                     }
 
-                    HStack(){
+                    HStack(spacing : 0){
                         if selectedOptionIndex == 1 {
                             ForEach( 0..<(sentenceNetwork.checkSentences.breaths?.count ?? 0), id: \.self) { idx in
                                 
@@ -125,11 +126,13 @@ struct PronounceBreath: View {
                                         .foregroundColor(Color("wht"))
                                         .font(.system(size: 34).weight(.bold))
                                         .lineSpacing(10)
+                                        .multilineTextAlignment(.center)
                                 }
                                 
                                 
                             }
                         }
+                        
                         else if selectedOptionIndex == 0 {
                             Text(wordNetwork.checkWords.text ?? "")
                                 .foregroundColor(Color("wht"))
@@ -145,6 +148,7 @@ struct PronounceBreath: View {
                         Spacer()
                         
                     }
+                    
 
 
                 }
